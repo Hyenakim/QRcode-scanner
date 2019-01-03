@@ -35,6 +35,7 @@ function tick() {
             //qrCanvasElement.classList.remove("hidden");
             //video.classList.add("hidden");
 
+
             document.getElementsByTagName("p")[0].innerHTML = "주소 : " + result;
             var check = confirm(result + "로 이동하겠습니까?");
             if (check)
