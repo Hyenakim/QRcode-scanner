@@ -39,7 +39,8 @@ function tick() {
             document.getElementsByTagName("p")[0].innerHTML = "주소 : " + result;
             //var check = confirm(result + "로 이동하겠습니까?");
             //if (check)
-            window.open(result, '_blank');
+            //window.open(result, '_blank');
+            openTab(result);
            // else
            //     ;
         } catch (e) {
