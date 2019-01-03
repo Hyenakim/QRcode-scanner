@@ -1,4 +1,4 @@
-window.onload = function () {
+ï»¿window.onload = function () {
     /* Ask for "environnement" (rear) camera if available (mobile), will fallback to only available otherwise (desktop).
      * User will be prompted if (s)he allows camera to be started */
     navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" }, audio: false }).then(function (stream) {
@@ -36,8 +36,8 @@ function tick() {
             //video.classList.add("hidden");
 
 
-            document.getElementsByTagName("p")[0].innerHTML = "ÁÖ¼Ò : " + result;
-            var check = confirm(result + "·Î ÀÌµ¿ÇÏ°Ú½À´Ï±î?");
+            document.getElementsByTagName("p")[0].innerHTML = "ì£¼ì†Œ : " + result;
+            var check = confirm(result + "ë¡œ ì´ë™í•˜ê² ìŠµë‹ˆê¹Œ?");
             if (check)
                 window.open(result);
             else
