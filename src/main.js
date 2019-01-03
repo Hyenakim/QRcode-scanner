@@ -36,9 +36,11 @@ function tick() {
             //video.classList.add("hidden");
 
             document.getElementsByTagName("p")[0].innerHTML = "주소 : " + result;
-            alert(result + "로 이동하겠습니까?");
-            window.open(result);
-
+            var check = confirm(result + "로 이동하겠습니까?");
+            if (check)
+                window.open(result);
+            else
+                ;
         } catch (e) {
             /* No Op */
         }
