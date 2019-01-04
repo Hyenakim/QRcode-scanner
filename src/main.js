@@ -40,10 +40,10 @@ function tick() {
             //var input = document.getElementsById("result");
             //input.setAttribute('href', result);
             //input.innerHTML = result;
-            //var check = confirm(result + "로 이동하겠습니까?");
-            //if (check)
+            var check = confirm(result + "로 이동하겠습니까?");
+            if (check)
             //window.open(result, '_blank');
-            openTab(result);
+                openTab(result);
            // else
            //     ;
         } catch (e) {
