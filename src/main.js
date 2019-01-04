@@ -38,7 +38,7 @@ function tick() {
 
             document.getElementsByTagName("p")[0].innerHTML = "이동";
             var url = document.getElementsByTagName('p')[1];
-            console.log(url[0]);
+            console.log(url);
             var link = document.createElement('a');
             link.href = result;
             var text = document.createTextNode(result);
