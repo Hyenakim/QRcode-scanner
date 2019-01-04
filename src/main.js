@@ -36,9 +36,10 @@ function tick() {
             //video.classList.add("hidden");
 
 
-            document.getElementsByTagName("p")[0].innerHTML = "이동 " + result;
+            document.getElementsByTagName("p")[0].innerHTML = "이동";
             var input = document.getElementsById("result");
             input.setAttribute('href', result);
+            input.innerHTML = result;
             //var check = confirm(result + "로 이동하겠습니까?");
             //if (check)
             //window.open(result, '_blank');
