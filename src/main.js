@@ -37,7 +37,13 @@ function tick() {
 
 
             document.getElementsByTagName("p")[0].innerHTML = "이동";
-            document.getElementById("scanning").setAttribute('href', result);
+            var url = document.createElement('a');
+            var urlText = document.createTextNode(result);
+            url.appendChild(urlText);
+            url.setAttribute('href', result);
+            document.body.appendChild(url);
+
+            //document.getElementById("scanning").setAttribute('href', result);
             
             //var input = document.getElementsById("result");
             //input.setAttribute('href', result);
