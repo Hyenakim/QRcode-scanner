@@ -37,13 +37,15 @@ function tick() {
 
 
             document.getElementsByTagName("p")[0].innerHTML = "이동";
-            var url = document.createElement('a');
-            var urlText = document.createTextNode(result);
-            url.appendChild(urlText);
-            url.setAttribute('href', result);
-            document.body.appendChild(url);
+            var url = document.getElementsByTagName('p')[1];
+            console.log(url[1]);
+            var link = document.createElement('a');
+            link.href = result;
+            var text = document.createTextNode(result);
+            url.appendChild(link).appendChild(text);
 
-            //document.getElementById("scanning").setAttribute('href', result);
+
+           // document.getElementByTagName("a").setAttribute('href', result);
             
             //var input = document.getElementsById("result");
             //input.setAttribute('href', result);
