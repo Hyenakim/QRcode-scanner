@@ -36,7 +36,7 @@ function tick() {
             //video.classList.add("hidden");
 
 
-            document.getElementsByTagName("p")[0].innerHTML = "이동";
+            document.getElementsByTagName("p")[0].innerHTML = "이동!";
             var url = document.getElementsByTagName('p')[1];
             url.clear();
             console.log(url);
