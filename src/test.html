@@ -1,6 +1,28 @@
 <!doctype html>
 <html lang="ko">
 <head>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+        #camera, #camera--view, #camera--sensor, #camera--output {
+            position: fixed;
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        #camera--view, #camera--sensor, #camera--output {
+            transform: scaleX(-1);
+            filter: FlipH;
+        }
+
+
+    </style>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
