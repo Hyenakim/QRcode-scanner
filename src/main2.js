@@ -5,7 +5,9 @@
         var video = document.getElementById("video-preview");
         
         video.setAttribute("playsinline", true); /* otherwise iOS safari starts fullscreen */
-        video.setAttribute("controls", true);
+        //video.setAttribute("controls", true);
+        video.removeAttribute("controls");
+        //video.setAttribute("preload", "auto");
         //video.setAttribute("autoplay", true);
         video.srcObject = stream;
         video.play();
