@@ -1,29 +1,101 @@
-﻿// Set constraints for the video stream
-var constraints = { video: { facingMode: "environment" }, audio: false };
-// Define constants
-const cameraView = document.getElementById("camera--view"),
-    cameraOutput = document.querySelector("#camera--output"),
-    cameraSensor = document.querySelector("#camera--sensor"),
-    cameraTrigger = document.querySelector("#camera--trigger")
-// Access the device camera and stream to cameraView
-function cameraStart() {
-    navigator.mediaDevices
-        .getUserMedia(constraints)
-        .then(function (stream) {
-            track = stream.getTracks()[0];
-            cameraView.srcObject = stream;
-        })
-    .catch(function (error) {
-        console.error("Oops. Something is broken.", error);
+﻿window.onload = function () {
+    /* Ask for "environnement" (rear) camera if available (mobile), will fallback to only available otherwise (desktop).
+     * User will be prompted if (s)he allows camera to be started */
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" }, audio: false }).then(function (stream) {
+        var video = document.getElementById("video-preview");
+        
+        video.setAttribute("playsinline", true); /* otherwise iOS safari starts fullscreen */
+        video.setAttribute("controls", false);
+        video.setAttribute("autoplay", true);
+        video.srcObject = stream;
+        //video.onloadedmetadata = function (e) {
+        //    video.play();
+        //};
+        video.addEventListener('loadedmetadata', function () {
+            video.play();
+        });
+        setTimeout(tick, 1000); /* We launch the tick function 100ms later (see next step) */
+    })
+    .catch(function (err) {
+        console.log(err); /* User probably refused to grant access*/
     });
+};
+
+function tick() {
+    var video = document.getElementById("video-preview");
+    var qrCanvasElement = document.getElementById("qr-canvas");
+    var qrCanvas = qrCanvasElement.getContext("2d");
+    var width, height;
+
+    if (video.readyState === video.HAVE_ENOUGH_DATA) {
+        qrCanvasElement.height = video.videoHeight;
+        qrCanvasElement.width = video.videoWidth;
+        qrCanvas.drawImage(video, 0, 0, qrCanvasElement.width, qrCanvasElement.height);
+        try {
+            var result = qrcode.decode();
+            console.log(result)
+            /* Video can now be stopped */
+            //video.pause();
+            //video.src = "";
+            //video.srcObject.getVideoTracks().forEach(track => track.stop());
+
+            /* Display Canvas and hide video stream */
+            //qrCanvasElement.classList.remove("hidden");
+            //video.classList.add("hidden");
+
+            document.getElementsByTagName("p")[0].innerHTML = "이동";
+            var url = document.getElementsByTagName('p')[1];
+            //p 내용 지우기
+            while (url.firstChild) {
+                url.removeChild(url.firstChild);
+            }
+            console.log(url);
+            var link = document.createElement('a');
+            link.href = result;
+            var text = document.createTextNode(result);
+            url.appendChild(link).appendChild(text);
+            //알림창
+            var check = confirm(result + "로 이동하겠습니까?");
+            if (check)
+                //window.open(result, '_blank');
+                openTab(result);
+            // else
+            //     ;
+        } catch (e) {
+            /* No Op */
+        }
+    }
+
+    /* If no QR could be decoded from image copied in canvas */
+    if (!video.classList.contains("hidden"))
+        setTimeout(tick, 100);
 }
-// Take a picture when cameraTrigger is tapped
-// cameraTrigger.onclick = function() {
-//     cameraSensor.width = cameraView.videoWidth;
-//     cameraSensor.height = cameraView.videoHeight;
-//     cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
-//     cameraOutput.src = cameraSensor.toDataURL("image/webp");
-//     cameraOutput.classList.add("taken");
-// };
-// Start the video stream when the window loads
-window.addEventListener("load", cameraStart, false);
+
+function openTab(url) {
+    // Create link in memory
+    var a = window.document.createElement("a");
+    a.target = '_blank';
+    a.href = url;
+
+    // Dispatch fake click
+    var e = window.document.createEvent("MouseEvents");
+    e.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+    a.dispatchEvent(e);
+};
+"use strict";
+__webpack_exports__["a"] = getUserMedia;
+function initCamera(video, constraints) {
+    return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_mediaDevices__["a" /* getUserMedia */])(constraints).then(function (stream) {
+        return new Promise(function (resolve) {
+            streamRef = stream;
+            video.setAttribute("autoplay", true);
+            video.setAttribute('muted', true);
+            video.setAttribute('playsinline', true);
+            video.srcObject = stream;
+            video.addEventListener('loadedmetadata', function () {
+                video.play();
+                resolve();
+            });
+        });
+    }).then(waitForVideo.bind(null, video));
+}
