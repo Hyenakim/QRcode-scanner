@@ -6,20 +6,11 @@
         
         video.setAttribute("playsinline", true); /* otherwise iOS safari starts fullscreen */
         //video.setAttribute("controls", true);
-        video.removeAttribute("controls");
+        //video.removeAttribute("controls");
         //video.setAttribute("preload", "auto");
         //video.setAttribute("autoplay", true);
         video.srcObject = stream;
         video.play();
-        if (video.controls == true) {
-            // Controls are binary, true if there, false if not 
-            video.removeAttribute("controls");
-            e.target.innerHTML = "Show controls";
-        } else {
-            // Controls are binary, true if there, false if not 
-            video.setAttribute("controls", true);
-            e.target.innerHTML = "Hide controls";
-        }
         setTimeout(tick, 1000); /* We launch the tick function 100ms later (see next step) */
     })
     .catch(function (err) {
