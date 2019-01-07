@@ -6,7 +6,7 @@
         video.srcObject = stream;
         video.setAttribute("playsinline", true); /* otherwise iOS safari starts fullscreen */
         video.setAttribute("controls", false);
-        ideo.play();
+        video.play();
         setTimeout(tick, 100); /* We launch the tick function 100ms later (see next step) */
     })
     .catch(function (err) {
@@ -75,3 +75,14 @@ function openTab(url) {
     e.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
     a.dispatchEvent(e);
 };
+video.addEventListener('canplay', function (ev) {
+    if (!streaming) {
+        height = video.videoHeight / (video.videoWidth / width);
+
+        video.setAttribute('width', width);
+        video.setAttribute('height', height);
+        canvas.setAttribute('width', width);
+        canvas.setAttribute('height', height);
+        streaming = true;
+    }
+}, false);
