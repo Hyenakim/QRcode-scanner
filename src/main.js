@@ -35,7 +35,7 @@ function tick() {
             //qrCanvasElement.classList.remove("hidden");
             //video.classList.add("hidden");
 
-            document.getElementsByTagName("p")[0].innerHTML = "이동!";
+            document.getElementsByTagName("p")[0].innerHTML = "이동";
             var url = document.getElementsByTagName('p')[1];
             //p 내용 지우기
             while (url.firstChild) {
