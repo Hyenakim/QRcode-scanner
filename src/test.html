@@ -3,22 +3,24 @@
 <head>
     <style>
         html, body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
             width: 100%;
+            height: 100%;
         }
 
-        #camera, #camera--view, #camera--sensor, #camera--output {
-            position: fixed;
-            height: 100%;
-            width: 100%;
-            object-fit: cover;
+        #scanner-container {
+            width: 300px;
+            height: 300px;
+            overflow: hidden;
         }
 
-        #camera--view, #camera--sensor, #camera--output {
-            transform: scaleX(-1);
-            filter: FlipH;
+        #scanner-container canvas, video {
+             margin-top: -50px;
+             width: 300px;
+             height: 400px;
+         }
+
+        #scanner-container canvas.drawingBuffer, video.drawingBuffer {
+             margin-left: -300px;
         }
 
 
@@ -45,58 +47,6 @@
     <script type="text/javascript" src="alignpat.js"></script>
     <script type="text/javascript" src="databr.js"></script>
     <script type="text/javascript" src="main2.js" charset="euc-kr"></script>
-
-
-    <!-- Name of your awesome camera app -->
-    <title>Camera App</title>
-    <!-- Link to your main style sheet-->
-    <link rel="stylesheet" href="style.css">
-    <style>
-        html, body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            width: 100%;
-        }
-
-        #camera, #camera--view, #camera--sensor, #camera--output {
-            position: fixed;
-            height: 100%;
-            width: 100%;
-            object-fit: cover;
-        }
-
-        #camera--view, #camera--sensor, #camera--output {
-            transform: scaleX(-1);
-            filter: FlipH;
-        }
-
-        #camera--trigger {
-            width: 200px;
-            background-color: black;
-            color: white;
-            font-size: 16px;
-            border-radius: 30px;
-            border: none;
-            padding: 15px 20px;
-            text-align: center;
-            box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
-            position: fixed;
-            bottom: 30px;
-            left: calc(50% - 100px);
-        }
-
-        .taken {
-            height: 100px !important;
-            width: 100px !important;
-            transition: all 0.5s ease-in;
-            border: solid 3px white;
-            box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
-            top: 20px;
-            right: 20px;
-            z-index: 2;
-        }
-    </style>
 </head>
 <body>
     <main id="camera">
