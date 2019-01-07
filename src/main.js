@@ -12,6 +12,7 @@
     .catch(function (err) {
         console.log(err); /* User probably refused to grant access*/
     });
+    var video = document.getElementById("video-preview");
     video.addEventListener('canplay', function (ev) {
         if (!streaming) {
             height = video.videoHeight / (video.videoWidth / width);
