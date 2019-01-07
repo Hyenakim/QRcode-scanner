@@ -1,84 +1,146 @@
-<!doctype html>
 <html lang="ko">
 <head>
     <style>
-        html, body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            width: 100%;
-        }
 
-        #camera, #camera--view, #camera--sensor, #camera--output {
-            position: fixed;
-            height: 100%;
-            width: 100%;
-            object-fit: cover;
-        }
-
-        #camera--view, #camera--sensor, #camera--output {
-            transform: scaleX(-1);
-            filter: FlipH;
-        }
-
-        #camera--trigger {
-            width: 200px;
-            background-color: black;
-            color: white;
-            font-size: 16px;
-            border-radius: 30px;
-            border: none;
-            padding: 15px 20px;
+        #finger {
+            width: 500px;
+            height: 500px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -250px 0 0 -250px;
             text-align: center;
-            box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
-            position: fixed;
-            bottom: 30px;
-            left: calc(50% - 100px);
         }
-        .taken {
-            height: 100px !important;
-            width: 100px !important;
-            transition: all 0.5s ease-in;
-            border: solid 3px white;
-            box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
-            top: 20px;
-            right: 20px;
-            z-index: 2;
+
+        #finger_box {
+            width: 100%;
+            height: 100%;
+            position: relative;
         }
-</style>
-        <meta charset="utf-8" >
-        <meta http-equiv="x-ua-compatible" content="ie=edge" >
-        <meta name="viewport" content="width=device-width, initial-scale=1" >
-        <meta charset="utf-8" >
-        <script type="text/javascript" src="grid.js" > </script >
-        <script type="text/javascript" src="version.js" > </script >
-        <script type="text/javascript" src="detector.js" > </script >
-        <script type="text/javascript" src="formatinf.js" > </script >
-        <script type="text/javascript" src="errorlevel.js" > </script >
-        <script type="text/javascript" src="bitmat.js" > </script >
-        <script type="text/javascript" src="datablock.js" > </script >
-        <script type="text/javascript" src="bmparser.js" > </script >
-        <script type="text/javascript" src="datamask.js" > </script >
-        <script type="text/javascript" src="rsdecoder.js" > </script >
-        <script type="text/javascript" src="gf256poly.js" > </script >
-        <script type="text/javascript" src="gf256.js" > </script >
-        <script type="text/javascript" src="decoder.js" > </script >
-        <script type="text/javascript" src="qrcode.js" > </script >
-        <script type="text/javascript" src="findpat.js" > </script >
-        <script type="text/javascript" src="alignpat.js" > </script >
-        <script type="text/javascript" src="databr.js" > </script >
-        <script type="text/javascript" src="main2.js" > </script >
-        </head >
-        <body >
-        <main id="camera" >
-        <!-- Camera view -->
-        <video id="camera--view" autoplay playsinline > </video >
-        <!-- Camera sensor -->
-        <canvas id="camera--sensor" > </canvas >
-        <!-- Camera output -->
-        <img src="//:0" alt="" id="camera--output" >
-        <!-- Camera trigger -->
-        <!-- <button id="camera--trigger" > Take a picture</button > -->
-        </main >
-     </body >
-</html >
+
+        #line {
+            width: 100%;
+            height: 30px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -6px 0 0 -50%;
+            -webkit-animation: line 1.4s linear;
+            animation: line 1.4s linear infinite;
+        }
+
+        @keyframes line {
+            0% {
+                transform: translateY(-90px);
+            }
+
+            50% {
+                transform: translateY(90px);
+            }
+
+            100% {
+                transform: translateY(-90px);
+            }
+        }
+
+        @-webkit-keyframes line {
+            0% {
+                -webkit-transform: translateY(-90px);
+            }
+
+            50% {
+                -webkit-transform: translateY(90px);
+            }
+
+            100% {
+                -webkit-transform: translateY(-90px);
+            }
+        }
+
+        img {
+            border: 0 none;
+            max-width: 100%;
+            height: auto;
+            width: auto;
+            -ms-interpolation-mode: bicubic;
+            vertical-align: middle;
+        }
+
+        vedio {
+            pointer-events: none;
+        }
+
+            vedio::-webkit-media-controls-panel {
+                display: none !important;
+                -webkit-appearance: none;
+            }
+            /* Old shadow dom for play button */
+            vedio::-webkit-media-controls-play-button {
+                display: none !important;
+                -webkit-appearance: none;
+            }
+            /* New shadow dom for play button */
+            /* This one works! */
+            vedio::-webkit-media-controls-start-playback-button {
+                display: none !important;
+                -webkit-appearance: none;
+            }
+
+        h1 {
+            text-align: center;
+        }
+
+        p {
+            text-align: center;
+        }
+
+        a {
+            text-align: center;
+        }
+    </style>
+
+    <meta charset="utf-8">
+    <script type="text/javascript" src="grid.js"></script>
+    <script type="text/javascript" src="version.js"></script>
+    <script type="text/javascript" src="detector.js"></script>
+    <script type="text/javascript" src="formatinf.js"></script>
+    <script type="text/javascript" src="errorlevel.js"></script>
+    <script type="text/javascript" src="bitmat.js"></script>
+    <script type="text/javascript" src="datablock.js"></script>
+    <script type="text/javascript" src="bmparser.js"></script>
+    <script type="text/javascript" src="datamask.js"></script>
+    <script type="text/javascript" src="rsdecoder.js"></script>
+    <script type="text/javascript" src="gf256poly.js"></script>
+    <script type="text/javascript" src="gf256.js"></script>
+    <script type="text/javascript" src="decoder.js"></script>
+    <script type="text/javascript" src="qrcode.js"></script>
+    <script type="text/javascript" src="findpat.js"></script>
+    <script type="text/javascript" src="alignpat.js"></script>
+    <script type="text/javascript" src="databr.js"></script>
+    <script type="text/javascript" src="main.js" charset="euc-kr"></script>
+</head>
+<body>
+    <div class="title" style="width: 100%; height: 8%;">
+        <h1>
+            코드스캐너
+        </h1>
+    </div>
+    <div class="video-container" style="width: 100%; height: 100%;">
+        <div id="finger">
+            <div id="finger_box">
+                <img id="zhiwen" src="images/zhiwen.png" alt="">
+                <img id="line" src="images/line.png" alt="">
+                <p id="info"></p>
+            </div>
+        </div>
+        <video id="video-preview" style="width: 100%;height: 100%;" autoplay playsinline></video>
+        <canvas id="qr-canvas" class="hidden" style="display:none"></canvas>
+    </div>
+
+    <div class="scanning">
+        <p> 스캔중 </p>
+        <p></p>
+    </div>
+
+</body>
+</html>
