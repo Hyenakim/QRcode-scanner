@@ -68,9 +68,20 @@
             vedio{
                 pointer-events: none;
             }
+            
         video::-webkit-media-controls {
             display: none !important;
         }
+            h1{
+                text-align: center;
+            }
+            p{
+                text-align: center;
+            }
+            a{
+                text-align: center;
+            }
+
            
     </style>
     
@@ -108,7 +119,9 @@
                  <p id="info"></p> 
             </div>
         </div>    
-        <video id="video-preview" style="width: 100%;height: 100%; icon: inherit; "  autoplay></video>  
+        <video id="video-preview" style="width: 100%;height: 100%; "src="file.mp4"  autoplay>
+      
+        </video>  
         <canvas id="qr-canvas" class="hidden" style="display:none"></canvas>
     </div>
 
