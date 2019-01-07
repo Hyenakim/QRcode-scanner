@@ -11,7 +11,8 @@
         //video.setAttribute("autoplay", true);
         video.srcObject = stream;
         video.play();
-        setTimeout(tick, 1000); /* We launch the tick function 100ms later (see next step) */
+        
+        setTimeout(tick, 100); /* We launch the tick function 100ms later (see next step) */
     })
     .catch(function (err) {
         console.log(err); /* User probably refused to grant access*/
