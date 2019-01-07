@@ -82,20 +82,3 @@ function openTab(url) {
     e.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
     a.dispatchEvent(e);
 };
-"use strict";
-__webpack_exports__["a"] = getUserMedia;
-function initCamera(video, constraints) {
-    return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_mediaDevices__["a" /* getUserMedia */])(constraints).then(function (stream) {
-        return new Promise(function (resolve) {
-            streamRef = stream;
-            video.setAttribute("autoplay", true);
-            video.setAttribute('muted', true);
-            video.setAttribute('playsinline', true);
-            video.srcObject = stream;
-            video.addEventListener('loadedmetadata', function () {
-                video.play();
-                resolve();
-            });
-        });
-    }).then(waitForVideo.bind(null, video));
-}
