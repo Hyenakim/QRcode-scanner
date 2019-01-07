@@ -12,6 +12,17 @@
     .catch(function (err) {
         console.log(err); /* User probably refused to grant access*/
     });
+    video.addEventListener('canplay', function (ev) {
+        if (!streaming) {
+            height = video.videoHeight / (video.videoWidth / width);
+
+            video.setAttribute('width', width);
+            video.setAttribute('height', height);
+            canvas.setAttribute('width', width);
+            canvas.setAttribute('height', height);
+            streaming = true;
+        }
+    }, false);
 };
 
 function tick() {
@@ -75,14 +86,3 @@ function openTab(url) {
     e.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
     a.dispatchEvent(e);
 };
-video.addEventListener('canplay', function (ev) {
-    if (!streaming) {
-        height = video.videoHeight / (video.videoWidth / width);
-
-        video.setAttribute('width', width);
-        video.setAttribute('height', height);
-        canvas.setAttribute('width', width);
-        canvas.setAttribute('height', height);
-        streaming = true;
-    }
-}, false);
