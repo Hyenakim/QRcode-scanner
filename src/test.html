@@ -3,64 +3,81 @@
 <head>
     <style>
         html, body {
-            width: 100%;
+            margin: 0;
+            padding: 0;
             height: 100%;
+            width: 100%;
         }
 
-        #scanner-container {
-            width: 300px;
-            height: 300px;
-            overflow: hidden;
+        #camera, #camera--view, #camera--sensor, #camera--output {
+            position: fixed;
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
         }
 
-        #scanner-container canvas, video {
-             margin-top: -50px;
-             width: 300px;
-             height: 400px;
-         }
-
-        #scanner-container canvas.drawingBuffer, video.drawingBuffer {
-             margin-left: -300px;
+        #camera--view, #camera--sensor, #camera--output {
+            transform: scaleX(-1);
+            filter: FlipH;
         }
 
-
-    </style>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="utf-8">
-    <script type="text/javascript" src="grid.js"></script>
-    <script type="text/javascript" src="version.js"></script>
-    <script type="text/javascript" src="detector.js"></script>
-    <script type="text/javascript" src="formatinf.js"></script>
-    <script type="text/javascript" src="errorlevel.js"></script>
-    <script type="text/javascript" src="bitmat.js"></script>
-    <script type="text/javascript" src="datablock.js"></script>
-    <script type="text/javascript" src="bmparser.js"></script>
-    <script type="text/javascript" src="datamask.js"></script>
-    <script type="text/javascript" src="rsdecoder.js"></script>
-    <script type="text/javascript" src="gf256poly.js"></script>
-    <script type="text/javascript" src="gf256.js"></script>
-    <script type="text/javascript" src="decoder.js"></script>
-    <script type="text/javascript" src="qrcode.js"></script>
-    <script type="text/javascript" src="findpat.js"></script>
-    <script type="text/javascript" src="alignpat.js"></script>
-    <script type="text/javascript" src="databr.js"></script>
-    <script type="text/javascript" src="main2.js" charset="euc-kr"></script>
-</head>
-<body>
-    <main id="camera">
+        #camera--trigger {
+            width: 200px;
+            background-color: black;
+            color: white;
+            font-size: 16px;
+            border-radius: 30px;
+            border: none;
+            padding: 15px 20px;
+            text-align: center;
+            box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
+            position: fixed;
+            bottom: 30px;
+            left: calc(50% - 100px);
+        }
+        .taken {
+            height: 100px !important;
+            width: 100px !important;
+            transition: all 0.5s ease-in;
+            border: solid 3px white;
+            box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
+            top: 20px;
+            right: 20px;
+            z-index: 2;
+</style>
+        <meta charset="utf-8" >
+        <meta http-equiv="x-ua-compatible" content="ie=edge" >
+        <meta name="viewport" content="width=device-width, initial-scale=1" >
+        <meta charset="utf-8" >
+        <script type="text/javascript" src="grid.js" > </script >
+        <script type="text/javascript" src="version.js" > </script >
+        <script type="text/javascript" src="detector.js" > </script >
+        <script type="text/javascript" src="formatinf.js" > </script >
+        <script type="text/javascript" src="errorlevel.js" > </script >
+        <script type="text/javascript" src="bitmat.js" > </script >
+        <script type="text/javascript" src="datablock.js" > </script >
+        <script type="text/javascript" src="bmparser.js" > </script >
+        <script type="text/javascript" src="datamask.js" > </script >
+        <script type="text/javascript" src="rsdecoder.js" > </script >
+        <script type="text/javascript" src="gf256poly.js" > </script >
+        <script type="text/javascript" src="gf256.js" > </script >
+        <script type="text/javascript" src="decoder.js" > </script >
+        <script type="text/javascript" src="qrcode.js" > </script >
+        <script type="text/javascript" src="findpat.js" > </script >
+        <script type="text/javascript" src="alignpat.js" > </script >
+        <script type="text/javascript" src="databr.js" > </script >
+        <script type="text/javascript" src="main2.js" > </script >
+        </head >
+        <body >
+        <main id="camera" >
         <!-- Camera view -->
-        <video id="camera--view" autoplay playsinline></video>
+        <video id="camera--view" autoplay playsinline > </video >
         <!-- Camera sensor -->
-        <canvas id="camera--sensor"></canvas>
-
+        <canvas id="camera--sensor" > </canvas >
         <!-- Camera output -->
-        <img src="//:0" alt="" id="camera--output">
-
+        <img src="//:0" alt="" id="camera--output" >
         <!-- Camera trigger -->
-        <!-- <button id="camera--trigger">Take a picture</button> -->
-
-    </main>
-</body>
-</html> 
+        <!-- <button id="camera--trigger" > Take a picture</button > -->
+        </main >
+     </body >
+</html >
