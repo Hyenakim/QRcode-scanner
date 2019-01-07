@@ -5,7 +5,8 @@
         var video = document.getElementById("video-preview");
         video.srcObject = stream;
         video.setAttribute("playsinline", true); /* otherwise iOS safari starts fullscreen */
-        video.play();
+        video.setAttribute("controls", false);
+        ideo.play();
         setTimeout(tick, 100); /* We launch the tick function 100ms later (see next step) */
     })
     .catch(function (err) {
