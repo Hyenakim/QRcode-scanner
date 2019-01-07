@@ -4,13 +4,10 @@
     navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" }, audio: false }).then(function (stream) {
         var video = document.getElementById("video-preview");
         
-        video.setAttribute("playsinline", true); /* otherwise iOS safari starts fullscreen */
+        //video.setAttribute("playsinline", true); /* otherwise iOS safari starts fullscreen */
         //video.setAttribute("controls", false);
         //video.setAttribute("autoplay", true);
         video.srcObject = stream;
-        //video.onloadedmetadata = function (e) {
-        //    video.play();
-        //};
         video.play();
         setTimeout(tick, 1000); /* We launch the tick function 100ms later (see next step) */
     })
