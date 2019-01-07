@@ -6,8 +6,10 @@
         video.srcObject = stream;
         video.setAttribute("playsinline", true); /* otherwise iOS safari starts fullscreen */
         video.setAttribute("controls", false);
-        video.play();
-        setTimeout(tick, 100); /* We launch the tick function 100ms later (see next step) */
+        video.onloadedmetadata = function (e) {
+            video.play();
+        };
+        setTimeout(tick, 1000); /* We launch the tick function 100ms later (see next step) */
     })
     .catch(function (err) {
         console.log(err); /* User probably refused to grant access*/
