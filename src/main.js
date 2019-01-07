@@ -12,18 +12,6 @@
     .catch(function (err) {
         console.log(err); /* User probably refused to grant access*/
     });
-    var video = document.getElementById("video-preview");
-    video.addEventListener('canplay', function (ev) {
-        if (!streaming) {
-            height = video.videoHeight / (video.videoWidth / width);
-
-            video.setAttribute('width', width);
-            video.setAttribute('height', height);
-            canvas.setAttribute('width', width);
-            canvas.setAttribute('height', height);
-            streaming = true;
-        }
-    }, false);
 };
 
 function tick() {
