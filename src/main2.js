@@ -7,7 +7,7 @@
         //video.setAttribute("playsinline", true); /* otherwise iOS safari starts fullscreen */
         //video.setAttribute("controls", true);
         //video.srcObject = stream;
-        //video.play();
+        video.play();
         
         setTimeout(tick, 100); /* We launch the tick function 100ms later (see next step) */
     })
