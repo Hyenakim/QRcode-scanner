@@ -4,7 +4,7 @@
     navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" }, audio: false }).then(function (stream) {
         var video = document.getElementById("video-preview");
         
-        video.setAttribute("playsinline", true); /* otherwise iOS safari starts fullscreen */
+        //video.setAttribute("playsinline", true); /* otherwise iOS safari starts fullscreen */
         //video.setAttribute("controls", true);
         video.srcObject = stream;
         video.play();
