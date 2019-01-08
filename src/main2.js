@@ -1,7 +1,7 @@
 ﻿window.onload = function () {
     /* Ask for "environnement" (rear) camera if available (mobile), will fallback to only available otherwise (desktop).
      * User will be prompted if (s)he allows camera to be started */
-    navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" }, audio: false }).then(function (stream) {
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" }, audio: false }).then(function (stream) {
         var video = document.getElementById("video-preview");
         
         video.setAttribute("playsinline", true); /* otherwise iOS safari starts fullscreen */
