@@ -1,6 +1,18 @@
 ﻿<html lang="ko">
 <head>
     <style>
+        div.title {
+            width: 100%;
+            height: 7%;
+        }
+        div.video-container{
+            width: 100%;
+            height: 90%;
+        }
+        div.scanning{
+            width: 100%;
+            height: 3%;
+        }
         #finger {
             width: 100px;
             height: 100px;
@@ -104,12 +116,12 @@
     <script type="text/javascript" src="main2.js" charset="euc-kr"></script>
 </head>
 <body>
-    <div class="title" style="width: 100%; height: 7%;">
+    <div class="title" >
         <h1>
-            코드스캐너2
+            코드스캐너3
         </h1>
     </div>
-    <div class="video-container" style="width: 100%; height: 90%;">
+    <div class="video-container">
         <div id="finger">
             <div id="finger_box">
                 <img id="zhiwen" src="images/zhiwen.png" alt="">
@@ -117,11 +129,11 @@
                 <p id="info"></p>
             </div>
         </div>
-        <video id="video-preview" style="width: 100%;height: 90%;" autoplay>
+        <video id="video-preview" style="width: 100%;height: 100%;" autoplay>
         </video>
         <canvas id="qr-canvas" class="hidden" style="display:none"></canvas>
     </div>
-    <div id="scanning" style="width: 100%;height: 3%;">
+    <div class="scanning">
         <p> 스캔중 </p>
         <p></p>
     </div>
