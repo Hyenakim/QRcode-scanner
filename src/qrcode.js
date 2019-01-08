@@ -298,7 +298,7 @@ qrcode.process = function(ctx){
         }
         ctx.putImageData(qrcode.imagedata, 0, 0);
     }
-    
+   
     
     var reader = Decoder.decode(qRCodeMatrix.bits);
     var data = reader.DataByte;
