@@ -15,7 +15,7 @@
             border: none;
         }
         div.video-container {
-            position: relative;
+            position: absolute;
             width: 100%;
         }
         .title{
@@ -151,14 +151,18 @@
     <script src="jquery-3.3.1.min.js"></script>
     <script>
             $(document).ready(function () {
-                var w = $('#video-preview');
+                $('div.video-container').css({
+                    "position": "absolute",
+                    "top": ($('div.header').height() + "px"),
+                });
+                var w = $('div.video-container');
                 var offset = w.offset();
                 console.log(offset.top);
                 console.log(offset.left);
                 $('#finger').css({
                     "position": "absolute",
-                    "top": ($('#video-preview').width() / 2 - offset.top +$("#finger").width()+"px"),
-                    "left": ($('#video-preview').height()/2 - offset.left +$("#finger").height()+"px")
+                    "top": ($('div.video-container').width() / 2 + offset.top - $("#finger").width() + "px"),
+                    "left": ($('div.video-container').height() / 2 + offset.left - $("#finger").height() + "px")
                 });
                 var fin = $('#finger');
                 var offset2 = fin.offset();
