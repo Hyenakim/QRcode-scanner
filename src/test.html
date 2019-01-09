@@ -137,14 +137,14 @@
         </h1>
     </div>
     <div class="video-container">
-        <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="jquery-3.3.1.min.js"></script>
         <script>
-            
             $(document).ready(function () {
                 var w = $('div.video-container').width();
                 var h = $('div.video-container').height();
-                $('div.finger').css({ top: w / 2, left: h / 2 });
-                console.log(w, h);
+                console.log(w);
+                $('#finger').css({ top: w / 2, left: h / 2 });
+                
             });
         </script>
         <div id="finger">
