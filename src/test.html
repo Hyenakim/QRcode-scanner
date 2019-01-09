@@ -143,8 +143,9 @@
                 var w = $('div.video-container').width();
                 var h = $('div.video-container').height();
                 $('#finger').css({
-                    "top": w / 2+"px",
-                    "left": h / 2+"px"
+                    "position": "absolute",
+                    "top": (((h - this.outerHeight()) / 2) + $('div.video-container').scrollTop() + "px"),
+                    "left": (((w - this.outerWidth()) / 2) + $('div.video-container').scrollLeft() + "px")
                 });
                 var w2 = $('#finger').width();
                 var h2 = $('#finger').height();
