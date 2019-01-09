@@ -140,7 +140,13 @@
         <script src="jquery-3.3.1.min.js">
             var w = $('video-container').width();
             var h = $('video-container').height();
-            $('#finger').css({ top: w/2, left: h/2});
+            $('#finger').css({ top: w / 2, left: h / 2 });
+            $(document).ready(function () {
+                var w = $('video-container').width();
+                var h = $('video-container').height();
+                $('#finger').css({ top: w / 2, left: h / 2 });
+                console.log(w, h);
+            });
         </script>
         <div id="finger" >
             <div id="finger_box">
