@@ -119,7 +119,7 @@
 </head>
 <body>
     <div class="btn-group" style="width:100%">
-        <button onclick="close()" style="width:10%">X</button>
+        <button onclick="return quitBox('quit');" style="width:10%">X</button>
         <button style="width:80%">코드스캐너</button>
         <button style="width:10%">&nsub;</button>
     </div>
@@ -153,9 +153,12 @@
             });
     </script>
     <script>
-            function close() {
-                window.open("about:blank", "_self").close();
+        function quitBox(cmd) {
+            if (cmd == 'quit') {
+                open(location, '_self').close();
             }
+            return false;
+        }
     </script>
 </body>
 </html>
