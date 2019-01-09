@@ -1,28 +1,36 @@
 ﻿<html lang="ko">
 <head>
     <style>
-        div.title {
-            width: 100%;
-            height: 7%;
+        .btn-group button {
+            background-color: white; /* Green background */
+            border: 0px solid black; /* Green border */
+            color: black; /* White text */
+            cursor: pointer; /* Pointer/hand icon */
+            float: left; /* Float the buttons side by side */
         }
 
-        div.video-container {
-            width: 100%;
-            height: 90%;
+        /* Clear floats (clearfix hack) */
+        .btn-group:after {
+            content: "";
+            clear: both;
+            display: table;
         }
 
-        div.scanning {
-            width: 100%;
-            height: 3%;
+        .btn-group button:not(:last-child) {
+            border-right: none; /* Prevent double borders */
+        }
+
+        /* Add a background color on hover */
+        .btn-group button:hover {
+            background-color: black;
+            color: white;
         }
 
         #finger {
-            width: 200px;
-            height: 200px;
+            width: 50px;
+            height: 50px;
             position: absolute;
-            top: 50%;
-            left: 50%;
-            margin: 0px 0 0 0px;
+            align-content: center;
             text-align: center;
         }
 
@@ -31,8 +39,7 @@
             height: 100%;
             position: relative;
         }
-
-        #line {
+        /*#line {
             width: 100%;
             height: 30px;
             position: absolute;
@@ -41,15 +48,30 @@
             margin: -6px 0 0 -50%;
             -webkit-animation: line 1.4s linear;
             animation: line 1.4s linear infinite;
-        }
-        /*왜 있는지 모르겠음*/
-        /*@keyframes line {
-            0% {transform: translateY(-90px);}
-            50% {transform: translateY(90px);}
-            100% {transform: translateY(-90px);}
         }*/
+        /* #info{
+        width:100%;
+        height:30px;
+        line-height:30px;
+        position:absolute;top:-50px;
+        left:50%;margin-left:-50%;
+        color:#fff;font-size:1.2em;
+        } */
+        @keyframes line {
+            0% {
+                transform: translateY(-90px);
+            }
 
-        @-webkit-keyframes line { /*line animation for web*/
+            50% {
+                transform: translateY(90px);
+            }
+
+            100% {
+                transform: translateY(-90px);
+            }
+        }
+
+        @-webkit-keyframes line {
             0% {
                 -webkit-transform: translateY(-90px);
             }
@@ -86,7 +108,7 @@
     </style>
 
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="text/javascript" src="grid.js"></script>
     <script type="text/javascript" src="version.js"></script>
     <script type="text/javascript" src="detector.js"></script>
@@ -107,25 +129,47 @@
     <script type="text/javascript" src="main.js" charset="euc-kr"></script>
 </head>
 <body>
-    <div class="title">
-        <h1>
-            코드스캐너
-        </h1>
+    <div class="btn-group" style="width:100%">
+        <button onclick="return quitBox('quit');" style="width:10%">X</button>
+        <button style="width:80%">코드스캐너</button>
+        <button style="width:10%">&nsub;</button>
     </div>
-    <div class="video-container">
+    <div class="video-container" style="width: 100%; height: 100%;">
         <div id="finger">
             <div id="finger_box">
                 <img id="zhiwen" src="images/zhiwen.png" alt="">
-                <img id="line" src="images/line.png" alt="">
                 <p id="info"></p>
             </div>
         </div>
-        <video id="video-preview" style="width: 100%;height: 100%;" autoplay></video>
+        <video id="video-preview" style="width: 100%;height: 100%;  " autoplay>
+            <input type="button">
+        </video>
         <canvas id="qr-canvas" class="hidden" style="display:none"></canvas>
     </div>
-    <div class="scanning">
-        <p> 스캔중 </p>
-        <p></p>
-    </div>
+    <script src="jquery-3.3.1.min.js"></script>
+    <script>
+            $(document).ready(function () {
+                var w = $('div.video-container');
+                var offset = w.offset();
+                console.log(offset.top);
+                console.log(offset.left);
+                $('#finger').css({
+                    "position": "absolute",
+                    "top": ($('div.video-container').height() / 2 -$('#finger').height()/2 +$('div.btn-group').height()+ "px"),
+                    "left": ($('div.video-container').width() / 2  -$('#finger').width()/2+ "px")
+                });
+                var fin = $('#finger');
+                var offset2 = fin.offset();
+                console.log($('#finger').width());
+            });
+    </script>
+    <script>
+        function quitBox(cmd) {
+            if (cmd == 'quit') {
+                open(location, '_self').close();
+            }
+            return false;
+        }
+    </script>
 </body>
 </html>
