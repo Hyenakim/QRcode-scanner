@@ -120,8 +120,8 @@
 </head>
 <body>
     <div class="btn-group" style="width:100%">
-        <button style="width:33.3%">X</button>
-        <button style="width:66.7%">코드스캐너</button>
+        <button style="width:10%">X</button>
+        <p style="width:100%">코드스캐너</p>
     </div>
     <div class="video-container" style="width: 100%; height: 100%;">
         <div id="finger">
@@ -130,7 +130,7 @@
                 <p id="info"></p>
             </div>
         </div>
-        <video id="video-preview" controlsList="nodownload nofullscreen noremoteplayback" style="width: 100%;height: 100%;  " autoplay>
+        <video id="video-preview"  style="width: 100%;height: 100%;  " autoplay>
             <input type="button">
         </video>
         <canvas id="qr-canvas" class="hidden" style="display:none"></canvas>
@@ -144,7 +144,7 @@
                 console.log(offset.left);
                 $('#finger').css({
                     "position": "absolute",
-                    "top": ($('div.video-container').height() / 2 -$('#finger').width()/2 + "px"),
+                    "top": ($('div.video-container').height() / 2 -$('#finger').width()/2 +$('div.btn-group').height()+ "px"),
                     "left": ($('div.video-container').width() / 2  -$('#finger').width()/2+ "px")
                 });
                 var fin = $('#finger');
