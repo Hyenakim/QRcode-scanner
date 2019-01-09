@@ -142,8 +142,14 @@
             $(document).ready(function () {
                 var w = $('div.video-container').width();
                 var h = $('div.video-container').height();
-                console.log(w);
-                $('#finger').css({ top: w / 2, left: h / 2 });
+                $('#finger').css({
+                    "top": w / 2+"px",
+                    "left": h / 2+"px"
+                });
+                var w2 = $('#finger').width();
+                var h2 = $('#finger').height();
+                console.log(w2);
+                console.log(h2);
                 
             });
         </script>
