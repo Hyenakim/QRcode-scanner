@@ -39,7 +39,8 @@
             height: 100%;
             position: relative;
         }
-        /*#line {
+
+        #line {
             width: 100%;
             height: 30px;
             position: absolute;
@@ -48,7 +49,7 @@
             margin: -6px 0 0 -50%;
             -webkit-animation: line 1.4s linear;
             animation: line 1.4s linear infinite;
-        }*/
+        }
         /* #info{
         width:100%;
         height:30px;
@@ -59,29 +60,29 @@
         } */
         @keyframes line {
             0% {
-                transform: translateY(-90px);
+                transform: translateY(-90%);
             }
 
             50% {
-                transform: translateY(90px);
+                transform: translateY(90%);
             }
 
             100% {
-                transform: translateY(-90px);
+                transform: translateY(-90%);
             }
         }
 
         @-webkit-keyframes line {
             0% {
-                -webkit-transform: translateY(-90px);
+                -webkit-transform: translateY(-90%);
             }
 
             50% {
-                -webkit-transform: translateY(90px);
+                -webkit-transform: translateY(90%);
             }
 
             100% {
-                -webkit-transform: translateY(-90px);
+                -webkit-transform: translateY(-90%);
             }
         }
 
@@ -134,10 +135,11 @@
         <button style="width:80%">코드스캐너</button>
         <button style="width:10%">&nsub;</button>
     </div>
-    <div class="video-container" style="width: 100%; height: 100%;">
+    <div class="video-container" style="width: 100%; /*height: 100%;*/">
         <div id="finger">
             <div id="finger_box">
                 <img id="zhiwen" src="images/zhiwen.png" alt="">
+                <img id="line" src="images/line.png" alt="">
                 <p id="info"></p>
             </div>
         </div>
@@ -156,11 +158,11 @@
                 $('#finger').css({
                     "position": "absolute",
                     "top": ($('div.video-container').height() / 2 -$('#finger').height()/2 +$('div.btn-group').height()+ "px"),
-                    "left": ($('div.video-container').width() / 2  -$('#finger').width()/2+ "px")
+                    "left": ($('div.video-container').width() / 2 -$('#finger').width()/2+ offset.left+"px")
                 });
                 var fin = $('#finger');
                 var offset2 = fin.offset();
-                console.log($('#finger').width());
+                console.log(off);
             });
     </script>
     <script>
