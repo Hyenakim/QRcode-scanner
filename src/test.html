@@ -8,7 +8,15 @@
         header {
             width: 100%;
         }
-
+        .header_common {
+            display: inline-table;
+            float: left;
+            width: 100%;
+            height: auto;
+        }
+        .title{
+            align-content: center;
+        }
         div.video-container {
             height: 100%;
             width: 100%;
@@ -125,8 +133,10 @@
 </head>
 <body>
     <header>
-        <div class="title">
+        <div class="back header_common">
             <button class="btn"><i class="fa fa-close"></i></button>
+        </div>
+        <div class="title header_common">
             <h1>
                 코드스캐너
             </h1>
