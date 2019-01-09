@@ -41,6 +41,8 @@
             height: 200px;
             position: absolute;
             text-align: center;
+            top:0px;
+            left:0px;
         }
 
         #finger_box {
@@ -140,15 +142,17 @@
         <script src="jquery-3.3.1.min.js"></script>
         <script>
             $(document).ready(function () {
-                var w = $('#video-preview').width();
-                var h = $('#video-preview').height();
+                var w = $('#video-preview').position().top();
+                var h = $('#video-preview').position().left();
+                console.log(w);
+                console.log(h);
                 $('#finger').css({
                     "position": "absolute",
                     "top": (w / 2 + "px"),
                     "left": (h / 2 + "px")
                 });
-                var w2 = $('#finger').width();
-                var h2 = $('#finger').height();
+                var w2 = $('#finger').position().top();
+                var h2 = $('#finger').position().left();
                 console.log(w2);
                 console.log(h2);
                 
