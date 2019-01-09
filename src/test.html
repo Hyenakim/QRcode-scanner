@@ -158,8 +158,8 @@
                 console.log(offset.left);
                 $('#finger').css({
                     "position": "absolute",
-                    "top": (offset.top +$('#video-preview').width()/2+ "px"),
-                    "left": (offset.left + $('#video-preview').height()/2+"px")
+                    "top": ($('#video-preview').width() / 2 - offset.top + "px"),
+                    "left": ($('#video-preview').height()/2 - offset.left +"px")
                 });
                 var fin = $('#finger');
                 var offset2 = fin.offset();
