@@ -136,9 +136,9 @@ qrcode.setWebcam = function(videoId)
     }
 }
 
-qrcode.decode = function(src){
-    
-    if(arguments.length==0)
+qrcode.decode = function(src){ //Canvas에 들어온 이미지 처리
+    console.log(argument);
+    if(arguments.length==0)  //함수로 들어온 인자가 없을경우
     {
         if(qrcode.canvas_qr2)
         {
@@ -154,11 +154,11 @@ qrcode.decode = function(src){
         qrcode.height = canvas_qr.height;
         qrcode.imagedata = context.getImageData(0, 0, qrcode.width, qrcode.height);
         qrcode.result = qrcode.process(context);
-        if(qrcode.callback!=null)
+        if(qrcode.callback!=null) //콜백함수면 
             qrcode.callback(qrcode.result);
         return qrcode.result;
     }
-    else
+    else    //함수로 들어온 인자가 있을 경우 
     {
         var image = new Image();
         image.crossOrigin = "Anonymous";
