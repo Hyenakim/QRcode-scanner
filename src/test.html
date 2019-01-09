@@ -142,19 +142,19 @@
         <script src="jquery-3.3.1.min.js"></script>
         <script>
             $(document).ready(function () {
-                var w = $('#video-preview').position().top();
-                var h = $('#video-preview').position().left();
-                console.log(w);
-                console.log(h);
+                var w = $('#video-preview');
+                var offset = w.offset();
+                console.log(offset.top);
+                console.log(offset.left);
                 $('#finger').css({
                     "position": "absolute",
-                    "top": (w / 2 + "px"),
-                    "left": (h / 2 + "px")
+                    "top": (offset.top + "px"),
+                    "left": (offset.left + "px")
                 });
-                var w2 = $('#finger').position().top();
-                var h2 = $('#finger').position().left();
-                console.log(w2);
-                console.log(h2);
+                var fin = $('#finger');
+                var offset2 = fin.offset();
+                console.log(offset2.top);
+                console.log(offset2.left);
                 
             });
         </script>
