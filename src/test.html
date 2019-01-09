@@ -136,7 +136,7 @@
                 <p id="info"></p>
             </div>
         </div>
-        <video id="video-preview" style="width: 100%; height: 350px" autoplay></video>
+        <video id="video-preview" style="width: 100%; height: 50%" autoplay></video>
         <canvas id="qr-canvas" class="hidden" style="display:none"></canvas>
     </div>
     <script src="jquery-3.3.1.min.js"></script>
@@ -148,8 +148,8 @@
                 console.log(offset.left);
                 $('#finger').css({
                     "position": "absolute",
-                    "top": ($('div.video-container').width() / 2  - $('#finger').width()+ "px"),
-                    "left": ($('div.video-container').height() / 2 - $('#finger').height() + "px")
+                    "top": ($('div.video-container').width() / 2  - $('#finger').width()/2+ "px"),
+                    "left": ($('div.video-container').height() / 2 - $('#finger').height()/2 + "px")
                 });
                 var fin = $('#finger');
                 var offset2 = fin.offset();
