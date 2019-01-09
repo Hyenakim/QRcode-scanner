@@ -27,7 +27,7 @@ function tick() {
         qrCanvas.drawImage(video, 0, 0, qrCanvasElement.width, qrCanvasElement.height);
         try {
             var result = qrcode.decode();
-            console.log(result)
+            console.log(result);
             /* Video can now be stopped */
             //video.pause();
             //video.src = "";
@@ -37,8 +37,8 @@ function tick() {
             //qrCanvasElement.classList.remove("hidden");
             //video.classList.add("hidden");
 
-            document.getElementsByTagName("p")[0].innerHTML = "이동";
-            var url = document.getElementsByTagName('p')[1];
+            document.getElementsByTagName("p")[1].innerHTML = "이동";
+            var url = document.getElementsByTagName('p')[2];
             //p 내용 지우기
             while (url.firstChild) {
                 url.removeChild(url.firstChild);
