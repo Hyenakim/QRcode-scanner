@@ -140,12 +140,12 @@
         <script src="jquery-3.3.1.min.js"></script>
         <script>
             $(document).ready(function () {
-                var w = $('div.video-container').width();
-                var h = $('div.video-container').height();
+                var w = $('#video-preview').width();
+                var h = $('#video-preview').height();
                 $('#finger').css({
                     "position": "absolute",
-                    "top": ($('div.video-container').scrollTop() + w/2+"px"),
-                    "left": ($('div.video-container').scrollLeft() +h/2+"px")
+                    "top": (w / 2 + "px"),
+                    "left": (h / 2 + "px")
                 });
                 var w2 = $('#finger').width();
                 var h2 = $('#finger').height();
