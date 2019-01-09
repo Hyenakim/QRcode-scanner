@@ -137,18 +137,17 @@
         </h1>
     </div>
     <div class="video-container">
-        <script src="jquery-3.3.1.min.js">
-            var w = $('video-container').width();
-            var h = $('video-container').height();
-            $('#finger').css({ top: w / 2, left: h / 2 });
+        <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script>
+            
             $(document).ready(function () {
-                var w = $('video-container').width();
-                var h = $('video-container').height();
-                $('#finger').css({ top: w / 2, left: h / 2 });
+                var w = $('div.video-container').width();
+                var h = $('div.video-container').height();
+                $('div.finger').css({ top: w / 2, left: h / 2 });
                 console.log(w, h);
             });
         </script>
-        <div id="finger" >
+        <div id="finger">
             <div id="finger_box">
                 <img id="zhiwen" src="images/zhiwen.png" alt="">
                 <img id="line" src="images/line.png" alt="">
