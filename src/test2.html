@@ -119,7 +119,7 @@
 </head>
 <body>
     <div class="btn-group" style="width:100%">
-        <button style="width:10%">X</button>
+        <button onclick="close()" style="width:10%">X</button>
         <button style="width:80%">코드스캐너</button>
         <button style="width:10%">&nsub;</button>
     </div>
@@ -130,7 +130,7 @@
                 <p id="info"></p>
             </div>
         </div>
-        <video id="video-preview"  style="width: 100%;height: 100%;  " autoplay>
+        <video id="video-preview" style="width: 100%;height: 100%;  " autoplay>
             <input type="button">
         </video>
         <canvas id="qr-canvas" class="hidden" style="display:none"></canvas>
@@ -151,6 +151,11 @@
                 var offset2 = fin.offset();
                 console.log($('#finger').width());
             });
+    </script>
+    <script>
+            function close() {
+                window.close();
+            }
     </script>
 </body>
 </html>
