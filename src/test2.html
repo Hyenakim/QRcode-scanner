@@ -1,32 +1,23 @@
 ﻿<html lang="ko">
 <head>
     <style>
-        div.title {
-            width: 100%;
-            height: 7%;
-        }
-        div.video-container{
-            width: 100%;
-            height: 90%;
-        }
-        div.scanning{
-            width: 100%;
-            height: 3%;
-        }
+
         #finger {
-            width: 200px;
-            height: 200px;
+            width: 500px;
+            height: 500px;
             position: absolute;
             top: 50%;
             left: 50%;
-            margin: 0px 0 0 0px;
+            margin: -250px 0 0 -250px;
             text-align: center;
         }
+
         #finger_box {
             width: 100%;
             height: 100%;
             position: relative;
         }
+
         #line {
             width: 100%;
             height: 30px;
@@ -37,17 +28,33 @@
             -webkit-animation: line 1.4s linear;
             animation: line 1.4s linear infinite;
         }
-        /*왜 있는지 모르겠음*/
-        /*@keyframes line { 
-            0% {transform: translateY(-90px);}
-            50% {transform: translateY(90px);}
-            100% {transform: translateY(-90px);}
-        }*/
 
-        @-webkit-keyframes line { /*line animation for web*/
-            0% {-webkit-transform: translateY(-90px);}
-            50% { -webkit-transform: translateY(90px);}
-            100% {-webkit-transform: translateY(-90px);}
+        @keyframes line {
+            0% {
+                transform: translateY(-90px);
+            }
+
+            50% {
+                transform: translateY(90px);
+            }
+
+            100% {
+                transform: translateY(-90px);
+            }
+        }
+
+        @-webkit-keyframes line {
+            0% {
+                -webkit-transform: translateY(-90px);
+            }
+
+            50% {
+                -webkit-transform: translateY(90px);
+            }
+
+            100% {
+                -webkit-transform: translateY(-90px);
+            }
         }
 
         img {
@@ -58,19 +65,48 @@
             -ms-interpolation-mode: bicubic;
             vertical-align: middle;
         }
-        h1{
+
+
+
+        @media screen and (-webkit-media-controls) {
+
+            .video-container {
+                display: none !important;
+            }
+        }
+
+        @media screen and (-webkit-media-controls-start-playback-button) {
+
+            .video-container {
+                display: none !important;
+            }
+        }
+
+
+        *::-webkit-media-controls-start-playback-button {
+            display: none !important;
+            -webkit-appearance: none;
+        }
+
+        video::-webkit-media-controls {
+            display: none !important;
+        }
+
+        h1 {
             text-align: center;
         }
-        p{
+
+        p {
             text-align: center;
         }
-        a{
+
+        a {
             text-align: center;
-        } 
+        }
     </style>
-    
+
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="text/javascript" src="grid.js"></script>
     <script type="text/javascript" src="version.js"></script>
     <script type="text/javascript" src="detector.js"></script>
@@ -79,7 +115,7 @@
     <script type="text/javascript" src="bitmat.js"></script>
     <script type="text/javascript" src="datablock.js"></script>
     <script type="text/javascript" src="bmparser.js"></script>
-    <script type="text/javascript" src="datamask.js"></script> 
+    <script type="text/javascript" src="datamask.js"></script>
     <script type="text/javascript" src="rsdecoder.js"></script>
     <script type="text/javascript" src="gf256poly.js"></script>
     <script type="text/javascript" src="gf256.js"></script>
@@ -91,12 +127,12 @@
     <script type="text/javascript" src="main2.js" charset="euc-kr"></script>
 </head>
 <body>
-    <div class="title" >
+    <div class="title" style="width: 100%; height: 8%;">
         <h1>
-            코드스캐너4
+            코드스캐너
         </h1>
     </div>
-    <div class="video-container">
+    <div class="video-container" style="width: 100%; height: 100%;">
         <div id="finger">
             <div id="finger_box">
                 <img id="zhiwen" src="images/zhiwen.png" alt="">
@@ -104,13 +140,16 @@
                 <p id="info"></p>
             </div>
         </div>
-        <video id="video-preview" style="width: 100%;height: 100%;" autoplay>
+        <video id="video-preview" controlsList="nodownload nofullscreen noremoteplayback" style="width: 100%;height: 100%;  " autoplay>
+            <input type="button">
         </video>
         <canvas id="qr-canvas" class="hidden" style="display:none"></canvas>
     </div>
+
     <div class="scanning">
         <p> 스캔중 </p>
         <p></p>
     </div>
+
 </body>
 </html>
