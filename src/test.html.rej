@@ -1,0 +1,18 @@
+diff a/src/test.html b/src/test.html	(rejected hunks)
+@@ -157,13 +157,14 @@
+                 console.log(offset.left);
+                 $('#finger').css({
+                     "position": "absolute",
+-                    "top": ($('#video-preview').width() / 2 - offset.top + "px"),
+-                    "left": ($('#video-preview').height()/2 - offset.left +"px")
++                    "top": ($('#video-preview').width() / 2 - offset.top +$("#finger").width()+"px"),
++                    "left": ($('#video-preview').height()/2 - offset.left +$("#finger").height()+"px")
+                 });
+                 var fin = $('#finger');
+                 var offset2 = fin.offset();
+                 console.log(offset2.top);
+                 console.log(offset2.left);
++                
+ 
+             });
+     </script>
