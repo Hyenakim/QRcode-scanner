@@ -40,8 +40,6 @@
             width: 200px;
             height: 200px;
             position: absolute;
-            top: 50%;
-            left: 50%;
             text-align: center;
         }
 
@@ -139,14 +137,19 @@
         </h1>
     </div>
     <div class="video-container">
-        <div id="finger">
+        <script src="//code.jquery.com/jquery-3.3.1.min.js">
+            var w = $('video-container').width();
+            var h = $('video-container').height();
+            $('#finger').css({ top: w/2, left: h/2});
+        </script>
+        <div id="finger" >
             <div id="finger_box">
                 <img id="zhiwen" src="images/zhiwen.png" alt="">
                 <img id="line" src="images/line.png" alt="">
                 <p id="info"></p>
             </div>
         </div>
-        <video id="video-preview" style="width: 100%;height: 100%;"autoplay></video>
+        <video id="video-preview" style="width: 100%;height: 100%;" autoplay></video>
         <canvas id="qr-canvas" class="hidden" style="display:none"></canvas>
     </div>
 </body>
