@@ -167,6 +167,7 @@
     <script>
         //앨범에서 가져오기
         function previewFile() {
+            var video = document.getElementById("video-preview");
             var qrCanvasElement = document.getElementById("qr-canvas");//selects the query named img
             var qrCanvas = qrCanvasElement.getContext("2d");
             var files = document.querySelector('input[type=file]').files; //sames as here
