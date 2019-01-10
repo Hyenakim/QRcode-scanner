@@ -171,45 +171,38 @@
             var qrCanvasElement = document.getElementById("qr-canvas");//selects the query named img
             var qrCanvas = qrCanvasElement.getContext("2d");
             var files = document.querySelector('input[type=file]').files; //sames as here
-            
-            function readAndPreview(file) {
-                if (/\.(jpe?g|png|gif)$/i.test(file.name)) {
-                    var reader = new FileReader();
-                    reader.addEventListener("load", function () {
-                        var image = new Image();
-                        image.height = 100;
-                        image.title = file.name;
-                        image.src = this.result;
-                        qrCanvasElement.appendChild(image);
-                    }, false);
-                    reader.readAsDataURL(file);
+            var reader = new FileReader();
+
+            reader.addEventListener("load", function () {
+                video.src = reader.result;
+                qrCanvasElement.height = video.videoHeight;
+                qrCanvasElement.width = video.videoWidth;
+                qrCanvas.drawImage(video, 0, 0, qrCanvasElement.width, qrCanvasElement.height);
+            }, false);
+            if (file) {
+                reader.readAsDataURL(file);
+                //qr인식
+                try {
+                    var resultURL = qrcode.decode();
+                    console.log(resultURL);
+                    /* Video can now be stopped */
+                    video.pause();
+                    video.src = "";
+                    video.srcobject.getvideotracks().foreach(track => track.stop());
+
+                    /* Display Canvas and hide video stream */
+                    qrCanvasElement.classList.remove("hidden");
+                    video.classList.add("hidden");
+                    //알림창
+                    var check = confirm(result + "로 이동하겠습니까?");
+                    if (check)
+                        //window.open(result, '_blank');
+                        openTab(resultURL);
+                    // else
+                    //     ;
+                } catch (e) {
+                    /* No Op */
                 }
-            }
-            if (files) {
-                [].forEach.call(files, readAndPreview);
-            }
-
-            //qr인식
-            try {
-                var resultURL = qrcode.decode();
-                console.log(resultURL);
-                /* Video can now be stopped */
-                video.pause();
-                video.src = "";
-                video.srcobject.getvideotracks().foreach(track => track.stop());
-
-                /* Display Canvas and hide video stream */
-                qrCanvasElement.classList.remove("hidden");
-                video.classList.add("hidden");
-                //알림창
-                var check = confirm(result + "로 이동하겠습니까?");
-                if (check)
-                    //window.open(result, '_blank');
-                    openTab(resultURL);
-                // else
-                //     ;
-            } catch (e) {
-                /* No Op */
             }
         }
         function openTab(url) {
