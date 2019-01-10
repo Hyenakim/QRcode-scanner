@@ -130,7 +130,7 @@
     <script type="text/javascript" src="main2.js" charset="euc-kr"></script>
     <link rel="manifest" href="permit.json" />
 </head>
-<body>
+<body onbeforeunload="javascript:fn_removeLocalStorage('openchatwait');>
     <div class="btn-group" style="width:100%">
         <button id="btn-close" style="width:10%" >X</button>
         <button style="width:80%;  padding: 0 0;">코드스캐너</button>
@@ -166,14 +166,28 @@
             });
     </script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            document.getElementById("btn-close").addEventListener("click", handler);
-        });
-
-        // The handler also must go in a .js file
-        function handler() {
-                open(location, '_self').close();
-            return false;
+        var Browser = {
+            chk: navigator.userAgent.toLowerCase()
+        }
+        Browser = {
+            ie: Browser.chk.indexOf('msie') != -1,
+            ie6: Browser.chk.indexOf('msie 6') != -1,
+            ie7: Browser.chk.indexOf('msie 7') != -1,
+            ie8: Browser.chk.indexOf('msie 8') != -1,
+            ie9: Browser.chk.indexOf('msie 9') != -1,
+            ie10: Browser.chk.indexOf('msie 10') != -1,
+            opera: !!window.opera,
+            safari: Browser.chk.indexOf('safari') != -1,
+            safari3: Browser.chk.indexOf('applewebkir/5') != -1,
+            mac: Browser.chk.indexOf('mac') != -1,
+            chrome: Browser.chk.indexOf('chrome') != -1,
+            firefox: Browser.chk.indexOf('firefox') != -1
+        }
+        if (Browser.chrome) {
+            $(window).bind("beforeunload", function () {
+                //실행할 함수를 리턴해야한다.
+                return fn_removeLocalStorage("openchatwait");
+            });
         }
     </script>
 </body>
