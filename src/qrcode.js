@@ -215,6 +215,7 @@ qrcode.decode = function(src){ //Canvas에 들어온 이미지 처리
                 qrcode.callback("Failed to load the image");
         }
         image.src = src;
+        return qrcode.result;
     }
 }
 

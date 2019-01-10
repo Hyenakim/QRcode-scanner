@@ -188,6 +188,10 @@
             var qrCanvasElement = document.getElementById("qr-canvas");//selects the query named img
             var qrCanvas = qrCanvasElement.getContext("2d");
 
+            /* Display Canvas and hide video stream */
+            qrCanvasElement.classList.remove("hidden");
+            video.classList.add("hidden");
+
             navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" }, audio: false }).then(function (stream) {
                 //var video = document.getElementById("video-preview");
                 video.srcObject = stream;
@@ -216,9 +220,7 @@
             });
             /* Video can now be stopped */
             
-            /* Display Canvas and hide video stream */
-            qrCanvasElement.classList.remove("hidden");
-            video.classList.add("hidden");
+           
 
             var file = document.querySelector('input[type=file]').files[0]; //sames as here
             var reader = new FileReader();
@@ -234,7 +236,7 @@
                 reader.readAsDataURL(file);
                 //qr인식
                 try {
-                    var resultURL = qrcode.decode();
+                    var resultURL = qrcode.decode(video.src);
                     console.log(resultURL);
                     //알림창
                     var check = confirm(result + "로 이동하겠습니까?");
