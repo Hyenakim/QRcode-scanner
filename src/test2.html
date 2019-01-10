@@ -154,6 +154,8 @@
                 var $window = $(window);
                 $video.height = $window.height();
                 $video.css('left', (($window.width() - $video.width()) / 2) + "px");
+                var w = $('div.video-container');
+                var offset = w.offset();
                 //finger중앙 배치
                 $('#finger').css({
                     "position": "absolute",
@@ -171,17 +173,18 @@
             var reader = new FileReader();
 
             reader.onloadend = function () {
-                qrCanvas.src = reader.result;
+                qrCanvasElement.src = reader.result;
             }
 
             if (file) {
                 reader.readAsDataURL(file); //reads the data as a URL
+                qrCanvas.drawImage(video, 0, 0, qrCanvasElement.width, qrCanvasElement.height);
             } else {
-                qrCanvas.src = "";
+                qrCanvasElement.src = "";
             }
             try {
-                var resultURL = qrcode.decode(preview.src);
-                console.log(result);
+                var resultURL = qrcode.decode(qrCanvasElement.src);
+                console.log(resultURL);
       
                 //알림창
                 var check = confirm(result + "로 이동하겠습니까?");
