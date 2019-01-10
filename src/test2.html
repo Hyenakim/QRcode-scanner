@@ -133,7 +133,7 @@
     <div class="btn-group" style="width:100%">
         <button id="btn-close" style="width:10%">X</button>
         <button id="title" style="width:80%;  padding: 10px 0;">코드스캐너</button>
-        <button style="width:10%; color:white;">&nsub;</button>
+        <input style="width:10%;" type="file" onchange="previewFile()" value="앨범" />
     </div>
     <div class="video-container" style="width: 100%; left: 0px;/*height: 100%;*/">
         <div id="finger">
@@ -149,26 +149,64 @@
     <script src="jquery-3.3.1.min.js"></script>
     <script>
             $(document).ready(function () {
+                //video-container fullScreen
                 var $video = $('#video-container');
                 var $window = $(window);
                 $video.height = $window.height();
                 $video.css('left', (($window.width() - $video.width()) / 2) + "px");
-                var w = $('div.video-container');
-                var offset = w.offset();
-                console.log(offset.top);
-                console.log(offset.left);
+                //finger중앙 배치
                 $('#finger').css({
                     "position": "absolute",
                     "top": ($('div.video-container').height() / 2 + $('#finger').height() +$('div.btn-group').height()+ "px"),
                     "left": ($('div.video-container').width() / 2 -$('#finger').width()/2+ offset.left+"px")
                 });
-                var fin = $('#finger');
-                var offset2 = fin.offset();
-                console.log(off);
             });
     </script>
     <script>
+        //앨범에서 가져오기
+        function previewFile() {
+            var qrCanvasElement = document.getElementById("qr-canvas");//selects the query named img
+            var qrCanvas = qrCanvasElement.getContext("2d");
+            var file = document.querySelector('input[type=file]').files[0]; //sames as here
+            var reader = new FileReader();
 
+            reader.onloadend = function () {
+                qrCanvas.src = reader.result;
+            }
+
+            if (file) {
+                reader.readAsDataURL(file); //reads the data as a URL
+            } else {
+                preview.src = "";
+            }
+            try {
+                var resultURL = qrcode.decode(preview.src);
+                console.log(result);
+      
+                //알림창
+                var check = confirm(result + "로 이동하겠습니까?");
+                if (check)
+                    //window.open(result, '_blank');
+                    openTab(resultURL);
+                // else
+                //     ;
+            } catch (e) {
+                /* No Op */
+            }
+        }
+        function openTab(url) {
+            // Create link in memory
+            var a = window.document.createElement("a");
+            a.target = '_blank';
+            a.href = url;
+
+            // Dispatch fake click
+            var e = window.document.createEvent("MouseEvents");
+            e.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+            a.dispatchEvent(e);
+        };
+    </script>
+    <script>
         //화면 닫기
         document.addEventListener('DOMContentLoaded', function () {
             document.getElementById("btn-close").addEventListener("click", handler);
