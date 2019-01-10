@@ -177,7 +177,7 @@
             if (file) {
                 reader.readAsDataURL(file); //reads the data as a URL
             } else {
-                preview.src = "";
+                qrCanvas.src = "";
             }
             try {
                 var resultURL = qrcode.decode(preview.src);
