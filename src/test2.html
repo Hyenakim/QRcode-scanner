@@ -170,7 +170,7 @@
             var video = document.getElementById("video-preview");
             var qrCanvasElement = document.getElementById("qr-canvas");//selects the query named img
             var qrCanvas = qrCanvasElement.getContext("2d");
-            var files = document.querySelector('input[type=file]').files; //sames as here
+            var file = document.querySelector('input[type=file]').files[0]; //sames as here
             var reader = new FileReader();
 
             reader.addEventListener("load", function () {
