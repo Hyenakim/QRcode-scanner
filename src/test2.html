@@ -184,10 +184,17 @@
     <script>
         //앨범에서 가져오기
         function previewFile() {
-            var video = document.getElementById("video-preview");     
+            //var video = document.getElementById("video-preview");     
             var qrCanvasElement = document.getElementById("qr-canvas");//selects the query named img
             var qrCanvas = qrCanvasElement.getContext("2d");
 
+            navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" }, audio: false }).then(function (stream) {
+                var video = document.getElementById("video-preview");
+                video.srcObject = stream; 
+            })
+            .catch(function (err) {
+                console.log(err); /* User probably refused to grant access*/
+            });
             /* Video can now be stopped */
             video.pause();
             video.srcObject = stream;
