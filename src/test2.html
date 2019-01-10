@@ -170,21 +170,28 @@
             var qrCanvasElement = document.getElementById("qr-canvas");//selects the query named img
             var qrCanvas = qrCanvasElement.getContext("2d");
             var file = document.querySelector('input[type=file]').files[0]; //sames as here
-            var reader = new FileReader();
-            reader.onloadend = function () {
-                qrCanvasElement.src = reader.result;
+            
+            function readAndPreview(file) {
+                if (/\.(jpe?g|png|gif)$/i.test(file.name)) {
+                    var reader = new FileReader();
+                    reader.addEventListener("load", function () {
+                        var image = new Image();
+                        image.height = 100;
+                        image.title = file.name;
+                        image.src = this.result;
+                        qrCanvasElement.appendChild(image);
+                    }, false);
+
+                    reader.readAsDataURL(file);
+                }
             }
-            if (file) {
-                var url = reader.readAsDataURL(file); //reads the data as a URL 현재url출력
-                var imgURL = new Image();
-                //imgURL.src = url;
-                console.log(url);
-;               qrCanvas.drawImage(imgURL, 0, 0, qrCanvasElement.width, qrCanvasElement.height);
-            } else {
-                qrCanvasElement.src = "";
+            if (files) {
+                [].forEach.call(files, readAndPreview);
             }
+
+            //qr인식
             try {
-                var resultURL = qrcode.decode(qrCanvasElement.src);
+                var resultURL = qrcode.decode();
                 console.log(resultURL);
       
                 //알림창
