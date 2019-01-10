@@ -174,11 +174,12 @@
             reader.onloadend = function () {
                 qrCanvasElement.src = reader.result;
             }
-
+            console.log(file);
+            console.log(qrCanvasElement.src);
             if (file) {
                 var url  = reader.readAsDataURL(file); //reads the data as a URL
                 var imgURL = new Image();
-                imgURL.src = url;
+                //imgURL.src = url;
                 qrCanvas.drawImage(imgURL, 0, 0, qrCanvasElement.width, qrCanvasElement.height);
             } else {
                 qrCanvasElement.src = "";
