@@ -214,41 +214,43 @@
                         });
                     };
                 }
+                loadImage(); //이미지 로드, qr인식
             })
             .catch(function (err) {
                 console.log(err); /* User probably refused to grant access*/
             });
             /* Video can now be stopped */
-            
-           
+            function loadImage() {
+                var file = document.querySelector('input[type=file]').files[0]; //sames as here
+                var reader = new FileReader();
 
-            var file = document.querySelector('input[type=file]').files[0]; //sames as here
-            var reader = new FileReader();
+                reader.addEventListener("load", function () {
+                    video.src = reader.result;
+                    qrCanvasElement.height = video.videoHeight;
+                    qrCanvasElement.width = video.videoWidth;
 
-            reader.addEventListener("load", function () {
-                video.src = reader.result;
-                qrCanvasElement.height = video.videoHeight;
-                qrCanvasElement.width = video.videoWidth;
-
-                qrCanvas.drawImage(video, 0, 0, qrCanvasElement.width, qrCanvasElement.height);
-            }, false);
-            if (file) {
-                reader.readAsDataURL(file);
-                //qr인식
-                try {
-                    var resultURL = qrcode.decode(video.src);
-                    console.log(resultURL);
-                    //알림창
-                    var check = confirm(result + "로 이동하겠습니까?");
-                    if (check)
-                        //window.open(result, '_blank');
-                        openTab(resultURL);
-                    // else
-                    //     ;
-                } catch (e) {
-                    /* No Op */
+                    qrCanvas.drawImage(video, 0, 0, qrCanvasElement.width, qrCanvasElement.height);
+                }, false);
+                if (file) {
+                    reader.readAsDataURL(file);
+                    //qr인식
+                    try {
+                        var resultURL = qrcode.decode(video.src);
+                        console.log(resultURL);
+                        //알림창
+                        var check = confirm(result + "로 이동하겠습니까?");
+                        if (check)
+                            //window.open(result, '_blank');
+                            openTab(resultURL);
+                        // else
+                        //     ;
+                    } catch (e) {
+                        /* No Op */
+                    }
                 }
             }
+           
+            
         }
         function openTab(url) {
             // Create link in memory
