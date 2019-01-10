@@ -182,7 +182,6 @@
                         image.src = this.result;
                         qrCanvasElement.appendChild(image);
                     }, false);
-
                     reader.readAsDataURL(file);
                 }
             }
@@ -195,9 +194,9 @@
                 var resultURL = qrcode.decode();
                 console.log(resultURL);
                 /* Video can now be stopped */
-                //video.pause();
-                //video.src = "";
-                //video.srcObject.getVideoTracks().forEach(track => track.stop());
+                video.pause();
+                video.src = "";
+                video.srcobject.getvideotracks().foreach(track => track.stop());
 
                 /* Display Canvas and hide video stream */
                 qrCanvasElement.classList.remove("hidden");
