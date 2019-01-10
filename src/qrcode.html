@@ -147,13 +147,11 @@
     </div>
     <script src="jquery-3.3.1.min.js"></script>
     <script>
-        $(document).ready(function () {
-            var $video = $('#video-container');
-            var $window = $(window);
-            $video.height = $window.height();
-            $video.css('left', (($window.width() - $video.width()) / 2) + "px");
-
-
+            $(document).ready(function () {
+                var $video = $('#video-container');
+                var $window = $(window);
+                $video.height = $window.height();
+                $video.css('left', (($window.width() - $video.width()) / 2) + "px");
                 var w = $('div.video-container');
                 var offset = w.offset();
                 console.log(offset.top);
