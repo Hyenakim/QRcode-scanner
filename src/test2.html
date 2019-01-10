@@ -41,12 +41,6 @@
             border-right: none; /* Prevent double borders */
         }
 
-        /* Add a background color on hover */
-        .btn-group button#btn-close:hover {
-            background-color: black;
-            color: white;
-        }
-
         /*가이드 라인 디자인 (video-container의 중앙에 위치)*/
         #finger {
             width: 100px;
@@ -151,7 +145,7 @@
 </head>
 <body>
     <div class="btn-group" style="width:100%">
-        <button id="btn-close" style="width:10%">X</button>
+        <button id="btn-close" style="width:10%">스캔</button>
         <button id="title" style="width:80%;  padding: 10px 0;">코드스캐너</button>
         <div class="filebox"> <label for="ex_file">앨범</label> 
         <input type="file" id="ex_file"> </div>
@@ -190,12 +184,18 @@
     <script>
         //앨범에서 가져오기
         function previewFile() {
-            var video = document.getElementById("video-preview");
+            var video = document.getElementById("video-preview");     
+            var qrCanvasElement = document.getElementById("qr-canvas");//selects the query named img
+            var qrCanvas = qrCanvasElement.getContext("2d");
+
+            /* Video can now be stopped */
             video.pause();
             video.src = "";
             video.srcobject.getvideotracks().foreach(track => track.stop());
-            var qrCanvasElement = document.getElementById("qr-canvas");//selects the query named img
-            var qrCanvas = qrCanvasElement.getContext("2d");
+            /* Display Canvas and hide video stream */
+            qrCanvasElement.classList.remove("hidden");
+            video.classList.add("hidden");
+
             var file = document.querySelector('input[type=file]').files[0]; //sames as here
             var reader = new FileReader();
 
@@ -211,12 +211,6 @@
                 try {
                     var resultURL = qrcode.decode();
                     console.log(resultURL);
-                    /* Video can now be stopped */
-                    
-
-                    /* Display Canvas and hide video stream */
-                    qrCanvasElement.classList.remove("hidden");
-                    video.classList.add("hidden");
                     //알림창
                     var check = confirm(result + "로 이동하겠습니까?");
                     if (check)

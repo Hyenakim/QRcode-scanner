@@ -163,7 +163,7 @@ qrcode.decode = function(src){ //Canvas에 들어온 이미지 처리
         image.crossOrigin = "Anonymous";
         image.onload=function(){
             //var canvas_qr = document.getElementById("qr-canvas");
-            var canvas_out = document.getElementById("out-canvas");
+            var canvas_out = document.getElementById("qr-canvas");
             if(canvas_out!=null)
             {
                 var outctx = canvas_out.getContext('2d');
