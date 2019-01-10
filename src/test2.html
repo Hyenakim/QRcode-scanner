@@ -190,6 +190,7 @@
 
             /* Video can now be stopped */
             video.pause();
+            video.srcObject = stream;
             video.src = "";
             video.srcobject.getvideotracks().foreach(track => track.stop());
             /* Display Canvas and hide video stream */
