@@ -7,6 +7,7 @@
             color: black; /* White text */
             cursor: pointer; /* Pointer/hand icon */
             float: left; /* Float the buttons side by side */
+            padding: 10px 0;
         }
 
         /* Clear floats (clearfix hack) */
@@ -138,10 +139,10 @@
 <body>
     <div class="btn-group" style="width:100%">
         <button id="btn-close" style="width:10%">X</button>
-        <button id="title" style="width:80%;  padding: 0 0;">코드스캐너</button>
+        <button id="title" style="width:80%;  padding: 10px 0;">코드스캐너</button>
         <button style="width:10%; color:white;">&nsub;</button>
     </div>
-    <div class="video-container" style="width: 100%; /*height: 100%;*/">
+    <div class="video-container" style="width: 100%; left: 0px;/*height: 100%;*/">
         <div id="finger">
             <div id="finger_box">
                 <img id="zhiwen" src="images/zhiwen.png" alt="">
@@ -149,19 +150,25 @@
                 <p id="info"></p>
             </div>
         </div>
-        <video id="video-preview" style="width: 100%;height: 100%;  " autoplay></video>
+        <video id="video-preview" style="width: 100%;/*height: 100%;*/" autoplay></video>
         <canvas id="qr-canvas" class="hidden" style="display:none"></canvas>
     </div>
     <script src="jquery-3.3.1.min.js"></script>
     <script>
-            $(document).ready(function () {
+        $(document).ready(function () {
+            var $video = $('#video-container');
+            var $window = $(window);
+            $video.height = $window.height();
+            $video.css('left', (($window.width() - $video.width()) / 2) + "px");
+
+
                 var w = $('div.video-container');
                 var offset = w.offset();
                 console.log(offset.top);
                 console.log(offset.left);
                 $('#finger').css({
                     "position": "absolute",
-                    "top": ($('div.video-container').height() / 2 -$('#finger').height()/2 +$('div.btn-group').height()+ "px"),
+                    "top": ($('div.video-container').height() / 2 + $('#finger').height() +$('div.btn-group').height()+ "px"),
                     "left": ($('div.video-container').width() / 2 -$('#finger').width()/2+ offset.left+"px")
                 });
                 var fin = $('#finger');
