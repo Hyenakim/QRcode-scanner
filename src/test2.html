@@ -169,7 +169,7 @@
         function previewFile() {
             var qrCanvasElement = document.getElementById("qr-canvas");//selects the query named img
             var qrCanvas = qrCanvasElement.getContext("2d");
-            var file = document.querySelector('input[type=file]').files[0]; //sames as here
+            var files = document.querySelector('input[type=file]').files; //sames as here
             
             function readAndPreview(file) {
                 if (/\.(jpe?g|png|gif)$/i.test(file.name)) {
