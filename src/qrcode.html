@@ -27,6 +27,7 @@
             color: white;
         }
 
+        /*가이드 라인 디자인 (video-container의 중앙에 위치)*/
         #finger {
             width: 100px;
             height: 100px;
@@ -34,13 +35,13 @@
             align-content: center;
             text-align: center;
         }
-
+        /*가이드 라인 이미지*/
         #finger_box {
             width: 100%;
             height: 100%;
             position: relative;
         }
-
+        /*라인 이미지*/
         #line {
             width: 100%;
             height: 30px;
@@ -51,14 +52,16 @@
             -webkit-animation: line 1.4s linear;
             animation: line 1.4s linear infinite;
         }
-        /* #info{
-        width:100%;
-        height:30px;
-        line-height:30px;
-        position:absolute;top:-50px;
-        left:50%;margin-left:-50%;
-        color:#fff;font-size:1.2em;
-        } */
+        /*가이드 설명*/
+        #info{
+            width:100%;
+            height:30px;
+            line-height:30px;
+            position:absolute;top:-50px;
+            left:50%;margin-left:-50%;
+            color:#fff;font-size:1.2em;
+        } 
+        /*라인 이동 효과*/
         @keyframes line {
             0% {
                 transform: translateY(-90%);
@@ -95,11 +98,6 @@
             -ms-interpolation-mode: bicubic;
             vertical-align: middle;
         }
-
-        h1 {
-            text-align: center;
-        }
-
         p {
             text-align: center;
         }
@@ -108,7 +106,6 @@
             text-align: center;
         }
     </style>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="text/javascript" src="grid.js"></script>
@@ -142,7 +139,7 @@
             <div id="finger_box">
                 <img id="zhiwen" src="images/zhiwen.png" alt="">
                 <img id="line" src="images/line.png" alt="">
-                <p id="info"></p>
+                <p id="info">화면에 QR코드를 위치시키세요</p>
             </div>
         </div>
         <video id="video-preview" style="width: 100%;/*height: 100%;*/" autoplay></video>
@@ -171,7 +168,8 @@
                 console.log(off);
             });
     </script>
-    <script>
+    <script> 
+        //화면 닫기
         document.addEventListener('DOMContentLoaded', function () {
             document.getElementById("btn-close").addEventListener("click", handler);
         });
@@ -182,7 +180,6 @@
             window.close();
             return false;
         }
-
     </script>
 </body>
 </html>
