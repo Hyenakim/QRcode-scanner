@@ -193,7 +193,14 @@
             try {
                 var resultURL = qrcode.decode();
                 console.log(resultURL);
-      
+                /* Video can now be stopped */
+                //video.pause();
+                //video.src = "";
+                //video.srcObject.getVideoTracks().forEach(track => track.stop());
+
+                /* Display Canvas and hide video stream */
+                qrCanvasElement.classList.remove("hidden");
+                video.classList.add("hidden");
                 //알림창
                 var check = confirm(result + "로 이동하겠습니까?");
                 if (check)
