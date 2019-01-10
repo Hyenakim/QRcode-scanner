@@ -132,7 +132,7 @@
 </head>
 <body>
     <div class="btn-group" style="width:100%">
-        <button id="btn-close" style="width:10%" >X</button>
+        <a href="#" onclick="javascript:window.close()" id="btn-close" style="width:10%" >X</a>
         <button style="width:80%;  padding: 0 0;">코드스캐너</button>
         <button style="width:10%; color:white;">&nsub;</button>
     </div>
@@ -166,15 +166,9 @@
             });
     </script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            document.getElementById("btn-close").addEventListener("click", handler);
-        });
-         
-        // The handler also must go in a .js file
         function handler() {
             window.open('', '_self', '');
             window.close();
-            return false;
         }
 
     </script>
