@@ -171,14 +171,15 @@
             var qrCanvas = qrCanvasElement.getContext("2d");
             var file = document.querySelector('input[type=file]').files[0]; //sames as here
             var reader = new FileReader();
-
             reader.onloadend = function () {
                 qrCanvasElement.src = reader.result;
             }
 
             if (file) {
-                reader.readAsDataURL(file); //reads the data as a URL
-                qrCanvas.drawImage(video, 0, 0, qrCanvasElement.width, qrCanvasElement.height);
+                var url  = reader.readAsDataURL(file); //reads the data as a URL
+                var imgURL = new Image();
+                imgURL.src = url;
+                qrCanvas.drawImage(imgURL, 0, 0, qrCanvasElement.width, qrCanvasElement.height);
             } else {
                 qrCanvasElement.src = "";
             }
