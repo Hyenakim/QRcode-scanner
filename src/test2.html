@@ -132,7 +132,7 @@
 </head>
 <body>
     <div class="btn-group" style="width:100%">
-        <button onclick="myclose();" style="width:10%">X</button>
+        <button id="btn-close" style="width:10%">X</button>
         <button style="width:80%">코드스캐너</button>
         <button style="width:10%">&nsub;</button>
     </div>
@@ -166,10 +166,21 @@
             });
     </script>
     <script>
-        function myclose() {
-           // window.open('', '_self', '');
-            window.close();
-        }
+        window.onbeforeunload = function (event) {
+            var message = 'Important: Please click on \'Save\' button to leave this page.';
+            if (typeof event == 'undefined') {
+                event = window.event;
+            }
+            if (event) {
+                event.returnValue = message;
+            }
+            return message;
+        };
+        $(function () {
+            $("#btn-close").click(function () {
+                window.onbeforeunload = null;
+            });
+        });
     </script>
 </body>
 </html>
