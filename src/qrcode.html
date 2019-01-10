@@ -27,8 +27,8 @@
         }
 
         #finger {
-            width: 50px;
-            height: 50px;
+            width: 100px;
+            height: 100px;
             position: absolute;
             align-content: center;
             text-align: center;
@@ -128,12 +128,13 @@
     <script type="text/javascript" src="alignpat.js"></script>
     <script type="text/javascript" src="databr.js"></script>
     <script type="text/javascript" src="main2.js" charset="euc-kr"></script>
+    <link rel="manifest" href="permit.json" />
 </head>
 <body>
     <div class="btn-group" style="width:100%">
-        <button onclick="return quitBox('quit');" style="width:10%">X</button>
+        <button id="btn-close" style="width:10%">X</button>
         <button style="width:80%">코드스캐너</button>
-        <button style="width:10%">&nsub;</button>
+        <button style="width:10%; color:white;">&nsub;</button>
     </div>
     <div class="video-container" style="width: 100%; /*height: 100%;*/">
         <div id="finger">
@@ -143,9 +144,7 @@
                 <p id="info"></p>
             </div>
         </div>
-        <video id="video-preview" style="width: 100%;height: 100%;  " autoplay>
-            <input type="button">
-        </video>
+        <video id="video-preview" style="width: 100%;height: 100%;  " autoplay></video>
         <canvas id="qr-canvas" class="hidden" style="display:none"></canvas>
     </div>
     <script src="jquery-3.3.1.min.js"></script>
@@ -166,12 +165,21 @@
             });
     </script>
     <script>
-        function quitBox(cmd) {
-            if (cmd == 'quit') {
-                open(location, '_self').close();
+        window.onbeforeunload = function (event) {
+            var message = 'Important: Please click on \'Save\' button to leave this page.';
+            if (typeof event == 'undefined') {
+                event = window.event;
             }
-            return false;
-        }
+            if (event) {
+                event.returnValue = message;
+            }
+            return message;
+        };
+        $(function () {
+            $("#btn-close").click(function () {
+                window.onbeforeunload = null;
+            });
+        });
     </script>
 </body>
 </html>
