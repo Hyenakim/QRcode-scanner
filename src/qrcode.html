@@ -26,6 +26,11 @@
             color: white;
         }
 
+        .btn-group button#title:hover {
+            background-color: white;
+            color: black;
+        }
+
         #finger {
             width: 100px;
             height: 100px;
@@ -132,8 +137,8 @@
 </head>
 <body>
     <div class="btn-group" style="width:100%">
-        <button id="btn-close" style="width:10%" onclick="return quitBox('quit');">X</button>
-        <button style="width:80%;  padding: 0 0;">코드스캐너</button>
+        <button id="btn-close" style="width:10%">X</button>
+        <button id="title" style="width:80%;  padding: 0 0;">코드스캐너</button>
         <button style="width:10%; color:white;">&nsub;</button>
     </div>
     <div class="video-container" style="width: 100%; /*height: 100%;*/">
@@ -165,12 +170,17 @@
             });
     </script>
     <script>
-        function quitBox(cmd) {
-            if (cmd == 'quit') {
-                open(location, '_self').close();
-            }
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById("btn-close").addEventListener("click", handler);
+        });
+
+        // The handler also must go in a .js file
+        function handler() {
+            window.open('', '_self', '');
+            window.close();
             return false;
         }
+
     </script>
 </body>
 </html>
