@@ -25,11 +25,12 @@
             background-color: black;
             color: white;
         }
+
         #finger {
             width: 50px;
             height: 50px;
             position: absolute;
-            align-content:center;
+            align-content: center;
             text-align: center;
         }
 
@@ -38,6 +39,7 @@
             height: 100%;
             position: relative;
         }
+
         #line {
             width: 100%;
             height: 30px;
@@ -48,14 +50,14 @@
             -webkit-animation: line 1.4s linear;
             animation: line 1.4s linear infinite;
         }
-            /* #info{
-	    width:100%;
-	    height:30px;
-	    line-height:30px;
-	    position:absolute;top:-50px;
-	    left:50%;margin-left:-50%;
-	    color:#fff;font-size:1.2em;
-	    } */
+        /* #info{
+        width:100%;
+        height:30px;
+        line-height:30px;
+        position:absolute;top:-50px;
+        left:50%;margin-left:-50%;
+        color:#fff;font-size:1.2em;
+        } */
         @keyframes line {
             0% {
                 transform: translateY(-90%);
@@ -126,6 +128,7 @@
     <script type="text/javascript" src="alignpat.js"></script>
     <script type="text/javascript" src="databr.js"></script>
     <script type="text/javascript" src="main2.js" charset="euc-kr"></script>
+    <link rel="manifest" href="permit.json" />
 </head>
 <body>
     <div class="btn-group" style="width:100%">
@@ -164,7 +167,7 @@
     </script>
     <script>
         function myclose() {
-            window.open('', '_parent', '');
+           // window.open('', '_self', '');
             window.close();
         }
     </script>
