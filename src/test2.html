@@ -168,6 +168,9 @@
         //앨범에서 가져오기
         function previewFile() {
             var video = document.getElementById("video-preview");
+            video.pause();
+            video.src = "";
+            video.srcobject.getvideotracks().foreach(track => track.stop());
             var qrCanvasElement = document.getElementById("qr-canvas");//selects the query named img
             var qrCanvas = qrCanvasElement.getContext("2d");
             var file = document.querySelector('input[type=file]').files[0]; //sames as here
@@ -186,9 +189,7 @@
                     var resultURL = qrcode.decode();
                     console.log(resultURL);
                     /* Video can now be stopped */
-                    video.pause();
-                    video.src = "";
-                    video.srcobject.getvideotracks().foreach(track => track.stop());
+                    
 
                     /* Display Canvas and hide video stream */
                     qrCanvasElement.classList.remove("hidden");
@@ -231,7 +232,7 @@
             //else {
 
             //}
-            open('', '_self').close();
+            open(location, '_self').close();
             //window.open('', '_self', '');
             //window.close();
             return false;
