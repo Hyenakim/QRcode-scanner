@@ -138,7 +138,6 @@ qrcode.setWebcam = function(videoId)
 }
 
 qrcode.decode = function (src) { //Canvas에 들어온 이미지 처리
-    console.log("decode");
     if(arguments.length==0)  //함수로 들어온 인자가 없을경우(스트리밍 중 실시간 디코딩)
     {
         if(qrcode.canvas_qr2)
