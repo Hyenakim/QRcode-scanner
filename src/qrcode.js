@@ -154,7 +154,7 @@ qrcode.decode = function (src) { //Canvas에 들어온 이미지 처리
         qrcode.height = canvas_qr.height;
         qrcode.imagedata = context.getImageData(0, 0, qrcode.width, qrcode.height);
         qrcode.result = qrcode.process(context);
-        if(qrcode.callback!=null) //콜백함수면 
+        if(qrcode.callback!=null) 
             qrcode.callback(qrcode.result);
         return qrcode.result;
     }
