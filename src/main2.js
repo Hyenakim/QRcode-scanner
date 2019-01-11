@@ -26,7 +26,7 @@ function tick() {
         qrCanvasElement.width = video.videoWidth;
         qrCanvas.drawImage(video, 0, 0, qrCanvasElement.width, qrCanvasElement.height);
         try {
-            var result = qrcode.decode();
+            var result = qrcode.decode(); //qr코드 인식
             console.log(result);
             /* Video can now be stopped */
             //video.pause();
@@ -53,7 +53,7 @@ function tick() {
         setTimeout(tick, 100);
 }
 
-function openTab(url) {
+function openTab(url) { //새로운 탭 열기
     // Create link in memory
     var a = window.document.createElement("a");
     a.target = '_blank';

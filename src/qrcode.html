@@ -148,7 +148,8 @@
     </div>
     <script src="jquery-3.3.1.min.js"></script>
     <script>
-            $(document).ready(function () {
+        //화면 배치
+        $(document).ready(function () {
                 var $video = $('#video-container');
                 var $window = $(window);
                 $video.height = $window.height();
@@ -157,6 +158,7 @@
                 var offset = w.offset();
                 console.log(offset.top);
                 console.log(offset.left);
+
                 $('#finger').css({
                     "position": "absolute",
                     "top": ($('div.video-container').height() / 2 + $('#finger').height() +$('div.btn-group').height()+ "px"),

@@ -29,6 +29,7 @@ qrcode.callback = null;
 
 qrcode.vidSuccess = function (stream) 
 {
+    console.log("vidSuccess");
     qrcode.localstream = stream;
     if(qrcode.webkit)
         qrcode.video.src = window.webkitURL.createObjectURL(stream);
@@ -136,8 +137,9 @@ qrcode.setWebcam = function(videoId)
     }
 }
 
-qrcode.decode = function(src){ //Canvas에 들어온 이미지 처리
-    if(arguments.length==0)  //함수로 들어온 인자가 없을경우
+qrcode.decode = function (src) { //Canvas에 들어온 이미지 처리
+    console.log("decode");
+    if(arguments.length==0)  //함수로 들어온 인자가 없을경우(스트리밍 중 실시간 디코딩)
     {
         if(qrcode.canvas_qr2)
         {
@@ -157,13 +159,13 @@ qrcode.decode = function(src){ //Canvas에 들어온 이미지 처리
             qrcode.callback(qrcode.result);
         return qrcode.result;
     }
-    else    //함수로 들어온 인자가 있을 경우 
+    else    //이미지가 인자로 들어온 경우
     {
         var image = new Image();
         image.crossOrigin = "Anonymous";
         image.onload=function(){
             //var canvas_qr = document.getElementById("qr-canvas");
-            var canvas_out = document.getElementById("qr-canvas");
+            var canvas_out = document.getElementById("out-canvas");
             if(canvas_out!=null)
             {
                 var outctx = canvas_out.getContext('2d');
