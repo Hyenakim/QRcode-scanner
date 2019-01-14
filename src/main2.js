@@ -8,9 +8,11 @@
         video.srcObject = stream;
         video.play();
         var album;
+        album = true;
         if (album == false)
             setTimeout(tick, 100); /* We launch the tick function 100ms later (see next step) */
         else if (album == true) {
+            
             video.pause();
             video.src = "";
             video.srcObject.getVideoTracks().forEach(track => track.stop());
