@@ -41,8 +41,6 @@ function tick() {
             if (check) {
                 window.open(result, '_self');
                 //openTab(result);
-                //setTimeout(tick, 1000);
-                //window.location.reload();
             }
             else; //새로고침
                 //window.location.reload();

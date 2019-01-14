@@ -85,8 +85,9 @@ function tick() {
             //알림창
             var check = confirm(result + "로 이동하겠습니까?");
             if (check)
+                window.open(result, '_self');
                 //window.open(result, '_blank');
-                openTab(result);
+                //openTab(result);
             // else
             //     ;
         } catch (e) {
