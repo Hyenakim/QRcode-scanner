@@ -12,8 +12,7 @@
         if (album == false)
             setTimeout(tick, 100); /* We launch the tick function 100ms later (see next step) */
         else if (album == true) {
-            
-            video.pause();
+            //video.pause();
             //video.src = "";
             //video.srcObject.getVideoTracks().forEach(track => track.stop());
             /* Display Canvas and hide video stream */
@@ -28,6 +27,7 @@
 };
 function previewFile(input) {
     album = true;
+    
     if (input.files && input.files[0]) {
         var reader = new FileReader();
 
@@ -36,8 +36,27 @@ function previewFile(input) {
              .width(100)
              .height(100);
         }
-
+        var image = document.getElementById("image_section");
+        var qrCanvasElement = document.getElementById("qr-canvas");
+        var qrCanvas = qrCanvasElement.getContext("2d");
+        var width, height;
         reader.readAsDataURL(input.files[0]);
+        qrCanvasElement.height = image.height;
+        qrCanvasElement.width = image.width;
+        qrCanvas.drawImage(image, 0, 0, qrCanvasElement.width, qrCanvasElement.height);
+        try {
+            var result = qrcode.decode(); //qr코드 인식
+            console.log(result);
+            //알림창
+            var check = confirm(result + "로 이동하겠습니까?");
+            if (check)
+                //window.open(result, '_blank');
+                openTab(result);
+            // else
+            //     ;
+        } catch (e) {
+            /* No Op */
+        }
     }
 }
 function tick() {
@@ -45,7 +64,7 @@ function tick() {
     var qrCanvasElement = document.getElementById("qr-canvas");
     var qrCanvas = qrCanvasElement.getContext("2d");
     var width, height;
-
+    
     if (video.readyState === video.HAVE_ENOUGH_DATA) {
         qrCanvasElement.height = video.videoHeight;
         qrCanvasElement.width = video.videoWidth;
@@ -89,9 +108,6 @@ function openTab(url) { //새로운 탭 열기
     e.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
     a.dispatchEvent(e);
 };
-function previewFile1() {
-    album = true;
-}
 function tick2() {
     var video = document.getElementById("video-preview");
     var qrCanvasElement = document.getElementById("qr-canvas");//selects the query named img

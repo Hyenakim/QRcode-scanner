@@ -158,7 +158,7 @@ qrcode.decode = function (src) { //Canvas에 들어온 이미지 처리
             qrcode.callback(qrcode.result);
         return qrcode.result;
     }
-    else    //이미지가 인자로 들어온 경우
+    else    
     {
         var image = new Image();
         image.crossOrigin = "Anonymous";
