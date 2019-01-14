@@ -7,7 +7,7 @@
         video.srcObject = stream;
         video.play();
         var album;
-        setTimeout(tick, 100); /* We launch the tick function 100ms later (see next step) */
+        //setTimeout(tick, 100); /* We launch the tick function 100ms later (see next step) */
     })
     .catch(function (err) {
         console.log(err); /* User probably refused to grant access*/
@@ -23,6 +23,7 @@ function previewFile(input) {
             $('#image_section').attr('src', e.target.result)
              .width(100)
              .height(100);
+            console.log($('#image_section').witdh());
             var image = document.getElementById("image_section");
             var qrCanvasElement = document.getElementById("qr-canvas");
             var qrCanvas = qrCanvasElement.getContext("2d");
