@@ -39,7 +39,7 @@ function tick() {
             //알림창
             var check = confirm(result + "로 이동하겠습니까?");
             if (check) {
-                window.open(result, '_blank');
+                window.open(result, '_self');
                 //openTab(result);
                 //setTimeout(tick, 1000);
                 //window.location.reload();
