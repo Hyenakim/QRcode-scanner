@@ -28,23 +28,23 @@ function tick() {
             var result = qrcode.decode(); //qr코드 인식
             console.log(result);
             /* Video can now be stopped */
-            //video.pause();
-            //video.src = "";
-            //video.srcObject.getVideoTracks().forEach(track => track.stop());
+            video.pause();
+            video.src = "";
+            video.srcObject.getVideoTracks().forEach(track => track.stop());
 
             /* Display Canvas and hide video stream */
-            //qrCanvasElement.classList.remove("hidden");
-            //video.classList.add("hidden");
+            qrCanvasElement.classList.remove("hidden");
+            video.classList.add("hidden");
 
             //알림창
             var check = confirm(result + "로 이동하겠습니까?");
             if (check) {
                 //window.open(result, '_blank');
                 openTab(result);
-                window.location.reload();
+                //window.location.reload();
             }
-            else //새로고침
-                window.location.reload();
+            else; //새로고침
+                //window.location.reload();
             //     ;
         } catch (e) {
             /* No Op */
