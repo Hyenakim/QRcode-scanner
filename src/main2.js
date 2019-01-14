@@ -44,7 +44,9 @@ function previewFile(input) {
     reader.readAsDataURL(input.files[0]);
     qrCanvasElement.height = image.height;
     qrCanvasElement.width = image.width;
-    qrCanvas.drawImage(image, 0, 0, qrCanvasElement.width, qrCanvasElement.height);
+    window.load = function () {
+        qrCanvas.drawImage(image, 0, 0, qrCanvasElement.width, qrCanvasElement.height);
+    }
     try {
         var result = qrcode.decode(); //qr코드 인식
         console.log(result);
