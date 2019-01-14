@@ -26,7 +26,20 @@
         console.log(err); /* User probably refused to grant access*/
     });
 };
+function previewFile(input) {
+    album = true;
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
 
+        reader.onload = function (e) {
+            $('#replaceMe').attr('src', e.target.result)
+             .width(100)
+             .height(100);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
 function tick() {
     var video = document.getElementById("video-preview");
     var qrCanvasElement = document.getElementById("qr-canvas");
@@ -76,7 +89,7 @@ function openTab(url) { //새로운 탭 열기
     e.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
     a.dispatchEvent(e);
 };
-function previewFile() {
+function previewFile1() {
     album = true;
 }
 function tick2() {
