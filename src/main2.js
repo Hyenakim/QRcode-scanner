@@ -7,8 +7,18 @@
         video.setAttribute("playsinline", true); /* otherwise iOS safari starts fullscreen */
         video.srcObject = stream;
         video.play();
-        
-        setTimeout(tick, 100); /* We launch the tick function 100ms later (see next step) */
+        var album;
+        if (album == false)
+            setTimeout(tick, 100); /* We launch the tick function 100ms later (see next step) */
+        else if (album == true) {
+            video.pause();
+            video.src = "";
+            video.srcObject.getVideoTracks().forEach(track => track.stop());
+            /* Display Canvas and hide video stream */
+            qrCanvasElement.classList.remove("hidden");
+            video.classList.add("hidden");
+            setTimeout(tick2, 100);
+        }
     })
     .catch(function (err) {
         console.log(err); /* User probably refused to grant access*/
@@ -64,3 +74,42 @@ function openTab(url) { //새로운 탭 열기
     e.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
     a.dispatchEvent(e);
 };
+function previewFile() {
+    album = true;
+}
+function tick2() {
+    var video = document.getElementById("video-preview");
+    var qrCanvasElement = document.getElementById("qr-canvas");//selects the query named img
+    var qrCanvas = qrCanvasElement.getContext("2d");
+
+    /* Video can now be stopped */
+    function loadImage() {
+        var file = document.querySelector('input[type=file]').files[0]; //sames as here
+        var reader = new FileReader();
+
+        reader.addEventListener("load", function () {
+            video.src = reader.result;
+            qrCanvasElement.height = video.videoHeight;
+            qrCanvasElement.width = video.videoWidth;
+
+            qrCanvas.drawImage(video, 0, 0, qrCanvasElement.width, qrCanvasElement.height);
+        }, false);
+        if (file) {
+            reader.readAsDataURL(file);
+            //qr인식
+            try {
+                var resultURL = qrcode.decode();
+                console.log(resultURL);
+                //알림창
+                var check = confirm(result + "로 이동하겠습니까?");
+                if (check)
+                    //window.open(result, '_blank');
+                    openTab(resultURL);
+                // else
+                //     ;
+            } catch (e) {
+                /* No Op */
+            }
+        }
+    }
+}
