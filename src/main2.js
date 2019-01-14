@@ -23,9 +23,9 @@ function readURL(intput) {
         reader.readAsDataURL(input.files[0]);
     }
 }
-$("#ex_file").change(function () {
-        readURL(this);
-    });
+//$("#ex_file").change(function () {
+//        readURL(this);
+//    });
 function previewFile(input) {
     album = true;
     if (input.files && input.files[0]) {
