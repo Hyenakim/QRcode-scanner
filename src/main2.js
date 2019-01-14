@@ -36,7 +36,7 @@ function previewFile(input) {
         }
     }
     reader.readAsDataURL(input.files[0]);
-    console.log($('#image_section').witdh());
+    console.log($('#image_section').width());
     var image = document.getElementById("image_section");
     var qrCanvasElement = document.getElementById("qr-canvas");
     var qrCanvas = qrCanvasElement.getContext("2d");
