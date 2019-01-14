@@ -140,7 +140,7 @@
         <button id="title" style="width:80%;  padding: 10px 0;">코드스캐너</button>
         <button style="width:10%; color:white;">&nsub;</button>
     </div>
-    <div class="video-container" style="width: 100%; left: 0px; position:fixed/*height: 100%;*/">
+    <div class="video-container" style="width: 100%; left: 0px; position:fixed;height: 100%;">
         <div id="finger">
             <div id="finger_box">
                 <img id="zhiwen" src="images/zhiwen.png" alt="">
@@ -148,7 +148,7 @@
                 <p id="info">화면에 QR코드를 위치시키세요</p>
             </div>
         </div>
-        <video id="video-preview" style="width: 100%;/*height: 100%;*/" autoplay></video>
+        <video id="video-preview" style="width: 100%;height: 100%;" autoplay></video>
         <canvas id="qr-canvas" class="hidden" style="display:none"></canvas>
     </div>
     <script src="jquery-3.3.1.min.js"></script>
@@ -167,7 +167,7 @@
                 $('#finger').css({
                     "position": "absolute",
                     "top": ($('div.video-container').height() / 2  + "px"),
-                    "left": ($('div.video-container').width() / 2 - $('#finger').width() / 2 + offset.left + "px")
+                    "left": ($('div.video-container').width() / 2 + "px")
                 });
                 var fin = $('#finger');
                 var offset2 = fin.offset();
