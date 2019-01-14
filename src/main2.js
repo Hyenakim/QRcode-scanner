@@ -14,8 +14,8 @@
         else if (album == true) {
             
             video.pause();
-            video.src = "";
-            video.srcObject.getVideoTracks().forEach(track => track.stop());
+            //video.src = "";
+            //video.srcObject.getVideoTracks().forEach(track => track.stop());
             /* Display Canvas and hide video stream */
             qrCanvasElement.classList.remove("hidden");
             video.classList.add("hidden");
