@@ -38,9 +38,11 @@ function tick() {
 
             //알림창
             var check = confirm(result + "로 이동하겠습니까?");
-            if (check)
+            if (check) {
                 //window.open(result, '_blank');
                 openTab(result);
+                window.location.reload();
+            }
             else //새로고침
                 window.location.reload();
             //     ;
