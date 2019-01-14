@@ -41,7 +41,8 @@ function tick() {
             if (check)
                 //window.open(result, '_blank');
                 openTab(result);
-            // else
+            else //새로고침
+                window.location.reload();
             //     ;
         } catch (e) {
             /* No Op */
