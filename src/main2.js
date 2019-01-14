@@ -13,42 +13,44 @@
         console.log(err); /* User probably refused to grant access*/
     });
 };
-function previewFile(input) {
-    album = true;
-    
+function readURL(intput) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
 
         reader.onload = function (e) {
-            $('#image_section').attr('src', e.target.result)
-             .width(100)
-             .height(100);
-            //console.log($('#image_section').witdh());
-            //var image = document.getElementById("image_section");
-            //var qrCanvasElement = document.getElementById("qr-canvas");
-            //var qrCanvas = qrCanvasElement.getContext("2d");
-            //var width, height;
-            //reader.readAsDataURL(input.files[0]);
-            //qrCanvasElement.height = image.height;
-            //qrCanvasElement.width = image.width;
-            //qrCanvas.drawImage(image, 0, 0, qrCanvasElement.width, qrCanvasElement.height);
-            //try {
-            //    var result = qrcode.decode(); //qr코드 인식
-            //    console.log(result);
-            //    //알림창
-            //    var check = confirm(result + "로 이동하겠습니까?");
-            //    if (check)
-            //        //window.open(result, '_blank');
-            //        openTab(result);
-            //    // else
-            //    //     ;
-            //} catch (e) {
-            //    /* No Op */
-            //}
-
+            $('#image_section').attr('src', e.target.result);
         }
-        
+        reader.readAsDataURL(input.files[0]);
     }
+}
+function previewFile(input) {
+    album = true;
+    $("#ex_file").change(function () {
+        readURL(this);
+    });
+
+            console.log($('#image_section').witdh());
+            var image = document.getElementById("image_section");
+            var qrCanvasElement = document.getElementById("qr-canvas");
+            var qrCanvas = qrCanvasElement.getContext("2d");
+            var width, height;
+            reader.readAsDataURL(input.files[0]);
+            qrCanvasElement.height = image.height;
+            qrCanvasElement.width = image.width;
+            qrCanvas.drawImage(image, 0, 0, qrCanvasElement.width, qrCanvasElement.height);
+            try {
+                var result = qrcode.decode(); //qr코드 인식
+                console.log(result);
+                //알림창
+                var check = confirm(result + "로 이동하겠습니까?");
+                if (check)
+                    //window.open(result, '_blank');
+                    openTab(result);
+                // else
+                //     ;
+            } catch (e) {
+                /* No Op */
+            }
 }
 function tick() {
     var video = document.getElementById("video-preview");
