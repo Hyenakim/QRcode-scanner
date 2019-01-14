@@ -52,7 +52,7 @@ function tick() {
     }
     /* If no QR could be decoded from image copied in canvas */
     if (!video.classList.contains("hidden"))
-        setTimeout(tick, 100);
+        setTimeout(tick, 1000);
 }
 
 function openTab(url) {
