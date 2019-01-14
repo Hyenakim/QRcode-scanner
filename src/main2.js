@@ -23,12 +23,11 @@ function readURL(intput) {
         reader.readAsDataURL(input.files[0]);
     }
 }
-function previewFile(input) {
-    album = true;
-    $("#ex_file").change(function () {
+$("#ex_file").change(function () {
         readURL(this);
     });
-
+function previewFile(input) {
+    album = true;
             console.log($('#image_section').witdh());
             var image = document.getElementById("image_section");
             var qrCanvasElement = document.getElementById("qr-canvas");
