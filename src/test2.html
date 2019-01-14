@@ -1,4 +1,4 @@
-﻿<html lang="ko">
+﻿<html>
 <head>
     <style>
         html, body {
@@ -149,7 +149,9 @@
     <link rel="manifest" href="permit.json" />
 </head>
 <body>
-    <div class="btn-group" style="width:100%">
+    <div class="btn-group" style="width:100%;">
+    <!-- 상단 바 없을때 -->
+    <!--<div class="btn-group" style="width:100%;display:none; ">-->
         <button id="btn-close" style="width:10%">스캔</button>
         <button id="title" style="width:80%;  padding: 10px 0;">코드스캐너</button>
         <div class="filebox"> <label for="ex_file">앨범</label> 
@@ -183,6 +185,10 @@
                     "position": "absolute",
                     "top": ($('div.video-container').height() / 2 + $('#finger').height() +$('div.btn-group').height()+ "px"),
                     "left": ($('div.video-container').width() / 2 -$('#finger').width()/2+ offset.left+"px")
+                    /* 위에 바 없을때 */
+                    //"top": $('div.video-container').height() / 2 + "px",
+                    //"left": $('div.video-container').width() / 2 - $('#finger').width() / 2 + "px"
+
                 });
             });
     </script>
