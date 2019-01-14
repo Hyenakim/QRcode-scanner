@@ -3,7 +3,6 @@
      * User will be prompted if (s)he allows camera to be started */
     navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" }, audio: false }).then(function (stream) {
         var video = document.getElementById("video-preview");
-        
         video.setAttribute("playsinline", true); /* otherwise iOS safari starts fullscreen */
         video.srcObject = stream;
         video.play();
