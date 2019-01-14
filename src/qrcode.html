@@ -162,10 +162,10 @@
     <script>
         //화면 배치
         $(document).ready(function () {
-                var $video = $('#video-container');
-                var $window = $(window);
-                $video.height = $window.height();
-                $video.css('left', (($window.width() - $video.width()) / 2) + "px");
+                //var $video = $('#video-container');
+                //var $window = $(window);
+                //$video.height = $window.height();
+                //$video.css('left', (($window.width() - $video.width()) / 2) + "px");
                 var w = $('div.video-container');
                 var offset = w.offset();
                 console.log(offset.top);
@@ -176,9 +176,7 @@
                     "top": ($('div.video-container').height() / 2 -$("#finger").height()/2 + "px"),
                     "left": ($('div.video-container').width() / 2 - $("#finger").width() / 2 + "px")
                 });
-                var fin = $('#finger');
-                var offset2 = fin.offset();
-                console.log(off);
+                
             });
     </script>
     <script>
