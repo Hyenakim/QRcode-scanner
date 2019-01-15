@@ -37,6 +37,8 @@ function previewFile(input) {
     }
     reader.readAsDataURL(input.files[0]);
     console.log($('#image_section').width());
+    video.stop();
+    video.classList.contains("hidden");
     var image = document.getElementById("image_section");
     var qrCanvasElement = document.getElementById("qr-canvas");
     var qrCanvas = qrCanvasElement.getContext("2d");
