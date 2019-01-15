@@ -58,7 +58,7 @@ function previewFile(input) {
             
             //setTimeout(simpleTick(), 1000);
             
-            setTimeout(simpleTick, 100);
+            setTimeout(simpleTick, 1000);
         }
     //}
     //reader.readAsDataURL(input.files[0]);
