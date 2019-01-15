@@ -32,17 +32,17 @@ function previewFile(input) {
     //var image = new Image();
     //if (input.files && input.files[0]) {
     //읽기
-    var file = document.querySelector('#ex_file');
-    var fileList = file.files;
-        var reader = new FileReader();
-        reader.readAsDataURL(fileList[0]);
+    //var file = document.querySelector('#ex_file');
+    //var fileList = file.files;
+    //    var reader = new FileReader();
+    //    reader.readAsDataURL(fileList[0]);
 
         //로드한 후
         reader.onload = function () {
 
             //$('#image_section').attr('src', e.target.result)
             //    .width(100).height(100);
-            document.querySelector('#image_section').src = reader.result;
+            //document.querySelector('#image_section').src = reader.result;
             //clearTimeout(tick);
             
             //qrCanvasElement.height = $('#image_section').height;
