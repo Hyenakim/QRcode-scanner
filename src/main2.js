@@ -7,7 +7,7 @@
         video.srcObject = stream;
         video.play();
         var album;
-        //setTimeout(tick, 100); /* We launch the tick function 100ms later (see next step) */
+        setTimeout(tick, 100); /* We launch the tick function 100ms later (see next step) */
     })
     .catch(function (err) {
         console.log(err); /* User probably refused to grant access*/
@@ -54,12 +54,13 @@ function previewFile(input) {
             //qrCanvasElement.height = img.height;
             //qrCanvasElement.width = img.width;
             /* Display Canvas and hide video stream */
-            //video.classList.add("hidden");
+            video.classList.add("hidden");
             qrCanvasElement.classList.remove("hidden");
             image.src = document.querySelector('#image_section').src;
             qrCanvas.drawImage(image, 0, 0);
             qrCanvasElement.style.display = "true";
-            setTimeout(simpleTick(), 1000);
+            //setTimeout(simpleTick(), 1000);
+            setTimeout(tick, 100);
         }
     //}
     //reader.readAsDataURL(input.files[0]);
