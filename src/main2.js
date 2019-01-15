@@ -13,8 +13,9 @@
         console.log(err); /* User probably refused to grant access*/
     });
 };
-
+var album = false;
 function previewFile(input) {
+    album = true;
     var img = document.getElementById("#image_section");
     var video = document.getElementById("video-preview");
     var qrCanvasElement = document.getElementById("qr-canvas");
@@ -105,7 +106,7 @@ function tick() {
         }
     }
     /* If no QR could be decoded from image copied in canvas */
-    if (!video.classList.contains("hidden"))
+    if (!video.classList.contains("hidden") && !album)
         setTimeout(tick, 100);
 }
 
