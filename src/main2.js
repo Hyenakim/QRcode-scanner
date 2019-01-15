@@ -50,12 +50,7 @@ function previewFile(input) {
 
             
             //setTimeout(simpleTick(), 1000);
-            //setTimeout(simpleTick, 0);
-            var result = qrcode.decode();
-            console.log(result);
-            var check = confirm(result + "로 이동하겠습니까?");
-            if (check)
-                window.open(result, '_self');
+            setTimeout(simpleTick, 10);
         }
     //}
     //reader.readAsDataURL(input.files[0]);
