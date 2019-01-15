@@ -56,6 +56,7 @@ function previewFile(input) {
 
             
             //setTimeout(simpleTick(), 1000);
+            clearTimeout(tick);
             setTimeout(simpleTick, 100);
         }
     //}
