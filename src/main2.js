@@ -6,13 +6,14 @@
         video.setAttribute("playsinline", true); /* otherwise iOS safari starts fullscreen */
         video.srcObject = stream;
         video.play();
+        var album = true;
         setTimeout(tick, 100); /* We launch the tick function 100ms later (see next step) */
     })
     .catch(function (err) {
         console.log(err); /* User probably refused to grant access*/
     });
 };
-var album = true;
+
 function previewFile(input) {
     album = true;
 
