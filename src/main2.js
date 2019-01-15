@@ -44,7 +44,9 @@ function previewFile(input) {
             /* Display Canvas and hide video stream */
             video.classList.add("hidden");
             qrCanvasElement.classList.remove("hidden");
-            qrCanvas.drawImage(img.src, 0, 0);
+            var image = new Image();
+            image.src = e.target.result;
+            qrCanvas.drawImage(image, 0, 0);
         }
     }
     reader.readAsDataURL(input.files[0]);
