@@ -77,7 +77,7 @@ function tick() {
     var qrCanvas = qrCanvasElement.getContext("2d");
     var width, height;
     
-    if (video.readyState === video.HAVE_ENOUGH_DATA) {
+    if (video.readyState === video.HAVE_ENOUGH_DATA && !album) {
         qrCanvasElement.height = video.videoHeight;
         qrCanvasElement.width = video.videoWidth;
         qrCanvas.drawImage(video, 0, 0, qrCanvasElement.width, qrCanvasElement.height);
