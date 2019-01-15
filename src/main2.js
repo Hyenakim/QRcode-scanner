@@ -61,10 +61,14 @@ function simpleTick() {
     var imgData = canvas_qr.toDataURL("image/png");
     
     console.log(imgData);
-    qrcode.decode(imgData);
-    if (qrcode.isUrl(imgData)) {
-        window.location.href = imgData;
-    }
+    var result = qrcode.decode(imgData);
+    console.log(result);
+    var check = confirm(result + "로 이동하겠습니까?");
+    if (check)
+        window.open(result, '_self');
+    //if (qrcode.isUrl(imgData)) {
+    //    window.location.href = imgData;
+    //}
 }
 function tick() {
     var video = document.getElementById("video-preview");
