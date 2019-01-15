@@ -50,7 +50,12 @@ function previewFile(input) {
 
             
             //setTimeout(simpleTick(), 1000);
-            setTimeout(simpleTick, 0);
+            //setTimeout(simpleTick, 0);
+            var result = qrcode.decode();
+            console.log(result);
+            var check = confirm(result + "로 이동하겠습니까?");
+            if (check)
+                window.open(result, '_self');
         }
     //}
     //reader.readAsDataURL(input.files[0]);
@@ -106,7 +111,7 @@ function tick() {
     }
     /* If no QR could be decoded from image copied in canvas */
     if (!video.classList.contains("hidden") && !album)
-        setTimeout(tick, 100);
+        setTimeout(tick, 1000);
 }
 
 function openTab(url) { //새로운 탭 열기
