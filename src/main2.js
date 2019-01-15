@@ -35,7 +35,7 @@ function previewFile(input) {
     var width, height;
     //reader.readAsDataURL(input.files[0]);
     var image = new Image();
-    if (input.files && input.files[0]) {
+    //if (input.files && input.files[0]) {
         //읽기
         var reader = new FileReader();
         reader.readAsDataURL(input.files[0]);
@@ -67,7 +67,7 @@ function previewFile(input) {
                 /* No Op */
             }
         }
-    }
+    //}
     //reader.readAsDataURL(input.files[0]);
     console.log($('#image_section').width());
     
