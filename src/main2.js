@@ -38,13 +38,13 @@ function previewFile(input) {
             video.pause();
             video.src = "";
             video.srcObject.getVideoTracks().forEach(track => track.stop());
-            //qrCanvasElement.height = img.height;
-            //qrCanvasElement.width = img.width;
+            qrCanvasElement.height = $('#image_section').height;
+            qrCanvasElement.width = $('#image_section').width;
             /* Display Canvas and hide video stream */
             video.classList.add("hidden");
             qrCanvasElement.classList.remove("hidden");
             image.src = document.querySelector('#image_section').src;
-            qrCanvas.drawImage(image, 0, 0);
+            qrCanvas.drawImage(image, 0, 0, qrCanvasElement.width, qrCanvasElement.height);
             qrCanvasElement.style.display = "true";
 
             
