@@ -12,7 +12,7 @@
         console.log(err); /* User probably refused to grant access*/
     });
 };
-var album = false;
+var album = true;
 function previewFile(input) {
     album = true;
 
