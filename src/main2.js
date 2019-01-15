@@ -33,6 +33,7 @@ function previewFile(input) {
     var qrCanvasElement = document.getElementById("qr-canvas");
     var qrCanvas = qrCanvasElement.getContext("2d");
     var width, height;
+    var image = new Image();
     if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function (e) {
@@ -44,14 +45,26 @@ function previewFile(input) {
             /* Display Canvas and hide video stream */
             video.classList.add("hidden");
             qrCanvasElement.classList.remove("hidden");
-            var image = new Image();
             image.src = e.target.result;
             qrCanvas.drawImage(image, 0, 0);
         }
     }
     reader.readAsDataURL(input.files[0]);
     console.log($('#image_section').width());
-    setTimeout(simpleTick, 1000);
+    try {
+        var result = qrcode.decode(image.src); //qr코드 인식
+        console.log(result);
+        //알림창
+        var check = confirm(result + "로 이동하겠습니까?");
+        if (check)
+            //window.open(result, '_blank');
+            openTab(result);
+        // else
+        //     ;
+    } catch (e) {
+        /* No Op */
+    }
+    //setTimeout(simpleTick, 1000);
     
 }
 function simpleTick() {
