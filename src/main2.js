@@ -57,7 +57,6 @@ function previewFile(input) {
 }
 function simpleTick() {
     var canvas_qr = document.getElementById("qr-canvas");
-    canvas_qr[1].toD
     var imgData = canvas_qr.toDataURL("image/png");
     console.log(imgData);
     qrcode.decode(imgData);
