@@ -48,6 +48,9 @@ function previewFile(input) {
             //    .width(100).height(100);
             document.querySelector('#image_section').src = reader.result;
 
+            video.pause();
+            video.src = "";
+            video.srcObject.getVideoTracks().forEach(track => track.stop());
             //qrCanvasElement.height = img.height;
             //qrCanvasElement.width = img.width;
             /* Display Canvas and hide video stream */
@@ -56,18 +59,18 @@ function previewFile(input) {
             image.src = document.querySelector('#image_section').src;
             qrCanvas.drawImage(image, 0, 0);
             qrCanvasElement.style.display = "true";
-            
+            simpleTick(), 1000);
         }
     //}
     //reader.readAsDataURL(input.files[0]);
     console.log($('#image_section').width());
     
-    setTimeout(simpleTick(image), 1000);
+    
     
 }
-function simpleTick(image) {
+function simpleTick() {
     try {
-        var result = qrcode.decode(image.src); //qr코드 인식
+        var result = qrcode.decode(); //qr코드 인식
         console.log(result);
         //알림창
         var check = confirm(result + "로 이동하겠습니까?");
