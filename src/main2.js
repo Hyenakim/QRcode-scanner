@@ -28,7 +28,7 @@ function readURL(intput) {
 //    });
 function previewFile(input) {
     album = true;
-    var img = new image();
+    var img = document.getElementById("#image_section");
     var video = document.getElementById("video-preview");
     var qrCanvasElement = document.getElementById("qr-canvas");
     var qrCanvas = qrCanvasElement.getContext("2d");
@@ -38,13 +38,13 @@ function previewFile(input) {
         reader.onload = function (e) {
             $('#image_section').attr('src', e.target.result)
                 .width(100).height(100);
-            img = src;
+
             qrCanvasElement.height = img.height;
             qrCanvasElement.width = img.width;
             /* Display Canvas and hide video stream */
             video.classList.add("hidden");
             qrCanvasElement.classList.remove("hidden");
-            qrCanvas.drawImage(img, 0, 0);
+            qrCanvas.drawImage(img.src, 0, 0);
         }
     }
     reader.readAsDataURL(input.files[0]);
