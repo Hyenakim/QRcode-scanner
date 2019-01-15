@@ -13,21 +13,8 @@
         console.log(err); /* User probably refused to grant access*/
     });
 };
-function readURL(intput) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
 
-        reader.onload = function (e) {
-            $('#image_section').attr('src', e.target.result);
-        }
-        reader.readAsDataURL(input.files[0]);
-    }
-}
-//$("#ex_file").change(function () {
-//        readURL(this);
-//    });
 function previewFile(input) {
-    album = true;
     var img = document.getElementById("#image_section");
     var video = document.getElementById("video-preview");
     var qrCanvasElement = document.getElementById("qr-canvas");
@@ -59,31 +46,24 @@ function previewFile(input) {
             image.src = document.querySelector('#image_section').src;
             qrCanvas.drawImage(image, 0, 0);
             qrCanvasElement.style.display = "true";
+
+            
             //setTimeout(simpleTick(), 1000);
             setTimeout(simpleTick, 100);
         }
     //}
     //reader.readAsDataURL(input.files[0]);
     console.log($('#image_section').width());
-    
-    
-    
+}
+function load(name) {
+    qrcode.callback = simpleTick;
+    qrcode.decode(name);
 }
 function simpleTick() {
-    try {
-        var canvas_qr = document.getElementById("qr-canvas");
-        console.log(canvas_qr.height);
-        var result = qrcode.decode(); //qr코드 인식
-        console.log(result);
-        //알림창
-        var check = confirm(result + "로 이동하겠습니까?");
-        if (check)
-            //window.open(result, '_blank');
-            openTab(result);
-        // else
-        //     ;
-    } catch (e) {
-        /* No Op */
+    var imgData = canvas_qr[0].toDataURL("image/png");
+    qrcode.decode(imgData);
+    if (qrcode.isUrl(imgData)) {
+        window.location.href = imgData;
     }
 }
 function tick() {
