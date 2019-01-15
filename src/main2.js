@@ -49,7 +49,10 @@ function previewFile(input) {
     }
     reader.readAsDataURL(input.files[0]);
     console.log($('#image_section').width());
+    setTimeout(simpleTick, 1000);
     
+}
+function simpleTick() {
     try {
         var result = qrcode.decode(); //qr코드 인식
         console.log(result);
