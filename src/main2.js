@@ -60,7 +60,7 @@ function previewFile(input) {
             qrCanvas.drawImage(image, 0, 0);
             qrCanvasElement.style.display = "true";
             //setTimeout(simpleTick(), 1000);
-            setTimeout(tick, 100);
+            setTimeout(simpleTick, 100);
         }
     //}
     //reader.readAsDataURL(input.files[0]);
