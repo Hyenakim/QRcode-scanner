@@ -41,19 +41,20 @@ function previewFile(input) {
         reader.readAsDataURL(input.files[0]);
 
         //로드한 후
-        reader.onload = function (e) {
-            $('#image_section').attr('src', e.target.result)
-                .width(100).height(100);
+        reader.onload = function () {
+            //$('#image_section').attr('src', e.target.result)
+            //    .width(100).height(100);
+            document.querySelector('#image_section').src = reader.result;
 
             //qrCanvasElement.height = img.height;
             //qrCanvasElement.width = img.width;
             /* Display Canvas and hide video stream */
             video.classList.add("hidden");
             qrCanvasElement.classList.remove("hidden");
-            image.src = e.target.result;
+            image.src = document.querySelector('#image_section').src;
             qrCanvas.drawImage(image, 0, 0);
             try {
-                var result = qrcode.decode(image.src); //qr코드 인식
+                var result = qrcode.decode(); //qr코드 인식
                 console.log(result);
                 //알림창
                 var check = confirm(result + "로 이동하겠습니까?");
