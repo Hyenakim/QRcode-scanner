@@ -52,7 +52,7 @@ function previewFile(input) {
     reader.readAsDataURL(input.files[0]);
     console.log($('#image_section').width());
     try {
-        var result = qrcode.decode(image.src); //qr코드 인식
+        var result = qrcode.decode(image); //qr코드 인식
         console.log(result);
         //알림창
         var check = confirm(result + "로 이동하겠습니까?");
