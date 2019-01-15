@@ -15,11 +15,16 @@
 var album = false;
 function previewFile(input) {
     album = true;
+
     var img = document.getElementById("#image_section");
     var video = document.getElementById("video-preview");
     var qrCanvasElement = document.getElementById("qr-canvas");
     var qrCanvas = qrCanvasElement.getContext("2d");
     var width, height;
+
+    video.pause();
+    video.src = "";
+    video.srcObject.getVideoTracks().forEach(track => track.stop());
     //reader.readAsDataURL(input.files[0]);
     var image = new Image();
     //if (input.files && input.files[0]) {
@@ -35,9 +40,7 @@ function previewFile(input) {
             //    .width(100).height(100);
             document.querySelector('#image_section').src = reader.result;
 
-            video.pause();
-            video.src = "";
-            video.srcObject.getVideoTracks().forEach(track => track.stop());
+            
             //qrCanvasElement.height = $('#image_section').height;
             //qrCanvasElement.width = $('#image_section').width;
             /* Display Canvas and hide video stream */
@@ -81,8 +84,10 @@ function tick() {
         qrCanvasElement.width = video.videoWidth;
         qrCanvas.drawImage(video, 0, 0, qrCanvasElement.width, qrCanvasElement.height);
         try {
-            var result = qrcode.decode(); //qr코드 인식
-            console.log(result);
+            if(!album){
+                var result = qrcode.decode(); //qr코드 인식
+                console.log(result);
+            }
             /* Video can now be stopped */
             //video.pause();
             //video.src = "";
