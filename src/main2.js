@@ -38,13 +38,13 @@ function previewFile(input) {
             video.pause();
             video.src = "";
             video.srcObject.getVideoTracks().forEach(track => track.stop());
-            qrCanvasElement.height = $('#image_section').height;
-            qrCanvasElement.width = $('#image_section').width;
+            //qrCanvasElement.height = $('#image_section').height;
+            //qrCanvasElement.width = $('#image_section').width;
             /* Display Canvas and hide video stream */
             video.classList.add("hidden");
             qrCanvasElement.classList.remove("hidden");
             image.src = document.querySelector('#image_section').src;
-            qrCanvas.drawImage(image, 0, 0, qrCanvasElement.width, qrCanvasElement.height);
+            qrCanvas.drawImage(image, 0, 0);
             qrCanvasElement.style.display = "true";
 
             
@@ -56,8 +56,9 @@ function previewFile(input) {
     console.log($('#image_section').width());
 }
 function simpleTick() {
-    var canvas_qr = document.getElementById("qr-canvas");
-    var imgData = canvas_qr.toDataURL("image/png");
+    //var canvas_qr = document.getElementById("qr-canvas");
+    //var imgData = canvas_qr.toDataURL("image/png");
+    var imgData = document.getElementById("#image_section").toDataURL("image/png");
     console.log(imgData);
     qrcode.decode(imgData);
     if (qrcode.isUrl(imgData)) {
