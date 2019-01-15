@@ -39,10 +39,11 @@ function previewFile(input) {
 
         //로드한 후
         reader.onload = function () {
+
             //$('#image_section').attr('src', e.target.result)
             //    .width(100).height(100);
             document.querySelector('#image_section').src = reader.result;
-
+            clearTimeout(tick);
             
             //qrCanvasElement.height = $('#image_section').height;
             //qrCanvasElement.width = $('#image_section').width;
@@ -56,7 +57,7 @@ function previewFile(input) {
 
             
             //setTimeout(simpleTick(), 1000);
-            clearTimeout(tick);
+            
             setTimeout(simpleTick, 100);
         }
     //}
