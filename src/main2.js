@@ -38,11 +38,11 @@ function previewFile(input) {
     //    reader.readAsDataURL(fileList[0]);
 
         //로드한 후
-        reader.onload = function () {
+        //reader.onload = function () {
 
             //$('#image_section').attr('src', e.target.result)
             //    .width(100).height(100);
-            //document.querySelector('#image_section').src = reader.result;
+            document.querySelector('#image_section').src = reader.result;
             //clearTimeout(tick);
             
             //qrCanvasElement.height = $('#image_section').height;
@@ -59,7 +59,7 @@ function previewFile(input) {
             //setTimeout(simpleTick(), 1000);
             
             //setTimeout(simpleTick, 1000);
-        }
+        //}
     //}
     //reader.readAsDataURL(input.files[0]);
     console.log($('#image_section').width());
