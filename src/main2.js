@@ -15,6 +15,7 @@
 var album;
 function setAlbum() {
     album = true;
+    clearTimeout(tick);
 }
 function previewFile(input) {
     album = true;
