@@ -38,16 +38,18 @@ function previewFile(input) {
     reader.readAsDataURL(input.files[0]);
     console.log($('#image_section').width());
     var video = document.getElementById("video-preview");
-    video.stop();
-    video.classList.contains("hidden");
     var image = document.getElementById("image_section");
     var qrCanvasElement = document.getElementById("qr-canvas");
     var qrCanvas = qrCanvasElement.getContext("2d");
     var width, height;
+
     reader.readAsDataURL(input.files[0]);
     qrCanvasElement.height = image.height;
     qrCanvasElement.width = image.width;
-    
+    /* Display Canvas and hide video stream */
+    video.classList.contains("hidden");
+    qrCanvasElement.classList.remove("hidden");
+
     qrCanvas.drawImage(image, 0, 0);
     try {
         var result = qrcode.decode(); //qr코드 인식
