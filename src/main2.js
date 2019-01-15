@@ -44,7 +44,8 @@ function previewFile(input) {
             video.classList.add("hidden");
             qrCanvasElement.classList.remove("hidden");
             image.src = document.querySelector('#image_section').src;
-            qrCanvas.drawImage(image, 0, 0,image.width,image.height);
+            qrCanvas.drawImage(image, 0, 0, 640, 480);
+           
             qrCanvasElement.style.display = "true";
 
             
