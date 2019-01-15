@@ -29,7 +29,7 @@ function previewFile(input) {
     //video.src = "";
     //video.srcObject.getVideoTracks().forEach(track => track.stop());
     //reader.readAsDataURL(input.files[0]);
-    var image = new Image();
+    //var image = new Image();
     //if (input.files && input.files[0]) {
     //읽기
     var file = document.querySelector('#ex_file');
@@ -43,22 +43,22 @@ function previewFile(input) {
             //$('#image_section').attr('src', e.target.result)
             //    .width(100).height(100);
             document.querySelector('#image_section').src = reader.result;
-            clearTimeout(tick);
+            //clearTimeout(tick);
             
             //qrCanvasElement.height = $('#image_section').height;
             //qrCanvasElement.width = $('#image_section').width;
             /* Display Canvas and hide video stream */
-            video.classList.add("hidden");
-            qrCanvasElement.classList.remove("hidden");
-            image.src = document.querySelector('#image_section').src;
-            qrCanvas.drawImage(image, 0, 0, 640, 480);
+            //video.classList.add("hidden");
+            //qrCanvasElement.classList.remove("hidden");
+            //image.src = document.querySelector('#image_section').src;
+            //qrCanvas.drawImage(image, 0, 0, 640, 480);
            
-            qrCanvasElement.style.display = "true";
+            //qrCanvasElement.style.display = "true";
 
             
             //setTimeout(simpleTick(), 1000);
             
-            setTimeout(simpleTick, 1000);
+            //setTimeout(simpleTick, 1000);
         }
     //}
     //reader.readAsDataURL(input.files[0]);
@@ -82,6 +82,7 @@ function tick() {
     var video = document.getElementById("video-preview");
     var qrCanvasElement = document.getElementById("qr-canvas");
     var qrCanvas = qrCanvasElement.getContext("2d");
+    var image = new Image();
     var width, height;
     
     if (video.readyState === video.HAVE_ENOUGH_DATA && !album) {
@@ -113,10 +114,23 @@ function tick() {
         } catch (e) {
             /* No Op */
         }
+    } else if (album) {
+        image.src = document.querySelector('#image_section').src;
+        qrCanvas.drawImage(image, 0, 0, 640, 480);
+
+        var canvas_qr = document.getElementById("qr-canvas");
+        var imgData = canvas_qr.toDataURL("image/png");
+
+        console.log(imgData);
+        var result = qrcode.decode();
+        console.log(result);
+        var check = confirm(result + "로 이동하겠습니까?");
+        if (check)
+            window.open(result, '_self');
     }
     /* If no QR could be decoded from image copied in canvas */
     if (!video.classList.contains("hidden") && !album)
-        setTimeout(tick, 5000);
+        setTimeout(tick, 1000);
 }
 
 function openTab(url) { //새로운 탭 열기
