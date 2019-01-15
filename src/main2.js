@@ -55,6 +55,7 @@ function previewFile(input) {
             qrCanvasElement.classList.remove("hidden");
             image.src = document.querySelector('#image_section').src;
             qrCanvas.drawImage(image, 0, 0);
+            qrCanvasElement.style.display = "true";
             try {
                 var result = qrcode.decode(); //qr코드 인식
                 console.log(result);
