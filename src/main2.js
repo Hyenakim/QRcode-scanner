@@ -37,8 +37,9 @@ function previewFile(input) {
     var image = new Image();
     //if (input.files && input.files[0]) {
         //읽기
+    var fileList = file.files;
         var reader = new FileReader();
-        reader.readAsDataURL(input.files[0]);
+        reader.readAsDataURL(fileList[0]);
 
         //로드한 후
         reader.onload = function () {
