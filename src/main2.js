@@ -32,10 +32,10 @@ function previewFile(input) {
     //var image = new Image();
     //if (input.files && input.files[0]) {
     //읽기
-    //var file = document.querySelector('#ex_file');
-    //var fileList = file.files;
-    //    var reader = new FileReader();
-    //    reader.readAsDataURL(fileList[0]);
+    var file = document.querySelector('#ex_file');
+    var fileList = file.files;
+        var reader = new FileReader();
+        reader.readAsDataURL(fileList[0]);
 
         //로드한 후
         //reader.onload = function () {
@@ -115,11 +115,7 @@ function tick() {
             /* No Op */
         }
     } else if (album) {
-        var file = document.querySelector('#ex_file');
-        var fileList = file.files;
-        var reader = new FileReader();
-        reader.readAsDataURL(fileList[0]);
-        document.querySelector('#image_section').src = reader.result;
+        
         image.src = document.querySelector('#image_section').src;
         qrCanvas.drawImage(image, 0, 0, 640, 480);
 
