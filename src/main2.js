@@ -46,7 +46,7 @@ function previewFile(input) {
     qrCanvasElement.height = image.height;
     qrCanvasElement.width = image.width;
     /* Display Canvas and hide video stream */
-    video.classList.contains("hidden");
+    video.classList.add("hidden");
     qrCanvasElement.classList.remove("hidden");
     //image = image.toString();
     image.onload = function () {
