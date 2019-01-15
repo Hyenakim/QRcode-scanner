@@ -70,6 +70,8 @@ function previewFile(input) {
 }
 function simpleTick() {
     try {
+        var canvas_qr = document.getElementById("qr-canvas");
+        console(canvas_qr.height);
         var result = qrcode.decode(); //qr코드 인식
         console.log(result);
         //알림창
