@@ -42,15 +42,17 @@ function previewFile(input) {
     var qrCanvasElement = document.getElementById("qr-canvas");
     var qrCanvas = qrCanvasElement.getContext("2d");
     var width, height;
-
-    reader.readAsDataURL(input.files[0]);
+ 
     qrCanvasElement.height = image.height;
     qrCanvasElement.width = image.width;
     /* Display Canvas and hide video stream */
     video.classList.contains("hidden");
     qrCanvasElement.classList.remove("hidden");
-    image = image.toString();
-    qrCanvas.drawImage(image, 0, 0);
+    //image = image.toString();
+    image.onload = function () {
+        qrCanvas.drawImage(image, 0, 0);
+    }
+    
     try {
         var result = qrcode.decode(); //qr코드 인식
         console.log(result);
