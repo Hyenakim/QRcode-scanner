@@ -28,30 +28,27 @@ function readURL(intput) {
 //    });
 function previewFile(input) {
     album = true;
+    var img = new image();
+    var video = document.getElementById("video-preview");
+    var qrCanvasElement = document.getElementById("qr-canvas");
+    var qrCanvas = qrCanvasElement.getContext("2d");
+    var width, height;
     if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function (e) {
             $('#image_section').attr('src', e.target.result)
                 .width(100).height(100);
+            img = src;
+            qrCanvasElement.height = img.height;
+            qrCanvasElement.width = img.width;
+            /* Display Canvas and hide video stream */
+            video.classList.add("hidden");
+            qrCanvasElement.classList.remove("hidden");
+            qrCanvas.drawImage(img, 0, 0);
         }
     }
     reader.readAsDataURL(input.files[0]);
     console.log($('#image_section').width());
-    var video = document.getElementById("video-preview");
-    var image = document.getElementById("image_section");
-    var qrCanvasElement = document.getElementById("qr-canvas");
-    var qrCanvas = qrCanvasElement.getContext("2d");
-    var width, height;
- 
-    qrCanvasElement.height = image.height;
-    qrCanvasElement.width = image.width;
-    /* Display Canvas and hide video stream */
-    video.classList.add("hidden");
-    qrCanvasElement.classList.remove("hidden");
-    //image = image.toString();
-    image.onload = function () {
-        qrCanvas.drawImage(image, 0, 0);
-    }
     
     try {
         var result = qrcode.decode(); //qr코드 인식
