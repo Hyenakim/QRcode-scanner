@@ -49,7 +49,7 @@ function previewFile(input) {
     /* Display Canvas and hide video stream */
     video.classList.contains("hidden");
     qrCanvasElement.classList.remove("hidden");
-
+    image = image.toString();
     qrCanvas.drawImage(image, 0, 0);
     try {
         var result = qrcode.decode(); //qr코드 인식
