@@ -51,30 +51,18 @@ function previewFile(input) {
             //qrCanvasElement.height = img.height;
             //qrCanvasElement.width = img.width;
             /* Display Canvas and hide video stream */
-            video.classList.add("hidden");
+            //video.classList.add("hidden");
             qrCanvasElement.classList.remove("hidden");
             image.src = document.querySelector('#image_section').src;
             qrCanvas.drawImage(image, 0, 0);
             qrCanvasElement.style.display = "true";
-            try {
-                var result = qrcode.decode(); //qr코드 인식
-                console.log(result);
-                //알림창
-                var check = confirm(result + "로 이동하겠습니까?");
-                if (check)
-                    //window.open(result, '_blank');
-                    openTab(result);
-                // else
-                //     ;
-            } catch (e) {
-                /* No Op */
-            }
+            
         }
     //}
     //reader.readAsDataURL(input.files[0]);
     console.log($('#image_section').width());
     
-    //setTimeout(simpleTick(image), 1000);
+    setTimeout(simpleTick(image), 1000);
     
 }
 function simpleTick(image) {
