@@ -13,6 +13,9 @@
     });
 };
 var album = true;
+$("#ex_file").focus(function () {
+    album = true;
+});
 function previewFile(input) {
     album = true;
 
@@ -79,7 +82,7 @@ function tick() {
     var qrCanvas = qrCanvasElement.getContext("2d");
     var width, height;
     
-    if (video.readyState === video.HAVE_ENOUGH_DATA) {
+    if (video.readyState === video.HAVE_ENOUGH_DATA && !album) {
         qrCanvasElement.height = video.videoHeight;
         qrCanvasElement.width = video.videoWidth;
         qrCanvas.drawImage(video, 0, 0, qrCanvasElement.width, qrCanvasElement.height);
@@ -110,8 +113,8 @@ function tick() {
         }
     }
     /* If no QR could be decoded from image copied in canvas */
-    //if (!video.classList.contains("hidden"))
-    //    setTimeout(tick, 1000);
+    if (!video.classList.contains("hidden"))
+        setTimeout(tick, 1000);
 }
 
 function openTab(url) { //새로운 탭 열기
