@@ -55,13 +55,11 @@ function previewFile(input) {
     //reader.readAsDataURL(input.files[0]);
     console.log($('#image_section').width());
 }
-function load(name) {
-    qrcode.callback = simpleTick;
-    qrcode.decode(name);
-}
 function simpleTick() {
     var canvas_qr = document.getElementById("qr-canvas");
-    var imgData = canvas_qr[0].toDataURL("image/png");
+    canvas_qr[1].toD
+    var imgData = canvas_qr.toDataURL("image/png");
+    console.log(imgData);
     qrcode.decode(imgData);
     if (qrcode.isUrl(imgData)) {
         window.location.href = imgData;
