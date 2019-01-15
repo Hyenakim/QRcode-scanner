@@ -37,6 +37,7 @@ function previewFile(input) {
     }
     reader.readAsDataURL(input.files[0]);
     console.log($('#image_section').width());
+    var video = document.getElementById("video-preview");
     video.stop();
     video.classList.contains("hidden");
     var image = document.getElementById("image_section");
