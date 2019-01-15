@@ -13,9 +13,10 @@
     });
 };
 var album;
+var next;
 function setAlbum() {
     album = true;
-    clearTimeout(tick);
+    clearTimeout(next);
 }
 function previewFile(input) {
     album = true;
@@ -132,7 +133,7 @@ function tick() {
     }
     /* If no QR could be decoded from image copied in canvas */
     if (!video.classList.contains("hidden") && !album)
-        setTimeout(tick, 4000);
+        next = setTimeout(tick, 4000);
 }
 
 function openTab(url) { //새로운 탭 열기
