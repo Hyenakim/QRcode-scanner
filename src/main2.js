@@ -12,10 +12,10 @@
         console.log(err); /* User probably refused to grant access*/
     });
 };
-var album = true;
-$("#ex_file").focus(function () {
+var album;
+function setAlbum() {
     album = true;
-});
+}
 function previewFile(input) {
     album = true;
 
