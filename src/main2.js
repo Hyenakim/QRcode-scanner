@@ -130,7 +130,7 @@ function tick() {
     }
     /* If no QR could be decoded from image copied in canvas */
     if (!video.classList.contains("hidden") && !album)
-        setTimeout(tick, 1000);
+        setTimeout(tick, 4000);
 }
 
 function openTab(url) { //새로운 탭 열기
