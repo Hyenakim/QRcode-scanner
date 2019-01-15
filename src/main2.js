@@ -60,6 +60,7 @@ function load(name) {
     qrcode.decode(name);
 }
 function simpleTick() {
+    var canvas_qr = document.getElementById("qr-canvas");
     var imgData = canvas_qr[0].toDataURL("image/png");
     qrcode.decode(imgData);
     if (qrcode.isUrl(imgData)) {
