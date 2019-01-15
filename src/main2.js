@@ -59,7 +59,7 @@ function previewFile(input) {
             image.src = document.querySelector('#image_section').src;
             qrCanvas.drawImage(image, 0, 0);
             qrCanvasElement.style.display = "true";
-            simpleTick(), 1000);
+            setTimeout(simpleTick(), 1000);
         }
     //}
     //reader.readAsDataURL(input.files[0]);
