@@ -44,7 +44,7 @@ function previewFile(input) {
             video.classList.add("hidden");
             qrCanvasElement.classList.remove("hidden");
             image.src = document.querySelector('#image_section').src;
-            qrCanvas.drawImage(image, 0, 0);
+            qrCanvas.drawImage(image, 0, 0,image.width,image.height);
             qrCanvasElement.style.display = "true";
 
             
@@ -56,9 +56,9 @@ function previewFile(input) {
     console.log($('#image_section').width());
 }
 function simpleTick() {
-    //var canvas_qr = document.getElementById("qr-canvas");
-    //var imgData = canvas_qr.toDataURL("image/png");
-    var imgData = document.getElementById("#image_section").toDataURL("image/png");
+    var canvas_qr = document.getElementById("qr-canvas");
+    var imgData = canvas_qr.toDataURL("image/png");
+    
     console.log(imgData);
     qrcode.decode(imgData);
     if (qrcode.isUrl(imgData)) {
