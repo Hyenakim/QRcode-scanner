@@ -6,14 +6,13 @@
         video.setAttribute("playsinline", true); /* otherwise iOS safari starts fullscreen */
         video.srcObject = stream;
         video.play();
-        var album = true;
         setTimeout(tick, 100); /* We launch the tick function 100ms later (see next step) */
     })
     .catch(function (err) {
         console.log(err); /* User probably refused to grant access*/
     });
 };
-
+var album = true;
 function previewFile(input) {
     album = true;
 
@@ -23,9 +22,9 @@ function previewFile(input) {
     var qrCanvas = qrCanvasElement.getContext("2d");
     var width, height;
 
-    video.pause();
-    video.src = "";
-    video.srcObject.getVideoTracks().forEach(track => track.stop());
+    //video.pause();
+    //video.src = "";
+    //video.srcObject.getVideoTracks().forEach(track => track.stop());
     //reader.readAsDataURL(input.files[0]);
     var image = new Image();
     //if (input.files && input.files[0]) {
@@ -54,7 +53,7 @@ function previewFile(input) {
 
             
             //setTimeout(simpleTick(), 1000);
-            setTimeout(simpleTick, 10);
+            setTimeout(simpleTick, 100);
         }
     //}
     //reader.readAsDataURL(input.files[0]);
@@ -80,15 +79,15 @@ function tick() {
     var qrCanvas = qrCanvasElement.getContext("2d");
     var width, height;
     
-    if (video.readyState === video.HAVE_ENOUGH_DATA && !album) {
+    if (video.readyState === video.HAVE_ENOUGH_DATA) {
         qrCanvasElement.height = video.videoHeight;
         qrCanvasElement.width = video.videoWidth;
         qrCanvas.drawImage(video, 0, 0, qrCanvasElement.width, qrCanvasElement.height);
         try {
-            if(!album){
+            
                 var result = qrcode.decode(); //qr코드 인식
                 console.log(result);
-            }
+            
             /* Video can now be stopped */
             //video.pause();
             //video.src = "";
@@ -111,8 +110,8 @@ function tick() {
         }
     }
     /* If no QR could be decoded from image copied in canvas */
-    if (!video.classList.contains("hidden") && !album)
-        setTimeout(tick, 1000);
+    //if (!video.classList.contains("hidden"))
+    //    setTimeout(tick, 1000);
 }
 
 function openTab(url) { //새로운 탭 열기
