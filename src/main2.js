@@ -39,8 +39,8 @@ function previewFile(input) {
             $('#image_section').attr('src', e.target.result)
                 .width(100).height(100);
 
-            qrCanvasElement.height = img.height;
-            qrCanvasElement.width = img.width;
+            //qrCanvasElement.height = img.height;
+            //qrCanvasElement.width = img.width;
             /* Display Canvas and hide video stream */
             video.classList.add("hidden");
             qrCanvasElement.classList.remove("hidden");
