@@ -81,6 +81,8 @@ function simpleTick() {
     //}
 }
 function tick() {
+    if (album)
+        return;
     var video = document.getElementById("video-preview");
     var qrCanvasElement = document.getElementById("qr-canvas");
     var qrCanvas = qrCanvasElement.getContext("2d");
