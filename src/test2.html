@@ -156,7 +156,6 @@
         <button id="title" style="width:80%;  padding: 10px 0;">코드스캐너</button>
         <div class="filebox"> <label for="ex_file">앨범</label> 
         <input type="file" id="ex_file" onchange="previewFile(this)" onClick="setAlbum()"> </div>
-
         <!--<input style="width:10%;" type="file" onchange="previewFile()" value="앨범" />-->
     </div>
     <div class="video-container" style="width: 100%; left: 0px;/*height: 100%;*/">
@@ -186,10 +185,6 @@
                     "position": "absolute",
                     "top": ($('div.video-container').height() / 2 + $('#finger').height() +$('div.btn-group').height()+ "px"),
                     "left": ($('div.video-container').width() / 2 -$('#finger').width()/2+ offset.left+"px")
-                    /* 위에 바 없을때 */
-                    //"top": $('div.video-container').height() / 2 + "px",
-                    //"left": $('div.video-container').width() / 2 - $('#finger').width() / 2 + "px"
-
                 });
             });
     </script>

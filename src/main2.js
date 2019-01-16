@@ -27,21 +27,21 @@ function previewFile(input) {
     var qrCanvas = qrCanvasElement.getContext("2d");
     var width, height;
 
-    //파일 읽기
+    /*파일 읽기*/
     var file = document.querySelector('#ex_file');
     var fileList = file.files;
     reader = new FileReader();
     reader.readAsDataURL(fileList[0]);
        
-    setTimeout(function () {
-        document.querySelector('#image_section').src = reader.result;
+    //setTimeout(function () {
+        //document.querySelector('#image_section').src = reader.result;
         image.src = reader.result;
-    }, 1000);
+    //}, 1000);
         
-    console.log($('#image_section').width());
+    //console.log($('#image_section').width());
 }
-image.onload = function () { //이미지가 로드된 후
-    //캔버스에 이미지 띄우기 
+image.onload = function () { 
+    /*캔버스에 이미지 띄우기*/ 
     var qrCanvasElement = document.getElementById("qr-canvas");
     var qrCanvas = qrCanvasElement.getContext("2d");
     qrCanvasElement.width = image.width;
@@ -74,10 +74,8 @@ function tick() {
         qrCanvasElement.width = video.videoWidth;
         qrCanvas.drawImage(video, 0, 0, qrCanvasElement.width, qrCanvasElement.height);
         try {
-            
-                var result = qrcode.decode(); //qr코드 인식
-                console.log(result);
-            
+              var result = qrcode.decode(); //qr코드 인식
+              console.log(result);
             /* Video can now be stopped */
             //video.pause();
             //video.src = "";
@@ -93,8 +91,6 @@ function tick() {
                 window.open(result, '_self');
                 //window.open(result, '_blank');
                 //openTab(result);
-            // else
-            //     ;
         } catch (e) {
             /* No Op */
         }
