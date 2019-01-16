@@ -120,13 +120,13 @@ function tick() {
     } else if (album) {
         //video.classList.remove("hidden");
         image.src = document.querySelector('#image_section').src;
-        qrCanvas.drawImage(image, 0, 0, 640, 480);
+        qrCanvas.drawImage(image, 0, 0, 3000, 3000);
 
         var canvas_qr = document.getElementById("qr-canvas");
         var imgData = canvas_qr.toDataURL("image/png");
 
         console.log(imgData);
-        var result = qrcode.decode(imgData);
+        var result = qrcode.decode();
         console.log(result);
         var check = confirm(result + "로 이동하겠습니까?");
         if (check)
