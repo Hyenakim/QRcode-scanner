@@ -15,7 +15,7 @@
 var album;
 var next;
 var reader;
-var image = new Image();
+var image;
 function setAlbum() {
     album = true;
     clearTimeout(next); //tick 멈추기
@@ -32,11 +32,11 @@ function previewFile(input) {
     var fileList = file.files;
     reader = new FileReader();
     reader.readAsDataURL(fileList[0]);
-       
-    //setTimeout(function () {
-        //document.querySelector('#image_section').src = reader.result;
+    img = new Image();
+    setTimeout(function () {
+        document.querySelector('#image_section').src = reader.result;
         image.src = reader.result;
-    //}, 1000);
+    }, 1000);
         
     //console.log($('#image_section').width());
 }
@@ -59,7 +59,11 @@ image.onload = function () {
     var check = confirm(result + "로 이동하겠습니까?");
     if (check)
         window.open(result, '_self');
-    setTimeout(tick, 4000);
+    else {
+        document.getElementById('#image_section').style.display = "none";
+    }
+    album = false;
+    setTimeout(tick, 100);
 };
 function tick() {
     
@@ -97,7 +101,7 @@ function tick() {
     } 
     /* If no QR could be decoded from image copied in canvas */
     if (!video.classList.contains("hidden") && !album)
-        next = setTimeout(tick, 4000);
+        next = setTimeout(tick, 100);
 }
 
 function openTab(url) { //새로운 탭 열기
