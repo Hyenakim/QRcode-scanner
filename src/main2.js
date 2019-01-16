@@ -49,6 +49,7 @@ function previewFile(input) {
         
         document.querySelector('#image_section').src = reader.result;
         image.src = reader.result;
+        
         //qrCanvasElement.width = image.width;
         //qrCanvasElement.height = image.height;
         
@@ -76,7 +77,9 @@ function previewFile(input) {
 image.onload = function () {
     var qrCanvasElement = document.getElementById("qr-canvas");
     var qrCanvas = qrCanvasElement.getContext("2d");
-    qrCanvas.drawImage(image, 0, 0, 640, 480);
+    qrCanvasElement.width = image.width;
+    qrCanvasElement.height = image.height;
+    qrCanvas.drawImage(image, 0, 0, image.width, image.height);
     var canvas_qr = document.getElementById("qr-canvas");
     var imgData = canvas_qr.toDataURL("image/png");
 
