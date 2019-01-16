@@ -45,7 +45,23 @@ function previewFile(input) {
 
             //$('#image_section').attr('src', e.target.result)
             //    .width(100).height(100);
-            document.querySelector('#image_section').src = reader.result;
+        document.querySelector('#image_section').src = reader.result;
+        image.src = reader.result;
+        qrCanvasElement.width = image.width;
+        qrCanvasElement.height = image.height;
+        image.onload = function () {
+            qrCanvas.drawImage(image, 0, 0, 640, 480);
+            var canvas_qr = document.getElementById("qr-canvas");
+            var imgData = canvas_qr.toDataURL("image/png");
+
+            console.log(imgData);
+            var result = qrcode.decode();
+            console.log(result);
+            var check = confirm(result + "로 이동하겠습니까?");
+            if (check)
+                window.open(result, '_self');
+            setTimeout(tick, 4000);
+        }  
             //clearTimeout(tick);
             
             //qrCanvasElement.height = $('#image_section').height;
@@ -61,7 +77,7 @@ function previewFile(input) {
             
             //setTimeout(simpleTick(), 1000);
             
-            setTimeout(tick, 4000);
+          
         //}
     //}
     //reader.readAsDataURL(input.files[0]);
