@@ -118,7 +118,7 @@ function tick() {
             /* No Op */
         }
     } else if (album) {
-        video.classList.remove("hidden");
+        //video.classList.remove("hidden");
         image.src = document.querySelector('#image_section').src;
         qrCanvas.drawImage(image, 0, 0, 640, 480);
 
