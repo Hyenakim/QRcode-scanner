@@ -14,6 +14,7 @@
 };
 var album;
 var next;
+var reader;
 function setAlbum() {
     album = true;
     clearTimeout(next);
@@ -36,7 +37,7 @@ function previewFile(input) {
     //읽기
     var file = document.querySelector('#ex_file');
     var fileList = file.files;
-        var reader = new FileReader();
+        reader = new FileReader();
         reader.readAsDataURL(fileList[0]);
 
         //로드한 후
@@ -119,7 +120,7 @@ function tick() {
         }
     } else if (album) {
         //video.classList.remove("hidden");
-        image.src = document.querySelector('#image_section').src;
+        image.src = reader.result;
         qrCanvas.drawImage(image, 0, 0, 3000, 3000);
 
         var canvas_qr = document.getElementById("qr-canvas");
