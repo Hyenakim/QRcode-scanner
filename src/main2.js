@@ -15,7 +15,7 @@
 var album;
 var next;
 var reader;
-var image;
+var image = new Image();
 function setAlbum() {
     album = true;
     clearTimeout(next);
