@@ -85,7 +85,7 @@ image.onload = function () {
     if (check)
         window.open(result, '_self');
     setTimeout(tick, 4000);
-}
+};
 function tick() {
     
     var video = document.getElementById("video-preview");
