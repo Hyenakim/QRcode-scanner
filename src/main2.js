@@ -60,7 +60,8 @@ image.onload = function () {
     if (check)
         window.open(result, '_self');
     else {
-        document.getElementById('#image_section').style.display = "none";
+        window.location.reload();
+        //document.getElementById('#image_section').style.display = "none";
     }
     album = false;
     setTimeout(tick, 100);
