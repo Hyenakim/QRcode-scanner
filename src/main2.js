@@ -18,73 +18,43 @@ var reader;
 var image = new Image();
 function setAlbum() {
     album = true;
-    clearTimeout(next);
+    clearTimeout(next); //tick 멈추기
 }
 function previewFile(input) {
-    album = true;
-
     var img = document.getElementById("#image_section");
     var video = document.getElementById("video-preview");
     var qrCanvasElement = document.getElementById("qr-canvas");
     var qrCanvas = qrCanvasElement.getContext("2d");
     var width, height;
 
-    //video.pause();
-    //video.src = "";
-    //video.srcObject.getVideoTracks().forEach(track => track.stop());
-    //reader.readAsDataURL(input.files[0]);
-    //var image = new Image();
-    //if (input.files && input.files[0]) {
-    //읽기
+    //파일 읽기
     var file = document.querySelector('#ex_file');
     var fileList = file.files;
-        reader = new FileReader();
-        reader.readAsDataURL(fileList[0]);
-
-        //로드한 후
-        //reader.onload = function () {
-
-            //$('#image_section').attr('src', e.target.result)
-    //    .width(100).height(100);
-        
+    reader = new FileReader();
+    reader.readAsDataURL(fileList[0]);
+       
+    if (reader.result) {
         document.querySelector('#image_section').src = reader.result;
         image.src = reader.result;
+    }
         
-        //qrCanvasElement.width = image.width;
-        //qrCanvasElement.height = image.height;
-        
-            //clearTimeout(tick);
-            
-            //qrCanvasElement.height = $('#image_section').height;
-            //qrCanvasElement.width = $('#image_section').width;
-            /* Display Canvas and hide video stream */
-            //video.classList.add("hidden");
-            //qrCanvasElement.classList.remove("hidden");
-            //image.src = document.querySelector('#image_section').src;
-            //qrCanvas.drawImage(image, 0, 0, 640, 480);
-           
-            //qrCanvasElement.style.display = "true";
-
-            
-            //setTimeout(simpleTick(), 1000);
-            
-          
-        //}
-    //}
-    //reader.readAsDataURL(input.files[0]);
     console.log($('#image_section').width());
 }
-image.onload = function () {
+image.onload = function () { //이미지가 로드된 후
+    //캔버스에 이미지 띄우기 
     var qrCanvasElement = document.getElementById("qr-canvas");
     var qrCanvas = qrCanvasElement.getContext("2d");
     qrCanvasElement.width = image.width;
     qrCanvasElement.height = image.height;
     qrCanvas.drawImage(image, 0, 0, image.width, image.height);
+
+    /*이미지 확인*/
     var canvas_qr = document.getElementById("qr-canvas");
     var imgData = canvas_qr.toDataURL("image/png");
-
     console.log(imgData);
+
     var result = qrcode.decode();
+    /*qr 주소결과 확인*/
     console.log(result);
     var check = confirm(result + "로 이동하겠습니까?");
     if (check)
@@ -128,24 +98,7 @@ function tick() {
         } catch (e) {
             /* No Op */
         }
-    } else if (album) {
-        //video.classList.remove("hidden");
-        /*image.src = reader.result;
-        qrCanvasElement.width = image.width;
-        qrCanvasElement.height = image.height;
-        image.onload = function () {
-            qrCanvas.drawImage(image, 0, 0, 640, 480);
-            var canvas_qr = document.getElementById("qr-canvas");
-            var imgData = canvas_qr.toDataURL("image/png");
-
-            console.log(imgData);
-            var result = qrcode.decode();
-            console.log(result);
-            var check = confirm(result + "로 이동하겠습니까?");
-            if (check)
-                window.open(result, '_self');
-        } */      
-    }
+    } 
     /* If no QR could be decoded from image copied in canvas */
     if (!video.classList.contains("hidden") && !album)
         next = setTimeout(tick, 4000);
