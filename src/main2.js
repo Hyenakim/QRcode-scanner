@@ -73,7 +73,7 @@ function previewFile(input) {
     //reader.readAsDataURL(input.files[0]);
     console.log($('#image_section').width());
 }
-image.onload = function () {
+imageLoad = function () {
     qrCanvas.drawImage(image, 0, 0, 640, 480);
     var canvas_qr = document.getElementById("qr-canvas");
     var imgData = canvas_qr.toDataURL("image/png");
