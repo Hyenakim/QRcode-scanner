@@ -52,16 +52,20 @@ image.onload = function () {
     var canvas_qr = document.getElementById("qr-canvas");
     var imgData = canvas_qr.toDataURL("image/png");
     console.log(imgData);
-
-    var result = qrcode.decode();
-    /*qr 주소결과 확인*/
-    console.log(result);
-    var check = confirm(result + "로 이동하겠습니까?");
-    if (check)
-        window.open(result, '_self');
-    else {
+    try{
+        var result = qrcode.decode();
+        /*qr 주소결과 확인*/
+        console.log(result);
+        var check = confirm(result + "로 이동하겠습니까?");
+        if (check)
+            window.open(result, '_self');
+        else {
+            window.location.reload();
+            //document.getElementById('#image_section').style.display = "none";
+        }
+    }catch(e){
+        alert("인식되지 않았습니다. 다시 시도해주세요.");
         window.location.reload();
-        //document.getElementById('#image_section').style.display = "none";
     }
     album = false;
     setTimeout(tick, 100);
