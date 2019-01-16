@@ -124,18 +124,17 @@ function tick() {
         qrCanvasElement.width = image.width;
         qrCanvasElement.height = image.height;
         image.onload = function () {
-            qrCanvas.drawImage(image, 0, 0,640,480);
-        }
-        
-        var canvas_qr = document.getElementById("qr-canvas");
-        var imgData = canvas_qr.toDataURL("image/png");
+            qrCanvas.drawImage(image, 0, 0, 640, 480);
+            var canvas_qr = document.getElementById("qr-canvas");
+            var imgData = canvas_qr.toDataURL("image/png");
 
-        console.log(imgData);
-        var result = qrcode.decode();
-        console.log(result);
-        var check = confirm(result + "로 이동하겠습니까?");
-        if (check)
-            window.open(result, '_self');
+            console.log(imgData);
+            var result = qrcode.decode();
+            console.log(result);
+            var check = confirm(result + "로 이동하겠습니까?");
+            if (check)
+                window.open(result, '_self');
+        }       
     }
     /* If no QR could be decoded from image copied in canvas */
     if (!video.classList.contains("hidden") && !album)
