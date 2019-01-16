@@ -123,7 +123,7 @@ function tick() {
         image.src = reader.result;
         qrCanvasElement.width = image.width;
         qrCanvasElement.height = image.height;
-        qrCanvas.drawImage(image, 0, 0);
+        qrCanvas.drawImage(image, 0, 0,640,480);
 
         var canvas_qr = document.getElementById("qr-canvas");
         var imgData = canvas_qr.toDataURL("image/png");
