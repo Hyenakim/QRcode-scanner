@@ -117,7 +117,15 @@ function tick() {
             /* No Op */
         }
     } else if (album) {
-        
+        /*이미지 캔버스에 띄우기*/
+        var file = document.querySelector('#ex_file');
+        var fileList = file.files;
+        var reader = new FileReader();
+        reader.readAsDataURL(fileList[0]);
+        document.querySelector('#image_section').src = reader.result;
+
+
+        video.classList.remove("hidden");
         image.src = document.querySelector('#image_section').src;
         qrCanvas.drawImage(image, 0, 0, 640, 480);
 
