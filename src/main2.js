@@ -32,7 +32,7 @@ function previewFile(input) {
     var fileList = file.files;
     reader = new FileReader();
     reader.readAsDataURL(fileList[0]);
-    img = new Image();
+    image = new Image();
     setTimeout(function () {
         document.querySelector('#image_section').src = reader.result;
         image.src = reader.result;
