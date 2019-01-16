@@ -3,12 +3,11 @@
      * User will be prompted if (s)he allows camera to be started */
     navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" }, audio: false }).then(function (stream) {
         var video = document.getElementById("video-preview");
-
         video.setAttribute("playsinline", true); /* otherwise iOS safari starts fullscreen */
         video.srcObject = stream;
         video.play();
 
-        setTimeout(tick, 100); /* We launch the tick function 100ms later (see next step) */
+        setTimeout(tick, 1000); /* We launch the tick function 100ms later (see next step) */
     })
     .catch(function (err) {
         console.log(err); /* User probably refused to grant access*/
@@ -26,7 +25,7 @@ function tick() {
         qrCanvasElement.width = video.videoWidth;
         qrCanvas.drawImage(video, 0, 0, qrCanvasElement.width, qrCanvasElement.height);
         try {
-            var result = qrcode.decode();
+            var result = qrcode.decode(); //qr코드 인식
             console.log(result);
             /* Video can now be stopped */
             //video.pause();
@@ -37,29 +36,19 @@ function tick() {
             //qrCanvasElement.classList.remove("hidden");
             //video.classList.add("hidden");
 
-            document.getElementsByTagName("p")[1].innerHTML = "이동";
-            var url = document.getElementsByTagName('p')[2];
-            //p 내용 지우기
-            while (url.firstChild) {
-                url.removeChild(url.firstChild);
-            }
-            console.log(url);
-            var link = document.createElement('a');
-            link.href = result;
-            var text = document.createTextNode(result);
-            url.appendChild(link).appendChild(text);
             //알림창
             var check = confirm(result + "로 이동하겠습니까?");
-            if (check)
-                //window.open(result, '_blank');
-                openTab(result);
-            // else
+            if (check) {
+                window.open(result, '_self');
+                //openTab(result);
+            }
+            else; //새로고침
+                //window.location.reload();
             //     ;
         } catch (e) {
             /* No Op */
         }
     }
-
     /* If no QR could be decoded from image copied in canvas */
     if (!video.classList.contains("hidden"))
         setTimeout(tick, 100);

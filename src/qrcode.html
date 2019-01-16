@@ -39,6 +39,7 @@
             position: absolute;
             align-content: center;
             text-align: center;
+            z-index: 300000;
         }
         /*가이드 라인 이미지*/
         #finger_box {
@@ -103,7 +104,13 @@
             -ms-interpolation-mode: bicubic;
             vertical-align: middle;
         }
-
+        video {
+            width: 100%;
+            position: fixed;
+            height: 100%;
+            overflow: hidden;
+            object-fit: cover
+        }
         p {
             text-align: center;
         }
@@ -131,23 +138,23 @@
     <script type="text/javascript" src="findpat.js"></script>
     <script type="text/javascript" src="alignpat.js"></script>
     <script type="text/javascript" src="databr.js"></script>
-    <script type="text/javascript" src="main2.js" charset="euc-kr"></script>
+    <script type="text/javascript" src="main.js" charset="euc-kr"></script>
     <link rel="manifest" href="permit.json" />
 </head>
 <body>
-    <div class="btn-group" style="width:100%">
+    <div class="btn-group" style="width:100%; display:none;">
         <button id="btn-close" style="width:10%">X</button>
         <button id="title" style="width:80%;  padding: 10px 0;">코드스캐너</button>
         <button style="width:10%; color:white;">&nsub;</button>
     </div>
-    <div class="video-container" style="width: 100%; left: 0px;/*height: 100%;*/">
-        <div id="finger">
-            <div id="finger_box">
-                <img id="zhiwen" src="images/zhiwen.png" alt="">
-                <img id="line" src="images/line.png" alt="">
-                <p id="info">화면에 QR코드를 위치시키세요</p>
-            </div>
+    <div id="finger">
+        <div id="finger_box">
+            <img id="zhiwen" src="images/zhiwen.png" alt="">
+            <img id="line" src="images/line.png" alt="">
+            <p id="info">화면에 QR코드를 위치시키세요</p>
         </div>
+    </div>
+    <div class="video-container" style="width: 100%; position:fixed;height: 100%;overflow:hidden;object-fit:cover">
         <video id="video-preview" style="width: 100%;/*height: 100%;*/" autoplay></video>
         <canvas id="qr-canvas" class="hidden" style="display:none"></canvas>
     </div>
@@ -155,38 +162,22 @@
     <script>
         //화면 배치
         $(document).ready(function () {
-                var $video = $('#video-container');
-                var $window = $(window);
-                $video.height = $window.height();
-                $video.css('left', (($window.width() - $video.width()) / 2) + "px");
+                //var $video = $('#video-container');
+                //var $window = $(window);
+                //$video.height = $window.height();
+                //$video.css('left', (($window.width() - $video.width()) / 2) + "px");
                 var w = $('div.video-container');
                 var offset = w.offset();
                 console.log(offset.top);
                 console.log(offset.left);
 
                 $('#finger').css({
-                    "position": "absolute",
-                    "top": ($('div.video-container').height() / 2 + $('#finger').height() +$('div.btn-group').height()+ "px"),
-                    "left": ($('div.video-container').width() / 2 -$('#finger').width()/2+ offset.left+"px")
+                    "position": "fixed",
+                    "top": ($('div.video-container').height() / 2 -$("#finger").height()/2 + "px"),
+                    "left": ($('div.video-container').width() / 2 - $("#finger").width() / 2 + "px")
                 });
-                var fin = $('#finger');
-                var offset2 = fin.offset();
-                console.log(off);
+                
             });
-    </script>
-    <script>
-
-        //화면 닫기
-        document.addEventListener('DOMContentLoaded', function () {
-            document.getElementById("btn-close").addEventListener("click", handler);
-        });
-
-        // The handler also must go in a .js file
-        function handler() {
-            window.open('', '_self', '');
-            window.close();
-            return false;
-        }
     </script>
 </body>
 </html>
