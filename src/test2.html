@@ -6,17 +6,16 @@
             height: 100%;
             margin: 0;
         }
-        .btn-group button {
+        .btn-group label {
             background-color: white; /* Green background */
             border: 0px solid black; /* Green border */
             color: black; /* White text */
             cursor: pointer; /* Pointer/hand icon */
-            float: left; /* Float the buttons side by side */
-            padding: 10px 0;
+            float: right; /* Float the buttons side by side */
         }
         .filebox label {
             display: inline-block;
-            padding: 10px 0;
+            padding: 10px 10px;
             color: black;
             line-height: normal;
             vertical-align: middle;
@@ -53,6 +52,7 @@
             position: absolute;
             align-content: center;
             text-align: center;
+            z-index: 300000;
         }
         /*가이드 라인 이미지*/
         #finger_box {
@@ -108,7 +108,13 @@
                 -webkit-transform: translateY(-90%);
             }
         }
-
+        video {
+            width: 100%;
+            position: fixed;
+            height: 100%;
+            overflow: hidden;
+            object-fit: cover
+        }
         img {
             border: 0 none;
             max-width: 100%;
@@ -149,16 +155,17 @@
     <link rel="manifest" href="permit.json" />
 </head>
 <body>
-    <div class="btn-group" style="width:100%;">
+    <div class="btn-group" style="width:100%;height:39% ">
     <!-- 상단 바 없을때 -->
     <!--<div class="btn-group" style="width:100%;display:none; ">-->
-        <button id="btn-close" style="width:10%">스캔</button>
-        <button id="title" style="width:80%;  padding: 10px 0;">코드스캐너</button>
+        <!--<button id="btn-close" style="width:10%"></button>-->
+        <!--<button id="title" style="width:80%;  padding: 10px 0;">코드스캐너</button>-->
         <div class="filebox"> <label for="ex_file">앨범</label> 
         <input type="file" id="ex_file" onchange="previewFile(this)" onClick="setAlbum()"> </div>
         <!--<input style="width:10%;" type="file" onchange="previewFile()" value="앨범" />-->
     </div>
-    <div class="video-container" style="width: 100%; left: 0px;/*height: 100%;*/">
+    <div class="video-container" style="width: 100%; position:fixed;height: 61%;overflow:hidden;object-fit:cover">
+        <img id="image_section" src="" />
         <div id="finger">
             <div id="finger_box">
                 <img id="zhiwen" src="images/zhiwen.png" alt="">
@@ -166,25 +173,25 @@
                 <p id="info">화면에 QR코드를 위치시키세요</p>
             </div>
         </div>
-        <img id="image_section" src="#" alt="your image" />
-        <video id="video-preview" style="width: 100%;/*height: 100%;*/" autoplay></video>
+        
+        <video id="video-preview"  autoplay></video>
         <canvas id="qr-canvas" class="hidden" style="display:none"></canvas>
     </div>
     <script src="jquery-3.3.1.min.js"></script>
     <script>
             $(document).ready(function ()   {
                 //video-container fullScreen
-                var $video = $('#video-container');
-                var $window = $(window);
-                $video.height = $window.height();
-                $video.css('left', (($window.width() - $video.width()) / 2) + "px");
-                var w = $('div.video-container');
-                var offset = w.offset();
+                //var $video = $('#video-container');
+                //var $window = $(window);
+                //$video.height = $window.height();
+                //$video.css('left', (($window.width() - $video.width()) / 2) + "px");
+                //var w = $('div.video-container');
+                //var offset = w.offset();
                 //finger중앙 배치
                 $('#finger').css({
-                    "position": "absolute",
-                    "top": ($('div.video-container').height() / 2 + $('#finger').height() +$('div.btn-group').height()+ "px"),
-                    "left": ($('div.video-container').width() / 2 -$('#finger').width()/2+ offset.left+"px")
+                    "position": "fixed",
+                    "top": (($('div.video-container').height()+$('div.btn-group').height()) / 2 - $("#finger").height() / 2 + "px"),
+                    "left": ($('div.video-container').width() / 2 - $("#finger").width() / 2 + "px")
                 });
             });
     </script>
@@ -203,16 +210,16 @@
         };
     </script>
     <script>
-        //화면 닫기
-        document.addEventListener('DOMContentLoaded', function () {
-            document.getElementById("btn-close").addEventListener("click", handler);
-        });
+        ////화면 닫기
+        //document.addEventListener('DOMContentLoaded', function () {
+        //    document.getElementById("btn-close").addEventListener("click", handler);
+        //});
 
-        // The handler also must go in a .js file
-        function handler() {
-            open(location, '_self').close();
-            return false;
-        }
+        //// The handler also must go in a .js file
+        //function handler() {
+        //    open(location, '_self').close();
+        //    return false;
+        //}
     </script>
 </body>
 </html>
