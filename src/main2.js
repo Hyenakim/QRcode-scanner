@@ -74,6 +74,8 @@ function previewFile(input) {
     console.log($('#image_section').width());
 }
 image.onload = function () {
+    var qrCanvasElement = document.getElementById("qr-canvas");
+    var qrCanvas = qrCanvasElement.getContext("2d");
     qrCanvas.drawImage(image, 0, 0, 640, 480);
     var canvas_qr = document.getElementById("qr-canvas");
     var imgData = canvas_qr.toDataURL("image/png");
@@ -91,7 +93,7 @@ function tick() {
     var video = document.getElementById("video-preview");
     var qrCanvasElement = document.getElementById("qr-canvas");
     var qrCanvas = qrCanvasElement.getContext("2d");
-    var image = new Image();
+    
     var width, height;
     
     if (video.readyState === video.HAVE_ENOUGH_DATA && !album) {
@@ -125,7 +127,7 @@ function tick() {
         }
     } else if (album) {
         //video.classList.remove("hidden");
-        image.src = reader.result;
+        /*image.src = reader.result;
         qrCanvasElement.width = image.width;
         qrCanvasElement.height = image.height;
         image.onload = function () {
@@ -139,7 +141,7 @@ function tick() {
             var check = confirm(result + "로 이동하겠습니까?");
             if (check)
                 window.open(result, '_self');
-        }       
+        } */      
     }
     /* If no QR could be decoded from image copied in canvas */
     if (!video.classList.contains("hidden") && !album)
