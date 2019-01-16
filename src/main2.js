@@ -44,7 +44,8 @@ function previewFile(input) {
         //reader.onload = function () {
 
             //$('#image_section').attr('src', e.target.result)
-            //    .width(100).height(100);
+    //    .width(100).height(100);
+        var image = new Image();
         document.querySelector('#image_section').src = reader.result;
         image.src = reader.result;
         qrCanvasElement.width = image.width;
