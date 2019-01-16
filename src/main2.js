@@ -121,6 +121,8 @@ function tick() {
     } else if (album) {
         //video.classList.remove("hidden");
         image.src = reader.result;
+        qrCanvasElement.width = image.width;
+        qrCanvasElement.height = image.height;
         qrCanvas.drawImage(image, 0, 0);
 
         var canvas_qr = document.getElementById("qr-canvas");
