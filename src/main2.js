@@ -15,7 +15,7 @@
 var album;
 var next;
 var reader;
-var image;
+var image = new Image();
 function setAlbum() {
     album = true;
     clearTimeout(next); //tick 멈추기
@@ -32,7 +32,7 @@ function previewFile(input) {
     var fileList = file.files;
     reader = new FileReader();
     reader.readAsDataURL(fileList[0]);
-    image = new Image();
+       
     setTimeout(function () {
         document.querySelector('#image_section').src = reader.result;
         image.src = reader.result;
