@@ -33,10 +33,10 @@ function previewFile(input) {
     reader = new FileReader();
     reader.readAsDataURL(fileList[0]);
        
-    if (reader.result) {
+    setTimeout(function () {
         document.querySelector('#image_section').src = reader.result;
         image.src = reader.result;
-    }
+    }, 1000);
         
     console.log($('#image_section').width());
 }
