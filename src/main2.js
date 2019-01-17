@@ -7,7 +7,33 @@ window.onload = function () {
         video.setAttribute("playsinline", true); /* otherwise iOS safari starts fullscreen */
         video.srcObject = stream;
         video.play();
-   
+        const track = stream.getVideoTracks()[0];
+        var os = getMobileOperatingSystem()
+        var lightFlag = true
+        if (os === "iOS" || os === "unknown") {
+        } else {
+            document.querySelector("#lightBtn").style.display = "inline-block";
+        }
+        onCapabilitiesReady(track.getCapabilities())
+        // track.applyConstraints({
+        //     advanced:[{torch:true}]
+        // })
+        var light = document.querySelector("#lightBtn")
+        light.addEventListener('click', function () {
+            if (lightFlag === true) {
+                lightFlag = false
+                track.applyConstraints({
+                    advanced: [{ torch: false }]
+                })
+                light.value = "손전등 켜기"
+            } else {
+                lightFlag = true
+                track.applyConstraints({
+                    advanced: [{ torch: true }]
+                })
+                light.value = "손전등 끄기"
+            }
+        })
         setTimeout(tick, 100); /* We launch the tick function 100ms later (see next step) */
         //console.log("windlow onload");
         
@@ -17,33 +43,7 @@ window.onload = function () {
         console.log(err); /* User probably refused to grant access*/
     });
 };
-const track = video.srcObject.getVideoTracks()[0];
-var os = getMobileOperatingSystem()
-var lightFlag = true
-if (os === "iOS" || os === "unknown") {
-} else {
-    document.querySelector("#lightBtn").style.display = "inline-block";
-}
-onCapabilitiesReady(track.getCapabilities())
-// track.applyConstraints({
-//     advanced:[{torch:true}]
-// })
-var light = document.querySelector("#lightBtn")
-light.addEventListener('click', function () {
-    if (lightFlag === true) {
-        lightFlag = false
-        track.applyConstraints({
-            advanced: [{ torch: false }]
-        })
-        light.value = "손전등 켜기"
-    } else {
-        lightFlag = true
-        track.applyConstraints({
-            advanced: [{ torch: true }]
-        })
-        light.value = "손전등 끄기"
-    }
-})
+
 var next;
 var image = new Image();
 function setAlbum() {
