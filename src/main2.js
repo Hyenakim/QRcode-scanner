@@ -62,6 +62,21 @@ function getMobileOperatingSystem() {
 
     return "unknown";
 }
+function onCapabilitiesReady(capabilities) {
+    console.log("capabilities!!")
+    console.log(capabilities);
+    if (capabilities.torch) {
+        document.querySelector("#lightBtn").style.display = "inline-block";
+        track.applyConstraints({
+            advanced: [{ torch: true }]
+        })
+        .catch(e => console.log(e));
+    }
+    else {
+        console.log("no torch")
+    }
+}
+
 var next;
 var image = new Image();
 function setAlbum() {
