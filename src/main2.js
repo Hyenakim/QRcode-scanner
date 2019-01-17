@@ -1,6 +1,7 @@
-﻿var lightFlag = true
+﻿var lightFlag
 var track;
 window.onload = function () {
+    lightFlag = true
     /* Ask for "environnement" (rear) camera if available (mobile), will fallback to only available otherwise (desktop).
      * User will be prompted if (s)he allows camera to be started */
     navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" }, audio: false }).then(function (stream) {
