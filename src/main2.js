@@ -1,25 +1,22 @@
-﻿var video;
-var lightFlag = true
+﻿var lightFlag = true
 var track;
 window.onload = function () {
     /* Ask for "environnement" (rear) camera if available (mobile), will fallback to only available otherwise (desktop).
      * User will be prompted if (s)he allows camera to be started */
     navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" }, audio: false }).then(function (stream) {
-        video = document.getElementById("video-preview");
+        var video = document.getElementById("video-preview");
         video.setAttribute("playsinline", true); /* otherwise iOS safari starts fullscreen */
         video.srcObject = stream;
+        console.log(stream);
         video.play();
         track = stream.getVideoTracks()[0];
         var os = getMobileOperatingSystem()
         
         if (os === "iOS" || os === "unknown") {
         } else {
-            document.querySelector("#lightBtn").style.display = "inline-block";
+            document.querySelector("#lightBtn").style.display = "none";
         }
-        onCapabilitiesReady(track.getCapabilities())
-        // track.applyConstraints({
-        //     advanced:[{torch:true}]
-        // }) 
+
         setTimeout(tick, 100); /* We launch the tick function 100ms later (see next step) */
         //console.log("windlow onload");
         
@@ -31,7 +28,7 @@ window.onload = function () {
 };
 function setLight() {
     console.log("손전등 onClick");
-    clearTimeout(next); //tick 멈추기
+    //clearTimeout(next); //tick 멈추기
     var light = document.querySelector("#lightBtn")
 
     if (lightFlag === true) {
@@ -47,7 +44,7 @@ function setLight() {
         })
         light.value = "손전등 끄기"
     }
-    setTimeout(tick, 100);
+    //setTimeout(tick, 100);
 }
 function getMobileOperatingSystem() {
     var userAgent = navigator.userAgent || navigator.vendor || window.opera;
@@ -68,21 +65,6 @@ function getMobileOperatingSystem() {
 
     return "unknown";
 }
-function onCapabilitiesReady(capabilities) {
-    console.log("capabilities!!")
-    console.log(capabilities);
-    if (capabilities.torch) {
-        document.querySelector("#lightBtn").style.display = "inline-block";
-        track.applyConstraints({
-            advanced: [{ torch: true }]
-        })
-        .catch(e => console.log(e));
-    }
-    else {
-        console.log("no torch")
-    }
-}
-
 var next;
 var image = new Image();
 function setAlbum() {
