@@ -6,7 +6,9 @@
         video.setAttribute("playsinline", true); /* otherwise iOS safari starts fullscreen */
         video.srcObject = stream;
         video.play();
+   
         setTimeout(tick, 100); /* We launch the tick function 100ms later (see next step) */
+        console.log("windlow onload");
     })
     .catch(function (err) {
         console.log(err); /* User probably refused to grant access*/
@@ -66,7 +68,7 @@ image.onload = function () {
     }
 };
 function tick() {
-    
+    consloe.log("tick");
     var video = document.getElementById("video-preview");
     var qrCanvasElement = document.getElementById("qr-canvas");
     var qrCanvas = qrCanvasElement.getContext("2d");
