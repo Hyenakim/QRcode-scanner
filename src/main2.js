@@ -35,21 +35,23 @@ function setLight() {
     var video = document.getElementById("video-preview");
     const track = video.srcObject.getVideoTracks()[0];
     var light = document.querySelector("#lightBtn")
-
+    
     if (lightFlag === true) {
         console.log("손전등 끄기 누름");
         lightFlag = false
         track.applyConstraints({
             advanced: [{ torch: false }]
         })
-        light.value = "손전등 켜기"
+        light.textContent.replace("손전등 켜기");
+        //light.value = "손전등 켜기"
     } else {
         console.log("손전등 켜기 누름");
         lightFlag = true
         track.applyConstraints({
             advanced: [{ torch: true }]
         })
-        light.value = "손전등 끄기"
+        light.textContent.replace("손전등 끄기");
+        //light.value = "손전등 끄기"
     }
     //setTimeout(tick, 100);
 }
