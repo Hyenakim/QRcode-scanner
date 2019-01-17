@@ -1,4 +1,5 @@
 ﻿var video;
+var lightFlag = true
 window.onload = function () {
     /* Ask for "environnement" (rear) camera if available (mobile), will fallback to only available otherwise (desktop).
      * User will be prompted if (s)he allows camera to be started */
@@ -9,7 +10,7 @@ window.onload = function () {
         video.play();
         const track = stream.getVideoTracks()[0];
         var os = getMobileOperatingSystem()
-        var lightFlag = true
+        
         if (os === "iOS" || os === "unknown") {
         } else {
             document.querySelector("#lightBtn").style.display = "inline-block";
@@ -17,9 +18,7 @@ window.onload = function () {
         onCapabilitiesReady(track.getCapabilities())
         // track.applyConstraints({
         //     advanced:[{torch:true}]
-        // })
-        
-        
+        // }) 
         setTimeout(tick, 100); /* We launch the tick function 100ms later (see next step) */
         //console.log("windlow onload");
         
