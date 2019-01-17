@@ -68,7 +68,7 @@ image.onload = function () {
     }
 };
 function tick() {
-    consloe.log("tick");
+    console.log("tick");
     var video = document.getElementById("video-preview");
     var qrCanvasElement = document.getElementById("qr-canvas");
     var qrCanvas = qrCanvasElement.getContext("2d");
