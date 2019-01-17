@@ -91,11 +91,18 @@ function previewFile(input) {
     var fileList = file.files;
     var reader = new FileReader();
     reader.readAsDataURL(fileList[0]);
-       
+    
+    //document.querySelector('#image_section').src = reader.result;
+    //image.src = reader.result;
+
+    
     setTimeout(function () {
         document.querySelector('#image_section').src = reader.result;
+    }, 200);
+    setTimeout(function () {
+    
         image.src = reader.result;
-    }, 1000);
+    }, 500);
         
     //console.log($('#image_section').width());
 }

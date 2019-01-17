@@ -15,6 +15,8 @@
             position: absolute;
             align-content: center;
             text-align: center;
+            top: calc(50% - 50px);
+            left: calc(50% - 50px);
             z-index: 300000;
         }
         /*가이드 라인 이미지*/
@@ -163,7 +165,7 @@
     </div>
     <script src="jquery-3.3.1.min.js"></script>
     <script>
-            $(document).ready(function ()   {
+            //$(document).ready(function ()   {
                 //video-container fullScreen
                 //var $video = $('#video-container');
                 //var $window = $(window);
@@ -172,12 +174,12 @@
                 //var w = $('div.video-container');
                 //var offset = w.offset();
                 //finger중앙 배치
-                $('#finger').css({
-                    "position": "fixed",
-                    "top": ($('div.video-container').height() / 2 - $("#finger").height() / 2 + "px"),
-                    "left": ($('div.video-container').width() / 2 - $("#finger").width() / 2 + "px")
-                });
-            });
+                //$('#finger').css({
+                //    "position": "fixed",
+                //    "top": ($('div.video-container').height() / 2 - $("#finger").height() / 2 + "px"),
+                //    "left": ($('div.video-container').width() / 2 - $("#finger").width() / 2 + "px")
+                //});
+            //});
     </script>
     <script>
         //화면 열기
