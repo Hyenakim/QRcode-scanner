@@ -130,7 +130,7 @@ image.onload = function () {
             //document.getElementById('#image_section').style.display = "none";
         }
     }catch(e){
-        alert("인식되지 않았습니다. 다시 시도해주세요.");
+        alert("인식하지 못하였습니다. 다시 시도해주세요.");
         window.location.reload();
     }
 };
