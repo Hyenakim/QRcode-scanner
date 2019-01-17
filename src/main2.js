@@ -29,7 +29,7 @@ window.onload = function () {
     });
 };
 
-document.querySelector("#lightBtn").addEventListener('click', function () {
+function setLight() {
     console.log("손전등 onClick");
     //clearTimeout(next); //tick 멈추기
     var video = document.getElementById("video-preview");
@@ -52,8 +52,7 @@ document.querySelector("#lightBtn").addEventListener('click', function () {
         light.value = "손전등 끄기"
     }
     //setTimeout(tick, 100);
-})
-
+}
 function getMobileOperatingSystem() {
     var userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
