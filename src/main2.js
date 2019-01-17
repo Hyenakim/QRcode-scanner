@@ -1,19 +1,49 @@
-﻿window.onload = function () {
+﻿var video;
+window.onload = function () {
     /* Ask for "environnement" (rear) camera if available (mobile), will fallback to only available otherwise (desktop).
      * User will be prompted if (s)he allows camera to be started */
     navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" }, audio: false }).then(function (stream) {
-        var video = document.getElementById("video-preview");
+        video = document.getElementById("video-preview");
         video.setAttribute("playsinline", true); /* otherwise iOS safari starts fullscreen */
         video.srcObject = stream;
         video.play();
    
         setTimeout(tick, 100); /* We launch the tick function 100ms later (see next step) */
-        console.log("windlow onload");
+        //console.log("windlow onload");
+        
+
     })
     .catch(function (err) {
         console.log(err); /* User probably refused to grant access*/
     });
 };
+const track = video.srcObject.getVideoTracks()[0];
+var os = getMobileOperatingSystem()
+var lightFlag = true
+if (os === "iOS" || os === "unknown") {
+} else {
+    document.querySelector("#lightBtn").style.display = "inline-block";
+}
+onCapabilitiesReady(track.getCapabilities())
+// track.applyConstraints({
+//     advanced:[{torch:true}]
+// })
+var light = document.querySelector("#lightBtn")
+light.addEventListener('click', function () {
+    if (lightFlag === true) {
+        lightFlag = false
+        track.applyConstraints({
+            advanced: [{ torch: false }]
+        })
+        light.value = "손전등 켜기"
+    } else {
+        lightFlag = true
+        track.applyConstraints({
+            advanced: [{ torch: true }]
+        })
+        light.value = "손전등 끄기"
+    }
+})
 var next;
 var image = new Image();
 function setAlbum() {
@@ -68,7 +98,7 @@ image.onload = function () {
     }
 };
 function tick() {
-    console.log("tick");
+    //console.log("tick");
     var video = document.getElementById("video-preview");
     var qrCanvasElement = document.getElementById("qr-canvas");
     var qrCanvas = qrCanvasElement.getContext("2d");
