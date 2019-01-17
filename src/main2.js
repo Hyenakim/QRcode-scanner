@@ -19,6 +19,7 @@ window.onload = function () {
         //     advanced:[{torch:true}]
         // })
         function setLight() {
+            console.log("손전등 onClick");
             clearTimeout(next); //tick 멈추기
             var light = document.querySelector("#lightBtn")
                 
