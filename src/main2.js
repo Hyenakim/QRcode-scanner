@@ -18,22 +18,26 @@ window.onload = function () {
         // track.applyConstraints({
         //     advanced:[{torch:true}]
         // })
-        var light = document.querySelector("#lightBtn")
-        light.addEventListener('click', function () {
-            if (lightFlag === true) {
-                lightFlag = false
-                track.applyConstraints({
-                    advanced: [{ torch: false }]
-                })
-                light.value = "손전등 켜기"
-            } else {
-                lightFlag = true
-                track.applyConstraints({
-                    advanced: [{ torch: true }]
-                })
-                light.value = "손전등 끄기"
-            }
-        })
+        function setLight() {
+            clearTimeout(next); //tick 멈추기
+            var light = document.querySelector("#lightBtn")
+                
+                    if (lightFlag === true) {
+                        lightFlag = false
+                        track.applyConstraints({
+                            advanced: [{ torch: false }]
+                        })
+                        light.value = "손전등 켜기"
+                    } else {
+                        lightFlag = true
+                        track.applyConstraints({
+                            advanced: [{ torch: true }]
+                        })
+                        light.value = "손전등 끄기"
+                    }
+                    setTimeout(tick, 100);
+        }
+        
         setTimeout(tick, 100); /* We launch the tick function 100ms later (see next step) */
         //console.log("windlow onload");
         
@@ -43,6 +47,7 @@ window.onload = function () {
         console.log(err); /* User probably refused to grant access*/
     });
 };
+
 function getMobileOperatingSystem() {
     var userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
