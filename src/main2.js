@@ -28,7 +28,8 @@ window.onload = function () {
         console.log(err); /* User probably refused to grant access*/
     });
 };
-function setLight() {
+
+document.querySelector("#lightBtn").addEventListener('click', function () {
     console.log("손전등 onClick");
     //clearTimeout(next); //tick 멈추기
     var video = document.getElementById("video-preview");
@@ -51,7 +52,8 @@ function setLight() {
         light.value = "손전등 끄기"
     }
     //setTimeout(tick, 100);
-}
+})
+
 function getMobileOperatingSystem() {
     var userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
