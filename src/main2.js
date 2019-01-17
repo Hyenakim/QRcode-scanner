@@ -1,5 +1,6 @@
 ﻿var video;
 var lightFlag = true
+var track;
 window.onload = function () {
     /* Ask for "environnement" (rear) camera if available (mobile), will fallback to only available otherwise (desktop).
      * User will be prompted if (s)he allows camera to be started */
@@ -8,7 +9,7 @@ window.onload = function () {
         video.setAttribute("playsinline", true); /* otherwise iOS safari starts fullscreen */
         video.srcObject = stream;
         video.play();
-        const track = stream.getVideoTracks()[0];
+        track = stream.getVideoTracks()[0];
         var os = getMobileOperatingSystem()
         
         if (os === "iOS" || os === "unknown") {
