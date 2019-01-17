@@ -1,7 +1,7 @@
 ﻿var lightFlag
 var track;
 window.onload = function () {
-    lightFlag = true
+    lightFlag = false
     /* Ask for "environnement" (rear) camera if available (mobile), will fallback to only available otherwise (desktop).
      * User will be prompted if (s)he allows camera to be started */
     navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" }, audio: false }).then(function (stream) {
@@ -36,12 +36,14 @@ function setLight() {
     var light = document.querySelector("#lightBtn")
 
     if (lightFlag === true) {
+        console.log("손전등 끄기 누름");
         lightFlag = false
         track.applyConstraints({
             advanced: [{ torch: false }]
         })
         light.value = "손전등 켜기"
     } else {
+        console.log("손전등 켜기 누름");
         lightFlag = true
         track.applyConstraints({
             advanced: [{ torch: true }]
