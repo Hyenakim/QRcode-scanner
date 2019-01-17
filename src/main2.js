@@ -13,8 +13,9 @@ window.onload = function () {
         var os = getMobileOperatingSystem()
         
         if (os === "iOS" || os === "unknown") {
+
         } else {
-            document.querySelector("#lightBtn").style.display = "none";
+            document.querySelector("#lightBtn").style.display = "inline-block";
         }
 
         setTimeout(tick, 100); /* We launch the tick function 100ms later (see next step) */
