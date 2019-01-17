@@ -9,7 +9,7 @@ window.onload = function () {
         video.srcObject = stream;
         console.log(stream);
         video.play();
-        track = stream.getVideoTracks()[0];
+        const track = stream.getVideoTracks()[0];
         var os = getMobileOperatingSystem()
         
         if (os === "iOS" || os === "unknown") {
@@ -29,6 +29,8 @@ window.onload = function () {
 function setLight() {
     console.log("손전등 onClick");
     //clearTimeout(next); //tick 멈추기
+    var video = document.getElementById("video-preview");
+    const track = video.srcObject.getVideoTracks()[0];
     var light = document.querySelector("#lightBtn")
 
     if (lightFlag === true) {
