@@ -88,16 +88,15 @@ function previewFile(input) {
     /*이미지 띄우기*/
     setTimeout(function () {
         document.querySelector('#image_section').src = reader.result;
-    }, 200);
+    }, 20);
     setTimeout(function () {
         image.src = reader.result;
-    }, 500);
+    }, 30);
         
     //console.log($('#image_section').width());
 }
 
-
-image.onload = function () { 
+image.onload = function () {
     /*캔버스에 이미지 띄우기*/ 
     var qrCanvasElement = document.getElementById("qr-canvas");
     var qrCanvas = qrCanvasElement.getContext("2d");
@@ -108,7 +107,7 @@ image.onload = function () {
     /*이미지 확인*/
     var canvas_qr = document.getElementById("qr-canvas");
     var imgData = canvas_qr.toDataURL("image/png");
-    console.log(imgData);
+    console.log("이미지로드됨");
     try{
         var result = qrcode.decode();
         /*qr 주소결과 확인*/
