@@ -1,129 +1,9 @@
 ﻿<html>
 <head>
-    <style>
-        html, body {
-            width: 100%;
-            height: 100%;
-            margin: 0;
-            
-        }
-       
-        /*가이드 라인 디자인 (video-container의 중앙에 위치)*/
-        #finger {
-            width: 100px;
-            height: 100px;
-            position: absolute;
-            align-content: center;
-            text-align: center;
-            top: calc(50% - 50px);
-            left: calc(50% - 50px);
-            z-index: 300000;
-        }
-        /*가이드 라인 이미지*/
-        #finger_box {
-            width: 100%;
-            height: 100%;
-            position: relative;
-        }
-        /*라인 이미지*/
-        #line {
-            width: 100%;
-            height: 30px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            margin: -6px 0 0 -50%;
-            -webkit-animation: line 1.4s linear;
-            animation: line 1.4s linear infinite;
-        }
-        /*가이드 설명*/
-        #info {
-            width: 100%;
-            height: 30px;
-            line-height: 30px;
-            position: absolute;
-            color: #fff;
-            font-size: 0.8em;
-        }
-        /*라인 이동 효과*/
-        @keyframes line {
-            0% {
-                transform: translateY(-90%);
-            }
-
-            50% {
-                transform: translateY(90%);
-            }
-
-            100% {
-                transform: translateY(-90%);
-            }
-        }
-
-        @-webkit-keyframes line {
-            0% {
-                -webkit-transform: translateY(-90%);
-            }
-
-            50% {
-                -webkit-transform: translateY(90%);
-            }
-
-            100% {
-                -webkit-transform: translateY(-90%);
-            }
-        }
-        video {
-            width: 100%;
-            position: fixed;
-            height: 100%;
-            overflow: hidden;
-            object-fit: cover;
-        }
-        img {
-            border: 0 none;
-            max-width: 100%;
-            height: auto;
-            width: auto;
-            -ms-interpolation-mode: bicubic;
-            vertical-align: middle;
-        }
-        #lightBtn {
-            background-color: rgba(0,0,0, 0.42); 
-            color: white;
-            font-size: 16px;
-            border-radius: 30px;
-            border: none;
-            padding: 15px 20px;
-            margin:10px;
-            text-align: center;
-            position: fixed;
-            /*left: calc(50% - 100px);*/
-            z-index: 300000;
-        }
-        #albumBtn {
-            background-color: rgba(0,0,0, 0.42); 
-            color: white;
-            font-size: 16px;
-            border-radius: 30px;
-            border: none;
-            padding: 15px 20px;
-            margin: 10px;
-            text-align: center;
-            position: fixed;
-            right: 0;
-            z-index: 300000;
-        }
-        p {
-            text-align: center;
-        }
-
-        a {
-            text-align: center;
-        }
-    </style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>QRcode-scanner</title>
+    <link href="qrcodecss.css" type="text/css" rel="stylesheet" />
     <script type="text/javascript" src="grid.js"></script>
     <script type="text/javascript" src="version.js"></script>
     <script type="text/javascript" src="detector.js"></script>
@@ -142,16 +22,18 @@
     <script type="text/javascript" src="alignpat.js"></script>
     <script type="text/javascript" src="databr.js"></script>
     <script type="text/javascript" src="main2.js" charset="euc-kr"></script>
-    <link rel="manifest" href="permit.json" />
 </head>
 <body>
-    <label for="ex_button" id="lightBtn">손전등 켜기</label>
-    <input type="button" id="ex_button" value="손전등 켜기" onClick="setLight()" style="display:none"> 
-    <label for="ex_file" id="albumBtn">앨범</label>
-    <input type="file" id="ex_file"onClick="setAlbum()" style="display:none" <!--onchange="previewFile(this)"--> >
+    <!-- 상단 버튼 -->
+    <label for="ex_button" id="lightBtn" > 손전등 켜기 </label>
+    <input type="button" id="ex_button" onClick="setLight()"> 
+    <label for="ex_file" id="albumBtn"> 앨범 </label>
+    <input type="file" id="ex_file"onClick="setAlbum()" onchange="previewFile(this)">
 
-    <div class="video-container" style="width: 100%; position:fixed;height: 100%;overflow:hidden;object-fit:cover">
+    <div class="video-container" >
+        <!-- 앨범 이미지 -->
         <img id="image_section" src="" />
+        <!-- 가이드라인 -->
         <div id="finger">
             <div id="finger_box">
                 <img id="zhiwen" src="images/zhiwen.png" alt="">
@@ -159,53 +41,9 @@
                 <p id="info">화면에 QR코드를 위치시키세요</p>
             </div>
         </div>
-
+        <!-- 비디오&캔버스 -->
         <video id="video-preview" autoplay></video>
-        <canvas id="qr-canvas" class="hidden" style="display:none"></canvas>
+        <canvas id="qr-canvas" class="hidden"></canvas>
     </div>
-    <script src="jquery-3.3.1.min.js"></script>
-    <script>
-            //$(document).ready(function ()   {
-                //video-container fullScreen
-                //var $video = $('#video-container');
-                //var $window = $(window);
-                //$video.height = $window.height();
-                //$video.css('left', (($window.width() - $video.width()) / 2) + "px");
-                //var w = $('div.video-container');
-                //var offset = w.offset();
-                //finger중앙 배치
-                //$('#finger').css({
-                //    "position": "fixed",
-                //    "top": ($('div.video-container').height() / 2 - $("#finger").height() / 2 + "px"),
-                //    "left": ($('div.video-container').width() / 2 - $("#finger").width() / 2 + "px")
-                //});
-            //});
-    </script>
-    <script>
-        //화면 열기
-        function openTab(url) {
-            // Create link in memory
-            var a = window.document.createElement("a");
-            a.target = '_blank';
-            a.href = url;
-
-            // Dispatch fake click
-            var e = window.document.createEvent("MouseEvents");
-            e.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
-            a.dispatchEvent(e);
-        };
-    </script>
-    <script>
-        ////화면 닫기
-        //document.addEventListener('DOMContentLoaded', function () {
-        //    document.getElementById("btn-close").addEventListener("click", handler);
-        //});
-
-        //// The handler also must go in a .js file
-        //function handler() {
-        //    open(location, '_self').close();
-        //    return false;
-        //}
-    </script>
 </body>
 </html>
