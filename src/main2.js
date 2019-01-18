@@ -1,5 +1,8 @@
-﻿var lightFlag
-var track;
+﻿var lightFlag   //손전등 on/off
+var next;       //setTimeout 반환받아서 clearTimeout에 사용
+var image = new Image();    //앨범 이미지 임시 저장
+
+/*창 로드시 실행*/
 window.onload = function () {
     lightFlag = false
     /* Ask for "environnement" (rear) camera if available (mobile), will fallback to only available otherwise (desktop).
@@ -12,27 +15,23 @@ window.onload = function () {
         video.play();
         const track = stream.getVideoTracks()[0];
         var os = getMobileOperatingSystem()
-        
+        /*os 구별 및 손전등 사용 가능여부 판단*/
         if (os === "iOS" || os === "unknown") {
-            
         } else {
             document.querySelector("#ex_button").style.display = "inline-block";
             document.querySelector("#lightBtn").style.display = "inline-block";
         }
-
         setTimeout(tick, 100); /* We launch the tick function 100ms later (see next step) */
         //console.log("windlow onload");
-        
-
     })
     .catch(function (err) {
         console.log(err); /* User probably refused to grant access*/
     });
 };
 
+/*손전등 onClick*/
 function setLight() {
     console.log("손전등 onClick");
-    //clearTimeout(next); //tick 멈추기
     var video = document.getElementById("video-preview");
     const track = video.srcObject.getVideoTracks()[0];
     var light = document.querySelector("#lightBtn")
@@ -43,7 +42,7 @@ function setLight() {
         track.applyConstraints({
             advanced: [{ torch: false }]
         })
-        light.textContent.replace("손전등 켜기");
+        light.textContent.replace("손전등 켜기"); //안바뀜(수정필요)
         //light.value = "손전등 켜기"
     } else {
         console.log("손전등 켜기 누름");
@@ -51,11 +50,12 @@ function setLight() {
         track.applyConstraints({
             advanced: [{ torch: true }]
         })
-        light.textContent.replace("손전등 끄기");
+        light.textContent.replace("손전등 끄기"); //안바뀜(수정필요)
         //light.value = "손전등 끄기"
     }
-    //setTimeout(tick, 100);
 }
+
+/*os종류 구분*/
 function getMobileOperatingSystem() {
     var userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
@@ -75,38 +75,28 @@ function getMobileOperatingSystem() {
 
     return "unknown";
 }
-var next;
-var image = new Image();
-function setAlbum() {
-    clearTimeout(next); //tick 멈추기
-}
+
+/*앨범 onchange*/
 function previewFile(input) {
-    var img = document.getElementById("#image_section");
-    var video = document.getElementById("video-preview");
-    var qrCanvasElement = document.getElementById("qr-canvas");
-    var qrCanvas = qrCanvasElement.getContext("2d");
-    var width, height;
+    clearTimeout(next); //tick 멈추기
 
     /*파일 읽기*/
     var file = document.querySelector('#ex_file');
     var fileList = file.files;
     var reader = new FileReader();
     reader.readAsDataURL(fileList[0]);
-    
-    //document.querySelector('#image_section').src = reader.result;
-    //image.src = reader.result;
-
-    
+    /*이미지 띄우기*/
     setTimeout(function () {
         document.querySelector('#image_section').src = reader.result;
     }, 200);
     setTimeout(function () {
-    
         image.src = reader.result;
     }, 500);
         
     //console.log($('#image_section').width());
 }
+
+
 image.onload = function () { 
     /*캔버스에 이미지 띄우기*/ 
     var qrCanvasElement = document.getElementById("qr-canvas");
@@ -128,7 +118,6 @@ image.onload = function () {
             window.open(result, '_self');
         else {
             window.location.reload();
-            //document.getElementById('#image_section').style.display = "none";
         }
     }catch(e){
         alert("인식하지 못하였습니다. 다시 시도해주세요.");
@@ -140,7 +129,6 @@ function tick() {
     var video = document.getElementById("video-preview");
     var qrCanvasElement = document.getElementById("qr-canvas");
     var qrCanvas = qrCanvasElement.getContext("2d");
-    
     var width, height;
     
     if (video.readyState === video.HAVE_ENOUGH_DATA) {
@@ -163,8 +151,6 @@ function tick() {
             var check = confirm(result + "로 이동하겠습니까?");
             if (check)
                 window.open(result, '_self');
-                //window.open(result, '_blank');
-                //openTab(result);
         } catch (e) {
             /* No Op */
         }
@@ -173,16 +159,16 @@ function tick() {
     if (!video.classList.contains("hidden"))
         next = setTimeout(tick, 100);
 }
+/*새로운 탭 열기*/
+//function openTab(url) { 
+//    // Create link in memory
+//    var a = window.document.createElement("a");
+//    a.target = '_blank';
+//    a.href = url;
 
-function openTab(url) { //새로운 탭 열기
-    // Create link in memory
-    var a = window.document.createElement("a");
-    a.target = '_blank';
-    a.href = url;
-
-    // Dispatch fake click
-    var e = window.document.createEvent("MouseEvents");
-    e.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
-    a.dispatchEvent(e);
-};
+//    // Dispatch fake click
+//    var e = window.document.createEvent("MouseEvents");
+//    e.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+//    a.dispatchEvent(e);
+//};
 
