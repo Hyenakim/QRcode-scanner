@@ -14,7 +14,7 @@ window.onload = function () {
         var os = getMobileOperatingSystem()
         
         if (os === "iOS" || os === "unknown") {
-
+            document.querySelector("#lightBtn").style.display = "none";
         } else {
             document.querySelector("#lightBtn").style.display = "inline-block";
         }

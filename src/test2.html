@@ -148,7 +148,7 @@
     <label for="ex_button" id="lightBtn">손전등 켜기</label>
     <input type="button" id="ex_button" value="손전등 켜기" onClick="setLight()" style="display:none"> 
     <label for="ex_file" id="albumBtn">앨범</label>
-    <input type="file" id="ex_file" onchange="previewFile(this)" onClick="setAlbum()" style="display:none">
+    <input type="file" id="ex_file"onClick="setAlbum()" style="display:none" <!--onchange="previewFile(this)"--> >
 
     <div class="video-container" style="width: 100%; position:fixed;height: 100%;overflow:hidden;object-fit:cover">
         <img id="image_section" src="" />
