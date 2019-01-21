@@ -29,7 +29,7 @@ window.onload = function () {
     });
 };
 
-/*손전등 onClick*/
+/*손전등 버튼 선택시 실행*/
 function setLight() {
     console.log("손전등 onClick");
     var video = document.getElementById("video-preview");
@@ -76,8 +76,9 @@ function getMobileOperatingSystem() {
     return "unknown";
 }
 
-/*앨범 onchange*/
+/*앨범에서 이미지 선택 후 실행*/
 function previewFile(input) {
+
     clearTimeout(next); //tick 멈추기
 
     /*파일 읽기*/
@@ -96,6 +97,7 @@ function previewFile(input) {
     //console.log($('#image_section').width());
 }
 
+/*이미지 로드 후 실행*/
 image.onload = function () {
     /*캔버스에 이미지 띄우기*/ 
     var qrCanvasElement = document.getElementById("qr-canvas");
@@ -123,6 +125,8 @@ image.onload = function () {
         window.location.reload();
     }
 };
+
+/*실시간 qr인식*/
 function tick() {
     //console.log("tick");
     var video = document.getElementById("video-preview");
