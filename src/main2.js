@@ -11,7 +11,6 @@ window.onload = function () {
         var video = document.getElementById("video-preview");
         video.setAttribute("playsinline", true); /* otherwise iOS safari starts fullscreen */
         video.srcObject = stream;
-        console.log(stream);
         video.play();
         const track = stream.getVideoTracks()[0];
         var os = getMobileOperatingSystem()
@@ -31,27 +30,22 @@ window.onload = function () {
 
 /*손전등 버튼 선택시 실행*/
 function setLight() {
-    console.log("손전등 onClick");
     var video = document.getElementById("video-preview");
     const track = video.srcObject.getVideoTracks()[0];
     var light = document.querySelector("#lightBtn")
     
     if (lightFlag === true) {
-        console.log("손전등 끄기 누름");
         lightFlag = false
         track.applyConstraints({
             advanced: [{ torch: false }]
         })
-        light.textContent.replace("손전등 켜기"); //안바뀜(수정필요)
-        //light.value = "손전등 켜기"
+        light.innerHTML = "손전등 켜기";
     } else {
-        console.log("손전등 켜기 누름");
         lightFlag = true
         track.applyConstraints({
             advanced: [{ torch: true }]
         })
-        light.textContent.replace("손전등 끄기"); //안바뀜(수정필요)
-        //light.value = "손전등 끄기"
+        light.innerHTML = "손전등 끄기";
     }
 }
 
@@ -94,8 +88,6 @@ function previewFile(input) {
     setTimeout(function () {
         image.src = reader.result;
     }, 300);
-        
-    //console.log($('#image_section').width());
 }
 
 /*이미지 로드 후 실행*/
@@ -107,10 +99,9 @@ image.onload = function () {
     qrCanvasElement.height = image.height;
     qrCanvas.drawImage(image, 0, 0, image.width, image.height);
 
-    /*이미지 확인*/
-    var canvas_qr = document.getElementById("qr-canvas");
-    var imgData = canvas_qr.toDataURL("image/png");
-    console.log("이미지로드됨");
+    ///*이미지 확인*/
+    //var imgData = qrCanvasElement.toDataURL("image/png");
+
     try{
         var result = qrcode.decode();
         /*qr 주소결과 확인*/
@@ -129,7 +120,6 @@ image.onload = function () {
 
 /*실시간 qr인식*/
 function tick() {
-    //console.log("tick");
     var video = document.getElementById("video-preview");
     var qrCanvasElement = document.getElementById("qr-canvas");
     var qrCanvas = qrCanvasElement.getContext("2d");
