@@ -114,8 +114,8 @@ img {
 
 #lightBtn {
     position:fixed;
-    width:20px;
-    height:20px;
+    width:10px;
+    height:10px;
     top: 0;
     left: 0;
     background-color: rgba(0,0,0, 0.42);
@@ -141,9 +141,10 @@ img {
 
 #albumBtn {
     position: fixed;
-    width: 20px;
-    height: 20px;
-    top:0;
+    width: 10px;
+    height: 10px;
+    top: 0;
+    right: 0;
     background-color: rgba(0,0,0, 0.42);
     color: white;
     font-size: 16px;
@@ -152,14 +153,14 @@ img {
     padding: 20px;
     margin: 10px;
     text-align: center;
-    right: 0;
     z-index: 300000;
 }
 
-.icon{
-    width:20px;
-    height:20px;
+.icon {
+    width: 20px;
+    height: 20px;
     position: absolute;
+    top: calc(50% - 10px);
     left: calc(50% - 10px);
 }
 
