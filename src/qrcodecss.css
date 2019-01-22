@@ -103,8 +103,12 @@ img {
 
 #ex_button {
     display: none;
-    border:0;
-    padding:0;
+    border: 0;
+    padding: 0;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    opacity: 0;
 }
 
 #lightBtn {
@@ -125,6 +129,10 @@ img {
 
 #ex_file {
     display: none;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    opacity: 0;
 }
 
 #albumBtn {
