@@ -113,7 +113,7 @@ img {
 }
 
 #lightBtn {
-    position:absolute;
+    position:fixed;
     width:20px;
     height:20px;
     top: 0;
@@ -140,7 +140,7 @@ img {
 }
 
 #albumBtn {
-    position: absolute;
+    position: fixed;
     width: 20px;
     height: 20px;
     top:0;
