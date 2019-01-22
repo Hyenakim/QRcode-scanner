@@ -25,9 +25,14 @@
 </head>
 <body>
     <!-- 상단 버튼 -->
-    <label for="ex_button" id="lightBtn" > 손전등 켜기 </label>
+    <label for="ex_button" id="lightBtn" >
+        <img class="icon" id="flash" src="images/flash.png"/>
+        <img class="icon" id="flashoff" src="images/flash-off.png" />
+    </label>
     <input type="button" id="ex_button" onClick="setLight()"> 
-    <label for="ex_file" id="albumBtn"> 앨범 </label>
+    <label for="ex_file" id="albumBtn">
+        <img class="icon" src="images/photo-library.png"/>
+    </label>
     <input type="file" id="ex_file" onchange="previewFile(this)">
 
     <div class="video-container" >

@@ -109,14 +109,14 @@ img {
     background-color: rgba(0,0,0, 0.42);
     color: white;
     font-size: 16px;
-    border-radius: 30px;
+    border-radius: 60px;
     border: none;
-    padding: 15px 20px;
+    padding: 20px;
     margin: 10px;
     text-align: center;
     position: fixed;
     z-index: 300000;
-    display: none;
+    /*display: none;*/
 }
 
 #ex_file {
@@ -127,12 +127,21 @@ img {
     background-color: rgba(0,0,0, 0.42);
     color: white;
     font-size: 16px;
-    border-radius: 30px;
+    border-radius: 60px;
     border: none;
-    padding: 15px 20px;
+    padding: 20px;
     margin: 10px;
     text-align: center;
     position: fixed;
     right: 0;
     z-index: 300000;
+}
+
+.icon{
+    width:50px;
+    height:50px;
+}
+
+#flashoff{
+    display:none;
 }

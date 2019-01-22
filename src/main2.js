@@ -33,19 +33,25 @@ function setLight() {
     var video = document.getElementById("video-preview");
     const track = video.srcObject.getVideoTracks()[0];
     var light = document.querySelector("#lightBtn")
+    var flash = document.querySelector("#flash");
+    var flashoff = document.querySelector("#flashoff");
     
     if (lightFlag === true) {
         lightFlag = false
         track.applyConstraints({
             advanced: [{ torch: false }]
         })
-        light.innerHTML = "손전등 켜기";
+        flashoff.style.display = "none";
+        flash.style.display = "inline-block";
+        //light.innerHTML = "손전등 켜기";
     } else {
         lightFlag = true
         track.applyConstraints({
             advanced: [{ torch: true }]
         })
-        light.innerHTML = "손전등 끄기";
+        flashoff.style.display = "inline-block";
+        flash.style.display = "none";
+        //light.innerHTML = "손전등 끄기";
     }
 }
 
