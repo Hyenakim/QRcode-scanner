@@ -88,11 +88,12 @@ function previewFile(input) {
     reader.readAsDataURL(fileList[0]);
     /*이미지 띄우기*/
     setTimeout(function () {
+        document.querySelector('#finger').style.display = "none";
         document.querySelector('#image_section').src = reader.result;
-    }, 20);
+    }, 200);
     setTimeout(function () {
         image.src = reader.result;
-    }, 30);
+    }, 300);
         
     //console.log($('#image_section').width());
 }
