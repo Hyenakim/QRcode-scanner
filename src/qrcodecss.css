@@ -106,7 +106,7 @@ img {
 }
 
 #lightBtn {
-    position:fixed;
+    position:absolute;
     width:20px;
     height:20px;
     background-color: rgba(0,0,0, 0.42);
@@ -126,7 +126,7 @@ img {
 }
 
 #albumBtn {
-    position: fixed;
+    position: absolute;
     width: 20px;
     height: 20px;
     right: calc(3% - 30px);
