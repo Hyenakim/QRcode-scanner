@@ -107,8 +107,8 @@ img {
 
 #lightBtn {
     position:absolute;
-    width:50px;
-    height:50px;
+    width:20px;
+    height:20px;
     top:0.2em;
     left:0.2em;
     background-color: rgba(0,0,0, 0.42);
@@ -129,8 +129,8 @@ img {
 
 #albumBtn {
     position: absolute;
-    width: 50px;
-    height: 50px;
+    width: 20px;
+    height: 20px;
     top: 0.2em;
     left: calc(100%-0.2em);
     background-color: rgba(0,0,0, 0.42);
