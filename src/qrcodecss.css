@@ -106,11 +106,10 @@ img {
 }
 
 #lightBtn {
-    position:absolute;
+    position:fixed;
     width:20px;
     height:20px;
-    top:0.2em;
-    left:0.2em;
+    top:2%;
     background-color: rgba(0,0,0, 0.42);
     color: white;
     font-size: 16px;
@@ -128,11 +127,11 @@ img {
 }
 
 #albumBtn {
-    position: absolute;
+    position: fixed;
     width: 20px;
     height: 20px;
-    top: 0.2em;
-    left: calc(100%-0.2em);
+    top: 2%;
+    right: calc(3% - 30px);
     background-color: rgba(0,0,0, 0.42);
     color: white;
     font-size: 16px;
@@ -141,7 +140,6 @@ img {
     padding: 20px;
     margin: 10px;
     text-align: center;
-    position: fixed;
     right: 0;
     z-index: 300000;
 }
