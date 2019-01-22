@@ -109,6 +109,7 @@ img {
     right: 0px;
     top: 0px;
     opacity: 0;
+    filter: alpha (opacity=0);
 }
 
 #lightBtn {
@@ -133,6 +134,7 @@ img {
     right: 0px;
     top: 0px;
     opacity: 0;
+    filter: alpha (opacity=0);
 }
 
 #albumBtn {
