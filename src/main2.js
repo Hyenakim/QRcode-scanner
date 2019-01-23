@@ -27,25 +27,29 @@ window.onload = function () {
 
 /*손전등 버튼 선택시 실행*/
 function setLight() {
-    var video = document.getElementById("video-preview");
-    const track = video.srcObject.getVideoTracks()[0];
-    var flash = document.querySelector("#flash");
-    var flashoff = document.querySelector("#flashoff");
-    
-    if (lightFlag === true) {
-        lightFlag = false
-        track.applyConstraints({
-            advanced: [{ torch: false }]
-        })
-        flashoff.style.display = "none";
-        flash.style.display = "inline-block";
-    } else {
-        lightFlag = true
-        track.applyConstraints({
-            advanced: [{ torch: true }]
-        })
-        flashoff.style.display = "inline-block";
-        flash.style.display = "none";
+    var os = getMobileOperatingSystem()
+    /*Android, Windows Phone에서만 실행*/
+    if (os === "Android" || os === "Windows Phone") {
+        var video = document.getElementById("video-preview");
+        const track = video.srcObject.getVideoTracks()[0];
+        var flash = document.querySelector("#flash");
+        var flashoff = document.querySelector("#flashoff");
+
+        if (lightFlag === true) {
+            lightFlag = false
+            track.applyConstraints({
+                advanced: [{ torch: false }]
+            })
+            flashoff.style.display = "none";
+            flash.style.display = "inline-block";
+        } else {
+            lightFlag = true
+            track.applyConstraints({
+                advanced: [{ torch: true }]
+            })
+            flashoff.style.display = "inline-block";
+            flash.style.display = "none";
+        }
     }
 }
 
