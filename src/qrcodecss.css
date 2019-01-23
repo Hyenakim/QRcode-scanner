@@ -127,7 +127,7 @@ img {
     margin: 10px;
     text-align: center;
     z-index: 300000;
-    /*display: none;*/
+    /*display: none;*/ 
 }
 
 #ex_file {

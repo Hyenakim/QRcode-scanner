@@ -1,6 +1,6 @@
 ﻿var lightFlag   //손전등 on/off
 var next;       //setTimeout 반환받아서 clearTimeout에 사용
-var image = new Image();    //앨범 이미지 임시 저장
+var tmpImage = new Image();    //앨범 이미지 임시 저장
 
 /*창 로드시 실행*/
 window.onload = function () {
@@ -77,6 +77,7 @@ function getMobileOperatingSystem() {
 }
 
 /*앨범에서 이미지 선택 후 실행*/
+// input : ex) 123.png 
 function previewFile(input) {
 
     clearTimeout(next); //tick 멈추기
@@ -87,42 +88,131 @@ function previewFile(input) {
     var reader = new FileReader();
     reader.readAsDataURL(fileList[0]);
     /*이미지 띄우기*/
-    setTimeout(function () {
-        document.querySelector('#finger').style.display = "none";
-        document.querySelector('#image_section').src = reader.result;
-    }, 200);
-    setTimeout(function () {
-        image.src = reader.result;
-    }, 300);
+    //setTimeout(function () {
+    //    document.querySelector('#finger').style.display = "none";
+    //    document.querySelector('#image_section').src = reader.result;
+    //}, 200);
+    //setTimeout(function () {
+    //    image.src = reader.result;
+    //}, 300);
+    
+        
+        function getData() {
+            return new Promise(function (resolve, reject) {
+                reader.onload = function(input){
+                    console.log(1);
+                    /*가이드 라인 지우기*/
+                    document.querySelector('#finger').style.display = "none";
+                    /*input이미지 띄우기*/
+                    document.querySelector('#image_section').src = reader.result;
+                    tmpImage.src = reader.result;
+                    resolve(input)
+                }
+            });
+        }
+        function getData1(input) {
+            return new Promise(function (resolve, reject) {
+                
+                    console.log(2);
+                    var qrCanvasElement = document.getElementById("qr-canvas");
+                    var qrCanvas = qrCanvasElement.getContext("2d");
+                    qrCanvasElement.width = tmpImage.width;
+                    qrCanvasElement.height = tmpImage.height;
+                    qrCanvas.drawImage(tmpImage, 0, 0, tmpImage.width, tmpImage.height);
+
+                    ///*이미지 확인*/
+                    //var imgData = qrCanvasElement.toDataURL("image/png");
+                    try {
+                        var result = qrcode.decode();
+                        /*qr 주소결과 확인*/
+                        console.log(result);
+                        var check = confirm(result + "로 이동하겠습니까?");
+                        if (check)
+                            window.open(result, '_self');
+                        else {
+                            window.location.reload();
+                        }
+                    } catch (e) {
+                        alert("인식하지 못하였습니다. 다시 시도해주세요.");
+                        window.location.reload();
+                    }
+            });
+        }
+        getData()
+        .then(getData1)
 }
 
+//    reader.onload = function (input) {
+//        loading(reader,function () {
+//            console.log(3)
+//            loading2(reader, function () {
+//                console.log(5);
+//                /*캔버스에 이미지 띄우기*/
+//                var qrCanvasElement = document.getElementById("qr-canvas");
+//                var qrCanvas = qrCanvasElement.getContext("2d");
+//                qrCanvasElement.width = image.width;
+//                qrCanvasElement.height = image.height;
+//                qrCanvas.drawImage(image, 0, 0, image.width, image.height);
+
+//                ///*이미지 확인*/
+//                //var imgData = qrCanvasElement.toDataURL("image/png");
+
+//                try {
+//                    var result = qrcode.decode();
+//                    /*qr 주소결과 확인*/
+//                    console.log(result);
+//                    var check = confirm(result + "로 이동하겠습니까?");
+//                    if (check)
+//                        window.open(result, '_self');
+//                    else {
+//                        window.location.reload();
+//                    }
+//                } catch (e) {
+//                    alert("인식하지 못하였습니다. 다시 시도해주세요.");
+//                    window.location.reload();
+//                }
+//            })
+//        })
+//    }
+//}
+//var loading = function (reader,done) {
+    
+    
+//    done()
+//}
+//var loading2 = function (reader, done2) {
+    
+//    done2()
+//}
+
 /*이미지 로드 후 실행*/
-image.onload = function () {
-    /*캔버스에 이미지 띄우기*/ 
-    var qrCanvasElement = document.getElementById("qr-canvas");
-    var qrCanvas = qrCanvasElement.getContext("2d");
-    qrCanvasElement.width = image.width;
-    qrCanvasElement.height = image.height;
-    qrCanvas.drawImage(image, 0, 0, image.width, image.height);
+//image.onload = function () {
+//    console.log(3)
+//    /*캔버스에 이미지 띄우기*/ 
+//    var qrCanvasElement = document.getElementById("qr-canvas");
+//    var qrCanvas = qrCanvasElement.getContext("2d");
+//    qrCanvasElement.width = image.width;
+//    qrCanvasElement.height = image.height;
+//    qrCanvas.drawImage(image, 0, 0, image.width, image.height);
 
-    ///*이미지 확인*/
-    //var imgData = qrCanvasElement.toDataURL("image/png");
+//    ///*이미지 확인*/
+//    //var imgData = qrCanvasElement.toDataURL("image/png");
 
-    try{
-        var result = qrcode.decode();
-        /*qr 주소결과 확인*/
-        console.log(result);
-        var check = confirm(result + "로 이동하겠습니까?");
-        if (check)
-            window.open(result, '_self');
-        else {
-            window.location.reload();
-        }
-    }catch(e){
-        alert("인식하지 못하였습니다. 다시 시도해주세요.");
-        window.location.reload();
-    }
-};
+//    try{
+//        var result = qrcode.decode();
+//        /*qr 주소결과 확인*/
+//        console.log(result);
+//        var check = confirm(result + "로 이동하겠습니까?");
+//        if (check)
+//            window.open(result, '_self');
+//        else {
+//            window.location.reload();
+//        }
+//    }catch(e){
+//        alert("인식하지 못하였습니다. 다시 시도해주세요.");
+//        window.location.reload();
+//    }
+//};
 
 /*실시간 qr인식*/
 function tick() {
