@@ -1,5 +1,5 @@
 ﻿/*전역변수*/
-var lightFlag   //손전등 on/off
+var lightFlag   //손전등 on-true/off-false
 var stop;       //setTimeout 반환값 (clearTimeout 호출시 사용)
 
 /*창 로드시 실행*/
@@ -24,6 +24,30 @@ window.onload = function () {
         console.log(err); /* User probably refused to grant access*/
     });
 };
+
+/*실시간 video snapshot & qrcode판단*/
+function findQR() {
+    var video = document.getElementById("video-preview");
+    var qrCanvasElement = document.getElementById("qr-canvas");
+    var qrCanvas = qrCanvasElement.getContext("2d");
+    var width, height;
+
+    if (video.readyState === video.HAVE_ENOUGH_DATA) {
+        qrCanvasElement.height = video.videoHeight;
+        qrCanvasElement.width = video.videoWidth;
+        qrCanvas.drawImage(video, 0, 0, qrCanvasElement.width, qrCanvasElement.height);
+        try {
+            var result = qrcode.decode();
+            var check = confirm(result + "로 이동하겠습니까?");
+            if (check)
+                window.open(result, '_self');
+        } catch (e) {
+            /* 인식 못한 경우 */
+        }
+    }
+    /*재귀 호출*/
+    stop = setTimeout(findQR, 100);
+}
 
 /*손전등 버튼 선택시 실행*/
 function setLight() {
@@ -78,7 +102,6 @@ function previewFile(input) {
         qrCanvasElement.width = tmpImage.width;
         qrCanvasElement.height = tmpImage.height;
         qrCanvas.drawImage(tmpImage, 0, 0, tmpImage.width, tmpImage.height);
-
         try {
             var result = qrcode.decode();
             var check = confirm(result + "로 이동하겠습니까?");
@@ -95,28 +118,5 @@ function previewFile(input) {
     }
 }
 
-/*실시간 qrcode판단*/
-function findQR() {
-    var video = document.getElementById("video-preview");
-    var qrCanvasElement = document.getElementById("qr-canvas");
-    var qrCanvas = qrCanvasElement.getContext("2d");
-    var width, height;
-    
-    if (video.readyState === video.HAVE_ENOUGH_DATA) {
-        qrCanvasElement.height = video.videoHeight;
-        qrCanvasElement.width = video.videoWidth;
-        qrCanvas.drawImage(video, 0, 0, qrCanvasElement.width, qrCanvasElement.height);
-        try {
-            var result = qrcode.decode();
-            var check = confirm(result + "로 이동하겠습니까?");
-            if (check)
-                window.open(result, '_self');
-        } catch (e) {
-            /* 인식 못한 경우 */
-        }
-    } 
-    /* If no QR could be decoded from image copied in canvas */
-    if (!video.classList.contains("hidden"))
-        stop = setTimeout(findQR, 100);
-}
+
 
