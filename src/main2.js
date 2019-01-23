@@ -95,7 +95,7 @@ function previewFile(input) {
     }
     function getData1(input) {
         return new Promise(function (resolve, reject) {
-            //tmpImage.onload = function () {
+            tmpImage.onload = function () {
                 var qrCanvasElement = document.getElementById("qr-canvas");
                 var qrCanvas = qrCanvasElement.getContext("2d");
                 qrCanvasElement.width = tmpImage.width;
@@ -116,7 +116,7 @@ function previewFile(input) {
                     alert("인식하지 못하였습니다. 다시 시도해주세요.");
                     setTimeout(tick, 100);
                 }
-            //}
+            }
         });          
     }
     getData()
