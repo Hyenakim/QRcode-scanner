@@ -1,6 +1,8 @@
 ﻿/*전역변수*/
-var lightFlag   //손전등 on-true/off-false
-var stop;       //setTimeout 반환값 (clearTimeout 호출시 사용)
+//lightFlag - 손전등 on-true/off-false
+//stop - setTimeout 반환값 (clearTimeout 호출시 사용)
+var lightFlag   
+var stop
 
 /*창 로드시 실행*/
 window.onload = function () {
@@ -91,6 +93,7 @@ function previewFile(input) {
 
     /*앨범 이미지 임시저장*/
     var tmpImage = new Image();
+    /*파일 로드 후 실행*/
     reader.onload = function (input) {
         tmpImage.src = reader.result;
     }
