@@ -21,19 +21,22 @@
     <script type="text/javascript" src="findpat.js"></script>
     <script type="text/javascript" src="alignpat.js"></script>
     <script type="text/javascript" src="databr.js"></script>
+    <script type="text/javascript" src="utility.js"></script>
     <script type="text/javascript" src="main2.js" charset="euc-kr"></script>
 </head>
 <body>
     <!-- 상단 버튼 -->
-    <label for="ex_button" id="lightBtn" >
+    <!-- 플래쉬 버튼 -->
+    <label for="light_button" id="lightBtn" >
         <img class="icon" id="flash" src="images/flash-off.png"/>
         <img class="icon" id="flashoff" src="images/flash.png" />
     </label>
-    <input type="button" id="ex_button" onClick="setLight()"> 
-    <label for="ex_file" id="albumBtn">
+    <input type="button" id="light_button" onclick="setLight()"> 
+    <!-- 앨범 버튼 -->
+    <label for="album_file" id="albumBtn">
         <img class="icon" src="images/photo-library.png"/>
     </label>
-    <input type="file" id="ex_file" onchange="previewFile(this)" onclick="this.value = null;">
+    <input type="file" id="album_file" onchange="previewFile(this)" onclick="this.value = null;">
 
     <div class="video-container" >
         <!-- 앨범 이미지 -->

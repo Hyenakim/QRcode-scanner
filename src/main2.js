@@ -16,7 +16,6 @@ window.onload = function () {
         /*os 구별 및 손전등 사용 가능여부 판단*/
         if (os === "iOS" || os === "unknown") {
         } else {
-            document.querySelector("#ex_button").style.display = "inline-block";
             document.querySelector("#lightBtn").style.display = "inline-block";
         }
         setTimeout(findQR, 100); /* We launch the tick function 100ms later (see next step) */
@@ -50,45 +49,25 @@ function setLight() {
     }
 }
 
-/*os종류 구분*/
-function getMobileOperatingSystem() {
-    var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-
-    // Windows Phone must come first because its UA also contains "Android"
-    if (/windows phone/i.test(userAgent)) {
-        return "Windows Phone";
-    }
-
-    if (/android/i.test(userAgent)) {
-        return "Android";
-    }
-
-    // iOS detection from: http://stackoverflow.com/a/9039885/177710
-    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-        return "iOS";
-    }
-
-    return "unknown";
-}
-
 /*앨범에서 이미지 선택 후 실행*/
-// input : ex) 123.png 
+// input : 호출한 input태그 전체
 function previewFile(input) {
-    console.log(input)
     /*멈추기*/
     clearTimeout(stop);
 
     /*파일 읽기*/
-    var file = document.querySelector('#ex_file');
+    var file = document.querySelector('#album_file');
     var fileList = file.files;
     var reader = new FileReader();
     reader.readAsDataURL(fileList[0]);
 
+    /*앨범 이미지 임시저장*/
+    var tmpImage = new Image();
     reader.onload = function (input) {
         tmpImage.src = reader.result;
-        resolve(input)
     }
 
+    /*이미지 임시저장 후 qrcode판단*/
     tmpImage.onload = function () {
         var qrCanvasElement = document.getElementById("qr-canvas");
         var qrCanvas = qrCanvasElement.getContext("2d");
@@ -98,8 +77,6 @@ function previewFile(input) {
 
         try {
             var result = qrcode.decode();
-            /*qr 주소결과 확인*/
-            console.log(result);
             var check = confirm(result + "로 이동하겠습니까?");
             if (check)
                 window.open(result, '_self');
@@ -107,51 +84,11 @@ function previewFile(input) {
                 setTimeout(findQR, 100);
             }
         } catch (e) {
+            /* 인식 못한 경우 */
             alert("인식하지 못하였습니다. 다시 시도해주세요.");
             setTimeout(findQR, 100);
         }
     }
-
-    ///*앨범 이미지 임시저장*/
-    //var tmpImage = new Image();
-    //function imageLoad() {
-    //    return new Promise(function (resolve, reject) {
-    //        reader.onload = function(input){
-    //            tmpImage.src = reader.result;
-    //            resolve(input) 
-    //        }
-    //    });
-    //}
-
-    ///*이미지 임시저장 후 qrcode판단*/
-    //function afterImageLoad(input) {
-    //    return new Promise(function (resolve, reject) {
-    //        tmpImage.onload = function () {
-    //            var qrCanvasElement = document.getElementById("qr-canvas");
-    //            var qrCanvas = qrCanvasElement.getContext("2d");
-    //            qrCanvasElement.width = tmpImage.width;
-    //            qrCanvasElement.height = tmpImage.height;
-    //            qrCanvas.drawImage(tmpImage, 0, 0, tmpImage.width, tmpImage.height);
-
-    //            try {
-    //                var result = qrcode.decode();
-    //                /*qr 주소결과 확인*/
-    //                console.log(result);
-    //                var check = confirm(result + "로 이동하겠습니까?");
-    //                if (check)
-    //                    window.open(result, '_self');
-    //                else {
-    //                    setTimeout(findQR, 100);
-    //                }
-    //            } catch (e) {
-    //                alert("인식하지 못하였습니다. 다시 시도해주세요.");
-    //                setTimeout(findQR, 100);
-    //            }
-    //        }
-    //    });          
-    //}
-    //imageLoad()
-    //.then(afterImageLoad)
 }
 
 /*실시간 qrcode판단*/

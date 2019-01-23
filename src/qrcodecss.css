@@ -101,7 +101,7 @@ img {
     vertical-align: middle;
 }
 
-#ex_button {
+#light_button {
     display: none;
     border: 0;
     padding: 0;
@@ -130,7 +130,7 @@ img {
     /*display: none;*/ 
 }
 
-#ex_file {
+#album_file {
     display: none;
     position: absolute;
     right: 0px;
