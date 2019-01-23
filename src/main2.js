@@ -95,25 +95,28 @@ function previewFile(input) {
     }
     function getData1(input) {
         return new Promise(function (resolve, reject) {
-            var qrCanvasElement = document.getElementById("qr-canvas");
-            var qrCanvas = qrCanvasElement.getContext("2d");
-            qrCanvasElement.width = tmpImage.width;
-            qrCanvasElement.height = tmpImage.height;
-            qrCanvas.drawImage(tmpImage, 0, 0, tmpImage.width, tmpImage.height);
+            //tmpImage.onload = function () {
+                var qrCanvasElement = document.getElementById("qr-canvas");
+                var qrCanvas = qrCanvasElement.getContext("2d");
+                qrCanvasElement.width = tmpImage.width;
+                qrCanvasElement.height = tmpImage.height;
+                qrCanvas.drawImage(tmpImage, 0, 0, tmpImage.width, tmpImage.height);
 
-            try {
-                var result = qrcode.decode();
-                /*qr 주소결과 확인*/
-                console.log(result);
-                var check = confirm(result + "로 이동하겠습니까?");
-                if (check)
-                    window.open(result, '_self');
-                else {
-                    tick();
+                try {
+                    var result = qrcode.decode();
+                    /*qr 주소결과 확인*/
+                    console.log(result);
+                    var check = confirm(result + "로 이동하겠습니까?");
+                    if (check)
+                        window.open(result, '_self');
+                    else {
+                        setTimeout(tick, 100);
+                    }
+                } catch (e) {
+                    alert("인식하지 못하였습니다. 다시 시도해주세요.");
+                    setTimeout(tick, 100);
                 }
-            } catch (e) {
-                alert("인식하지 못하였습니다. 다시 시도해주세요.");
-            }
+            //}
         });          
     }
     getData()
