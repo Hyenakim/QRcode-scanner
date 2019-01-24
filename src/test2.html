@@ -36,7 +36,7 @@
     <label for="album_file" id="albumBtn">
         <img class="icon" src="images/photo-library.png" />
     </label>
-    <input type="file" id="album_file" onchange="previewFile(this)" onclick="this.value = null;">
+    <input type="file" id="album_file" accept="image/*" onchange="previewFile(this)" onclick="this.value = null;">
     <!-- 앨범 이미지 -->
     <img class="view" id="image_section" src="" />
     <!-- 비디오 -->
