@@ -22,7 +22,7 @@
     <script type="text/javascript" src="alignpat.js"></script>
     <script type="text/javascript" src="databr.js"></script>
     <script type="text/javascript" src="utility.js"></script>
-    <script type="text/javascript" src="main2.js" charset="euc-kr"></script>
+    <script type="text/javascript" src="main.js" charset="euc-kr"></script>
 </head>
 <body>
     <!-- 상단 버튼 -->
@@ -39,6 +39,7 @@
     <input type="file" id="album_file" onchange="previewFile(this)" onclick="this.value = null;">
     <!-- 앨범 이미지 -->
     <img class="view" id="image_section" src="" />
+    <!-- 비디오 -->
     <div class="video-container">
         <!-- 가이드라인 -->
         <div id="finger">
@@ -47,7 +48,7 @@
                 <img id="line" src="images/line.png" alt="">
                 <p id="info">화면에 QR코드를 위치시키세요</p>
             </div>
-        </div>
+        </div> 
         <!-- 비디오&캔버스 -->
         <video id="video-preview" autoplay></video>
         <canvas id="qr-canvas" class="hidden"></canvas>
