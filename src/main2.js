@@ -29,6 +29,7 @@ window.onload = function () {
 
 /*실시간 video snapshot & qrcode판단*/
 function findQR() {
+    
     var video = document.getElementById("video-preview");
     var qrCanvasElement = document.getElementById("qr-canvas");
     var qrCanvas = qrCanvasElement.getContext("2d");
@@ -95,7 +96,13 @@ function previewFile(input) {
     var tmpImage = new Image();
     /*파일 로드 후 실행*/
     reader.onload = function (input) {
-        tmpImage.src = reader.result;
+        /*이미지 띄우기*/
+        document.querySelector("#image_section").style.display = "inline-block";
+        document.querySelector('#image_section').src = reader.result;
+        setTimeout(function () {
+            tmpImage.src = reader.result;
+        }, 200);    //이미지를 화면에 띄운 뒤 알람창 띄우기 위해 delay사용
+        
     }
 
     /*이미지 임시저장 후 qrcode판단*/
@@ -108,14 +115,17 @@ function previewFile(input) {
         try {
             var result = qrcode.decode();
             var check = confirm(result + "로 이동하겠습니까?");
-            if (check)
+            if (check) {
                 window.open(result, '_self');
+            }
             else {
+                document.querySelector("#image_section").style.display = "none";
                 setTimeout(findQR, 100);
             }
         } catch (e) {
             /* 인식 못한 경우 */
             alert("인식하지 못하였습니다. 다시 시도해주세요.");
+            document.querySelector("#image_section").style.display = "none";
             setTimeout(findQR, 100);
         }
     }
