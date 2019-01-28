@@ -12,6 +12,31 @@ window.onload = function () {
     } else {
         document.querySelector("#lightBtn").style.display = "inline-block";
     }
+    navigator.mediaDevices.enumerateDevices()
+    .then(function (devices) {
+        var videoSelect = []
+        devices.forEach(function (device) {
+            //删选摄像设备
+            if (device.kind === 'videoinput') { videoSelect.push(device); }
+        });
+        //默认第0个摄像设备，TODO可选前后摄像头
+        mediaOpts.video = {
+            deviceId: { exact: videoSelect[0].deviceId }
+        }
+        var constraints = { audio: false, video: { facingMode: "environment" } };
+        navigator.mediaDevices.getUserMedia(mediaOpts)
+            .then(function (mediaStream) {
+                console.log(mediaStream);
+                video.src = vendorUrl.createObjectURL(mediaStream);
+                video.onloadedmetadata = function (e) {
+                    video.play();
+                };
+            })
+            .catch(function (err) { console.log(err.name + ": " + err.message); });
+    })
+    .catch(function (err) {
+        console.log(err.name + ": " + err.message);
+    });
     // Older browsers might not implement mediaDevices at all, so we set an empty object first
     if (navigator.mediaDevices === undefined) {
         navigator.mediaDevices = {};

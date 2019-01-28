@@ -11,6 +11,7 @@
     "camera": {
       "description": "Required for accessing cameras on the device."
     },
+    
     "device-storage:videos": { "access": "readonly" },
     "device-storage:pictures": { "access": "readwrite" },
     "device-storage:apps": { "access": "readwrite" },
