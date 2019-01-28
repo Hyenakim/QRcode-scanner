@@ -1,5 +1,6 @@
 ﻿{
-
+  "name": "QRcode scanner",
+  "start_url": "https://hyenakim.github.io/QRcode-scanner/src/qrcode.html",
   "permissions": {
     "audio-capture": {
       "description": "Required to capture audio using getUserMedia()"
@@ -9,7 +10,11 @@
     },
     "camera": {
       "description": "Required for accessing cameras on the device."
-    }
+    },
+    "device-storage:videos": { "access": "readonly" },
+    "device-storage:pictures": { "access": "readwrite" },
+    "device-storage:apps": { "access": "readwrite" },
+    "webapps-manage": {}
   }
 
 }
