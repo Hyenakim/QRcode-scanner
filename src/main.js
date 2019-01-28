@@ -6,6 +6,12 @@ var stop
 
 /*창 로드시 실행*/
 window.onload = function () {
+    var os = getMobileOperatingSystem()
+    /*os 구별 및 손전등 사용 가능여부 판단*/
+    if (os === "iOS" || os === "unknown") {
+    } else {
+        document.querySelector("#lightBtn").style.display = "inline-block";
+    }
     // Older browsers might not implement mediaDevices at all, so we set an empty object first
     if (navigator.mediaDevices === undefined) {
         navigator.mediaDevices = {};
@@ -40,12 +46,6 @@ window.onload = function () {
         video.srcObject = stream;
         video.play();
         const track = stream.getVideoTracks()[0];
-        var os = getMobileOperatingSystem()
-        /*os 구별 및 손전등 사용 가능여부 판단*/
-        if (os === "iOS" || os === "unknown") {
-        } else {
-            document.querySelector("#lightBtn").style.display = "inline-block";
-        }
         setTimeout(findQR, 100); /* We launch the tick function 100ms later (see next step) */
     })
     .catch(function (err) {
