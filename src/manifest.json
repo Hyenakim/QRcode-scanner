@@ -1,0 +1,15 @@
+﻿{
+
+  "permissions": {
+    "audio-capture": {
+      "description": "Required to capture audio using getUserMedia()"
+    },
+    "video-capture": {
+      "description": "Required to capture video using getUserMedia()"
+    },
+    "camera": {
+      "description": "Required for accessing cameras on the device."
+    }
+  }
+
+}
