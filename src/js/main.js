@@ -6,6 +6,7 @@ var stop
 
 /*창 로드시 실행*/
 window.onload = function () {
+    showAndroidToast("hello Android");
     var os = getMobileOperatingSystem()
     /*os 구별 및 손전등 사용 가능여부 판단*/
     if (os === "iOS" || os === "unknown") {
@@ -52,7 +53,9 @@ window.onload = function () {
         console.log(err); /* User probably refused to grant access*/
     });
 };
-
+function showAndroidToast(toast) {
+    Android.showToast(toast);
+}
 /*실시간 video snapshot & qrcode판단*/
 function findQR() {
 
